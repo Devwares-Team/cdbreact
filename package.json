@@ -1,0 +1,86 @@
+{
+  "name": "cdbreact",
+  "version": "1.0.0",
+  "description": "Elegant PRO UI Kit and reusable components for building mobile-first, responsive webistes and web apps",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Devwares-Team/cdbreact.git"
+  },
+  "keywords": [
+    "cdbreact",
+    "react"
+  ],
+  "author": "Devwares",
+  "license": "SEE LICENSE IN license.pdf",
+  "bugs": {
+    "url": "https://github.com/Devwares-Team/cdbreact/issues"
+  },
+  "homepage": "https://cdbreactdemo.netlify.app/",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.js",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "build": "microbundle-crl --no-compress --format modern,cjs",
+    "start": "microbundle-crl watch --no-compress --format modern,cjs",
+    "prepare": "run-s build",
+    "test": "run-s test:unit test:lint test:build",
+    "test:build": "run-s build",
+    "test:lint": "eslint .",
+    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
+    "predeploy": "cd example && npm install && npm run build",
+    "deploy": "gh-pages -d example/build"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "@popperjs/core": "^2.4.0",
+    "bootstrap-css-only": "^4.4.1",
+    "classnames": "^2.2.6",
+    "focus-trap-react": "^7.0.1",
+    "react-bootstrap-range-slider": "^1.2.1",
+    "chart.js": "^2.9.3",
+    "popper.js": "^1.16.1",
+    "react-chartjs-2": "^2.10.0",
+    "react-popper": "^2.2.3",
+    "react-router-dom": "^5.2.0",
+    "react-scroll": "^1.8.1",
+    "react-spring": "^8.0.27",
+    "react-tooltip": "^4.2.9",
+    "react-transition-group": "^4.4.1",
+    "styled-components": "^5.1.1",
+    "styled-system": "^5.1.5",
+    "use-deep-compare-effect": "^1.4.0"
+  },
+  "peerDependencies": {
+    "react": "^16.13.0",
+    "reacy-dom": "^16.13.0",
+    "prop-types": "^15.7.2"
+  },
+  "devDependencies": {
+    "microbundle-crl": "^0.13.10",
+    "babel-eslint": "^10.0.3",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "gh-pages": "^2.2.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.4",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-scripts": "3.4.1"
+  },
+  "files": [
+    "dist"
+  ]
+}
