@@ -10,6 +10,8 @@ export { default as CDBBreadcrumb } from './components/Breadcrumb'
 export { default as CDBBtn } from './components/Button'
 export { default as CDBBtnGrp } from './components/ButtonGroup'
 export { default as CDBBtnTb } from './components/ButtonToolbar'
+export { default as CDBCard } from './components/Card';
+export { default as CDBCardBody } from './components/Card/CardBody';
 export { default as CDBCarousel } from './components/Carousel'
 export { default as CDBCarouselInner } from './components/Carousel/CarouselInner'
 export { default as CDBCarouselItem } from './components/Carousel/CarouselItem'
