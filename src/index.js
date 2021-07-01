@@ -21,7 +21,7 @@ export { default as CDBCollapse } from './components/Collapse'
 export { default as CDBContainer } from './components/Container'
 export { default as CDBDataTable } from './components/DataTable'
 export { default as CDBDropDown } from './components/DropDown'
-export { default as CDBDropDownToggle } from './components/DropDown/DropdownToggle'
+export { default as CDBDropDownToggle } from './components/DropDown/DropDownToggle' // caps error 
 export { default as CDBDropDownMenu } from './components/DropDown/DropDownMenu'
 export { default as CDBDropDownItem } from './components/DropDown/DropDownItem'
 export { default as CDBHamburgerToggler } from './components/HamburgerToggler'
