@@ -1,11 +1,11 @@
 
 
-# Contrast Design Bootstrap React (Free)
+# Contrast Bootstrap React 
 
 > Elegant UI Kit and reusable components for building mobile-first, responsive webistes and web apps
 
 [![NPM](https://img.shields.io/npm/v/cdbreact.svg)](https://www.npmjs.com/package/cdbreact) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-![npm](https://img.shields.io/npm/dw/cdbreact)
+![npm](https://img.shields.io/npm/dm/cdbreact)
 
 ## Install
 
@@ -35,21 +35,33 @@ const Alert = () => {
 
 export default Alert;
 ```
+
+
+## Documentation
+
+[Check out our documentation here](https://www.devwares.com/docs/contrast/react/index)
+
+
 # Demo
 
 ## Pages
 
 <a href="https://www.devwares.com/product/admin-contrast">
-<img src="https://res.cloudinary.com/devwares/image/upload/v1610800617/s1_opnshi.png" width="80%" height="auto"/>
+<img src="https://res.cloudinary.com/speedwares/image/upload/v1632326758/sign-up-form-1-2_td39ot.png" width="80%" height="auto"/>
 </a>
 
 <a href="https://www.devwares.com/product/admin-contrast">
-<img src="https://res.cloudinary.com/devwares/image/upload/v1610800671/s2_yw3dmx.png" width="80%" height="auto"/>
+<img src="https://res.cloudinary.com/speedwares/image/upload/v1632326759/sign-up_k89hu8.png" width="80%" height="auto"/>
 </a>
 
 <a href="https://www.devwares.com/product/admin-contrast">
-<img src="https://res.cloudinary.com/devwares/image/upload/v1610800656/hero3_cuqjtc.png" width="80%" height="auto"/>
+<img src="https://res.cloudinary.com/speedwares/image/upload/v1632326758/sign-up-form-1-7_nxkipe.png" width="80%" height="auto"/>
 </a>
+
+<a href="https://www.devwares.com/product/admin-contrast">
+<img src="https://res.cloudinary.com/speedwares/image/upload/v1632326674/sign-up-form-1-1_nyfoso.png" width="80%" height="auto"/>
+</a>
+
 
 
 ## Carousel
@@ -65,20 +77,25 @@ export default Alert;
 ## Dashboards
 
 <a href="https://www.devwares.com/product/admin-contrast">
-<img src="https://res.cloudinary.com/devwares/image/upload/v1610800575/dash1_ccd7xr.png" width="80%" height="auto"/>
+<img src="https://res.cloudinary.com/speedwares/image/upload/v1632326755/dashboard-premium-1_a5n58x.png" width="80%" height="auto"/>
 </a>
 
 <a href="https://www.devwares.com/product/admin-contrast">
-<img src="https://res.cloudinary.com/devwares/image/upload/v1610800596/dash2_bvzv7z.png" width="80%" height="auto"/>
+<img src="https://res.cloudinary.com/speedwares/image/upload/v1632326755/dashboard-premium-dark_rah6ys.png" width="80%" height="auto"/>
 </a>
 
 <a href="https://www.devwares.com/product/admin-contrast">
-<img src="https://res.cloudinary.com/devwares/image/upload/v1610800576/dash3_tfcfuf.png" width="80%" height="auto"/>
+<img src="https://res.cloudinary.com/speedwares/image/upload/v1632326755/dashboard-premium_o49gxh.png" width="80%" height="auto"/>
 </a>
 
 <a href="https://www.devwares.com/product/admin-contrast">
-<img src="https://res.cloudinary.com/devwares/image/upload/v1610800566/dash4_kvqco1.png" width="80%" height="auto"/>
+<img src="https://res.cloudinary.com/speedwares/image/upload/v1632326755/dashboard-freemium_jadxee.png" width="80%" height="auto"/>
 </a>
+
+<a href="https://www.devwares.com/product/admin-contrast">
+<img src="https://res.cloudinary.com/speedwares/image/upload/v1632326754/dashboard-pro_toi6vv.png" width="80%" height="auto"/>
+</a>
+
 
 ## Cards
 
@@ -208,10 +225,6 @@ export default Alert;
 |Mac | N/A  | supported  | supported   | supported   | supported  |
 |Windows | supported  |supported   |supported   | N/A | supported  |
 
-## Documentation
-
-[Check out our documentation here](https://www.devwares.com/docs/contrast/react/index)
-
 ## PRO Version
 
 [Contrast Design Bootstrap PRO](https://www.devwares.com/product/contrast-pro)
@@ -224,7 +237,7 @@ See License in &lt;license.pdf&gt; © [Devwares](https://github.com/Devwares)
 
 ### Follow us on Social Media
 
-* [Twitter](https://twitter.com/devwares?s=09)
+* [Twitter](https://twitter.com/devwares)
 * [Facebook](https://www.facebook.com/Devwares-102291481719158/)
 * [Instagram](https://instagram.com/devwares)
 * [Linkedin](https://www.linkedin.com/company/devwares)
@@ -239,6 +252,6 @@ See License in &lt;license.pdf&gt; © [Devwares](https://github.com/Devwares)
 * Suggest new features
 * Help us Improve our documentation with updates
 
-We truly appreciate us all and everyone who has contributed to this project, as we continue to use and imporove this project.
+We truly appreciate everyone who has contributed to this project. 
 
-A massive thank you to everyone!
+Thank you!

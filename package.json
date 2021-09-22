@@ -1,21 +1,29 @@
 {
   "name": "cdbreact",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Elegant UI Kit and reusable components for building mobile-first, responsive webistes and web apps",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Devwares-Team/cdbreact.git"
   },
   "keywords": [
+    "react bootstrap",
+    "bootstrap react",
     "cdbreact",
-    "react"
+    "react",
+    "react library",
+    "ui library",
+    "frontend library",
+    "contrast",
+    "react components",
+    "react template library"
   ],
   "author": "Devwares",
   "license": "SEE LICENSE IN license.pdf",
   "bugs": {
     "url": "https://github.com/Devwares-Team/cdbreact/issues"
   },
-  "homepage": "https://cdbreactdemo.netlify.app/",
+  "homepage": "https://www.devwares.com/product/contrast/",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
