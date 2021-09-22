@@ -26,7 +26,7 @@ export const InnerMenuItem = styled.div`
            white-space: nowrap;
          }
          &.toggled {
-           padding-left: 13px;
+           padding-left: 9px;
          }
        `;
 
