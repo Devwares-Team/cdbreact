@@ -1,9 +1,11 @@
 import styled from "styled-components";
-import { colorStyle, variant, space } from "styled-system";
+import { color, variant, space } from "styled-system";
 
 export const Component = styled.span`
+  display: flex;
+  align-items: center;
   ${space}
-  ${colorStyle}
+  ${color}
   font-weight:200;
   box-shadow: ${(props) =>
     props.flat
@@ -12,10 +14,9 @@ export const Component = styled.span`
 
   ${variant({
     prop: "borderType",
-
     variants: {
       box: {
-        borderRadius: 0,
+        borderRadius: "0px",
       },
       pill: {
         borderRadius: "20px",
@@ -26,17 +27,53 @@ export const Component = styled.span`
     prop: "size",
     variants: {
       large: {
-        padding: "10px 15px",
+        padding: "8.75px 15px",
         fontSize: "1rem",
       },
       medium: {
-        padding: "7.5px 8.75px",
-        fontSize: "0.65rem",
+        padding: "6.25px 8.75px",
+        fontSize: "0.85rem",
       },
       small: {
-        padding: "4.5px 6px",
-        fontSize: "0.5rem",
+        padding: "4px 6px",
+        fontSize: "0.625rem",
       },
     },
   })}
+  .icon {
+    ${variant({
+      prop: "size",
+      variants: {
+        large: {
+          fontSize: "1rem",
+          marginRight: "12px",
+        },
+        medium: {
+          fontSize: "0.85rem",
+          marginRight: "10px",
+        },
+        small: {
+          fontSize: "0.625rem !important",
+          marginRight: "7.5px",
+        },
+      },
+    })}
+    i {
+      ${space}
+      ${variant({
+        prop: "size",
+        variants: {
+          large: {
+            fontSize: "1rem",
+          },
+          medium: {
+            fontSize: "0.85rem",
+          },
+          small: {
+            fontSize: "0.625rem !important",
+          },
+        },
+      })}
+    }
+  }
 `;

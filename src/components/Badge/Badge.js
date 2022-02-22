@@ -6,22 +6,38 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./../../theme";
 
 const Badge = (props) => {
-  const { className, tag, color, children, borderType, size, flat, ...attributes } = props;
-
-  const badgeClasses = classNames("badge", className);
-
-  let badgeComponent = (
+  const {
+    className,
+    tag,
+    color,
+    intensity,
+    children,
+    icon,
+    borderType,
+    size,
+    flat,
+    ...attributes
+  } = props;
+  const badgeClasses = classNames(className);
+  const colors = `${color}${intensity.toString()}`;
+  const badgeComponent = (
     <ThemeProvider theme={theme}>
       <Component
         className={badgeClasses}
         role="badge"
         as={tag}
-        colors={color}
+        bg={colors}
         borderType={borderType}
         size={size}
         flat={flat}
         {...attributes}
       >
+        {icon && (
+          <span className="icon">
+            <i className={`fa fa-${icon}`} />
+          </span>
+        )}
+
         {children}
       </Component>
     </ThemeProvider>
@@ -33,8 +49,9 @@ const Badge = (props) => {
 Badge.defaultProps = {
   tag: "span",
   color: "primary",
-  borderType: "box",
+  borderType: "pill",
   size: "medium",
+  intensity: "900",
 };
 
 Badge.propTypes = {
@@ -43,15 +60,9 @@ Badge.propTypes = {
   flat: PropTypes.bool,
   size: PropTypes.string,
   borderType: PropTypes.string,
-  colors: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "success",
-    "danger",
-    "warning",
-    "info",
-  ]),
+  colors: PropTypes.string,
   tag: PropTypes.string,
+  intensity: PropTypes.oneOf([50, 100, 200, 300, 400, 500, 600, 700, 800, 900]),
 };
 
 export default Badge;
