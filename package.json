@@ -1,7 +1,35 @@
 {
-  "name": "contrast",
+  "name": "cdbreact",
   "version": "1.3.0",
-  "private": true,
+  "description": "Elegant UI Kit and reusable components for building mobile-first, responsive webistes and web apps",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Devwares-Team/cdbreact.git"
+  },
+  "keywords": [
+    "react bootstrap",
+    "bootstrap react",
+    "cdbreact",
+    "react",
+    "react library",
+    "ui library",
+    "frontend library",
+    "contrast",
+    "react components",
+    "react template library"
+  ],
+  "author": "Devwares",
+  "license": "SEE LICENSE IN license.pdf",
+  "bugs": {
+    "url": "https://github.com/Devwares-Team/cdbreact/issues"
+  },
+  "homepage": "https://www.devwares.com/product/contrast/",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.js",
+  "engines": {
+    "node": ">=10"
+  },
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
@@ -20,8 +48,6 @@
     "bootstrap-css-only": "^4.4.1",
     "classnames": "^2.2.6",
     "focus-trap-react": "^7.0.1",
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
     "react-bootstrap-range-slider": "^1.2.1",
     "chart.js": "^2.9.3",
     "popper.js": "^1.16.1",
