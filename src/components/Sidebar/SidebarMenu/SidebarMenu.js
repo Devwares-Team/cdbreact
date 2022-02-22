@@ -11,10 +11,9 @@ import { theme } from "./../../../theme";
 const SidebarMenu = forwardRef(
   ({ children, className, popperArrow, ...rest }, ref) => {
     const menuRef = ref ? ref : React.createRef();
-
+    
     const { textColor, backgroundColor } = useContext(SidebarContext);
 
-          
     return (
       <ThemeProvider theme={theme}>
         <MenuNav

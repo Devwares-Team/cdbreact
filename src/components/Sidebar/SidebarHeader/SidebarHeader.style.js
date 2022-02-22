@@ -18,6 +18,7 @@ export const HeaderContainer = styled.div`
     }
 
     &.toggled {
+      justify-content: center;
       .head-text {
         display: none;
       }

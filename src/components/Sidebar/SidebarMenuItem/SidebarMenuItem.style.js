@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const InnerMenuItem = styled.div`
   position: relative;
@@ -30,9 +30,14 @@ export const InnerMenuItem = styled.div`
     margin-right: 23px;
   }
   &.toggled {
-    padding-left: 9px;
+    justify-content: center;
+    .item-content {
+      width: 0px;
+      display: none;
+    }
     .suffix-wrapper {
       opacity: 0;
+      display: none;
     }
   }
 `;

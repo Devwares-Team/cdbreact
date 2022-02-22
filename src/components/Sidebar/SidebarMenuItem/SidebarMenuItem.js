@@ -40,6 +40,7 @@ const SidebarMenuItem = forwardRef(
             tabIndex={0}
             fontSize={textFontSize}
             role="button"
+            toggled={toggled}
           >
             {icon && (
               <CDBIcon

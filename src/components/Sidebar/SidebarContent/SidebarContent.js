@@ -7,25 +7,24 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./../../../theme";
 
 
-
 const SidebarContent = forwardRef(({ children, className, ...rest }, ref) => {
 
-  const { handleToggleSidebar } = useContext(SidebarContext);
+  const { handleToggleSidebar, breakpoint } = useContext(SidebarContext);
 
 
   const [width, setWidth] = useState(window.innerWidth);
-  const breakpoint = 720;
+  const finalbreakpoint = breakpoint || 720;
 
 
 
   useEffect(() => {
     const handleWindowResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleWindowResize);
-    if (width < breakpoint) {
+    if (width < finalbreakpoint) {
       handleToggleSidebar(false)
     }
 
-    if (width > breakpoint) {
+    if (width > finalbreakpoint) {
       handleToggleSidebar(true)
     }
 
@@ -35,7 +34,7 @@ const SidebarContent = forwardRef(({ children, className, ...rest }, ref) => {
 
     }
 
-  }, [handleToggleSidebar, width])
+  }, [handleToggleSidebar, width, finalbreakpoint])
 
   const sidebarContentRef = ref ? ref : React.createRef();
 

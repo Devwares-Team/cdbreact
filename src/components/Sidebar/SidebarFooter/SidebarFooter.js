@@ -5,7 +5,6 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./../../../theme";
 
 
-
 const SidebarFooter = forwardRef(({ children, className, ...rest }, ref) => {
   const sidebarFooterRef = ref ? ref : React.createRef();
   return (
