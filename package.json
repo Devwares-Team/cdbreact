@@ -1,6 +1,6 @@
 {
   "name": "cdbreact",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Elegant UI Kit and reusable components for building mobile-first, responsive webistes and web apps",
   "repository": {
     "type": "git",
@@ -64,8 +64,8 @@
     "use-deep-compare-effect": "^1.4.0"
   },
   "peerDependencies": {
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
+    "react": ">=16.13.0",
+    "react-dom": ">=16.13.0",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
