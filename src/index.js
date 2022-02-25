@@ -1,4 +1,4 @@
-import 'bootstrap-css-only/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 export { default as CDBAccordion } from './components/Accordion'
@@ -10,8 +10,8 @@ export { default as CDBBreadcrumb } from './components/Breadcrumb'
 export { default as CDBBtn } from './components/Button'
 export { default as CDBBtnGrp } from './components/ButtonGroup'
 export { default as CDBBtnTb } from './components/ButtonToolbar'
-export { default as CDBCard } from './components/Card';
-export { default as CDBCardBody } from './components/Card/CardBody';
+export { default as CDBCard } from './components/Card'
+export { default as CDBCardBody } from './components/Card/CardBody'
 export { default as CDBCarousel } from './components/Carousel'
 export { default as CDBCarouselInner } from './components/Carousel/CarouselInner'
 export { default as CDBCarouselItem } from './components/Carousel/CarouselItem'
@@ -21,7 +21,7 @@ export { default as CDBCollapse } from './components/Collapse'
 export { default as CDBContainer } from './components/Container'
 export { default as CDBDataTable } from './components/DataTable'
 export { default as CDBDropDown } from './components/DropDown'
-export { default as CDBDropDownToggle } from './components/DropDown/DropDownToggle' // caps error 
+export { default as CDBDropDownToggle } from './components/DropDown/DropDownToggle' // caps error
 export { default as CDBDropDownMenu } from './components/DropDown/DropDownMenu'
 export { default as CDBDropDownItem } from './components/DropDown/DropDownItem'
 export { default as CDBHamburgerToggler } from './components/HamburgerToggler'
