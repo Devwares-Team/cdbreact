@@ -2,11 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Component } from "./Button.style";
-import { ThemeProvider } from 'styled-components'
-import { theme } from './../../theme'
 
 const Button = (props) => {
-
   let {
     action,
     active,
@@ -49,7 +46,6 @@ const Button = (props) => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
     <Component
       data-test="button"
       type={tag === "button" && !type ? "button" : type}
@@ -63,13 +59,13 @@ const Button = (props) => {
       flat={flat}
       {...attributes}
       download={download}
-      disabled={disabled}
       circle={circle}
+      disabled={disabled}
       outline={outline}
+      bg={color}
     >
       {children}
-      </Component>
-    </ThemeProvider>
+    </Component>
   );
 };
 
@@ -77,6 +73,7 @@ Button.defaultProps = {
   color: "primary",
   tag: "button",
   size: "medium",
+  circle: true,
 };
 
 Button.propTypes = {
