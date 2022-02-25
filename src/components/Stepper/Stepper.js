@@ -62,7 +62,7 @@ const Stepper = (props) => {
           <div className='step-row-2'>
             <div className='step-content'>
               {children.map((item) => {
-                return <>{item}</>
+                return item
               })}
             </div>
           </div>
