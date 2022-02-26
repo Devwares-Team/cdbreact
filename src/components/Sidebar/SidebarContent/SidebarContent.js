@@ -12,7 +12,7 @@ const SidebarContent = forwardRef(({ children, className, ...rest }, ref) => {
   const { handleToggleSidebar, breakpoint } = useContext(SidebarContext);
 
 
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(0);
   const finalbreakpoint = breakpoint || 720;
 
 
