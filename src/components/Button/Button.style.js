@@ -1,54 +1,52 @@
-import styled, { css } from "styled-components";
-import tinycolor from "tinycolor2";
-import { variant } from "styled-system";
-import colors from "../../theme/colors";
+import styled, { css } from 'styled-components'
+import { variant } from 'styled-system'
+import colors from '../../theme/colors'
+import tinycolor from 'tinycolor2'
 
 export const Component = styled.div`
   box-shadow: ${(props) =>
     props.flat
-      ? "none"
-      : "0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)"};
+      ? 'none'
+      : '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)'};
   box-sizing: border-box;
-  transition: all  0.3s;
+  font-weight: 600;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   ${({ bg }) =>
     bg &&
     css`
       background: ${colors[`${bg}`]};
-      color: ${tinycolor(colors[`${bg}`]).isDark() ? "#fff" : "#333"};
+      color: #fff;
       &:hover {
         ${({ bg }) =>
           bg &&
           css`
-            background: ${tinycolor(colors[`${bg}`]).darken(10)};
             transform: scale(1.02);
-            color: ${tinycolor(colors[`${bg}`]).isDark() ? "#fff" : "#333"};
+            color: #fff;
           `};
-      }
     `}}
 
   ${variant({
-    prop: "size",
+    prop: 'size',
     variants: {
       xl: {
-        padding: "20px",
-        fontSize: "1.25rem",
-        width: "250px",
-        height: "80px",
+        padding: '12px 18.75px',
+        fontSize: '1rem'
       },
       large: {
-        padding: "20px",
-        fontSize: "1.25rem",
+        padding: '8.75px 15px',
+        fontSize: '1rem'
       },
       medium: {
-        padding: "10px",
-        fontSize: "1rem",
-        width: "140px",
+        padding: '6px 12px',
+        fontSize: '0.85rem'
       },
       small: {
-        padding: "5px",
-        fontSize: "0.75rem",
-      },
-    },
+        padding: '3px 6px',
+        fontSize: '0.625rem'
+      }
+    }
   })};
 
   ${(props) =>
@@ -57,7 +55,7 @@ export const Component = styled.div`
           border-radius: 30px;
         `
       : css`
-          border-radius: 0px;
+          border-radius: 4px;
         `};
 
   ${(props) =>
@@ -68,18 +66,19 @@ export const Component = styled.div`
         bg &&
         css`
           border: 2px solid ${colors[`${bg}`]};
-          color: #333;
+          color: ${tinycolor(`${colors[`${bg}`]}`).darken(10)};
         `};
       border-width: 2px;
       &:hover {
+        background: transparent;
         ${({ bg }) =>
           bg &&
           css`
-            border: 2px solid ${tinycolor(colors[`${bg}`]).darken(10)};
-            border-width: 2.4px;
+            border: 2.4px solid ${colors[`${bg}`]};
             transform: scale(1.02);
+            color: ${tinycolor(`${colors[`${bg}`]}`).darken(10)};
           `};
       }
     `};
 
-`;
+`

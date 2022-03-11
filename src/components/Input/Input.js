@@ -1,104 +1,107 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { Component as StyledComponent } from "./Input.style";
-import { ThemeProvider } from "styled-components";
-import { theme } from "./../../theme";
+import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import CDBIcon from '../Icon'
+import { Component as StyledComponent } from './Input.style'
+import { ThemeProvider } from 'styled-components'
+import { theme } from './../../theme'
 
 class Input extends React.Component {
   state = {
     innerValue: this.props.value || this.props.valueDefault,
     isFocused: false,
-    isPristine: true,
-  };
+    isPristine: true
+  }
 
-  inputElementRef = React.createRef();
+  inputElementRef = React.createRef()
 
   componentDidMount() {
-    const { inputRef, focused, indeterminate, selectInnerRef } = this.props;
+    const { inputRef, focused, indeterminate, selectInnerRef } = this.props
 
-    inputRef && inputRef(this.inputElementRef.current);
-    selectInnerRef && selectInnerRef(this.inputElementRef);
+    inputRef && inputRef(this.inputElementRef.current)
+    selectInnerRef && selectInnerRef(this.inputElementRef)
 
     if (focused === true) {
       this.setState({ isFocused: focused }, () => {
-        this.setFocus();
-      });
+        this.setFocus()
+      })
     }
 
     if (indeterminate) {
-      this.inputElementRef.current.indeterminate = true;
+      this.inputElementRef.current.indeterminate = true
     }
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.value !== prevState.value) {
-      return { innerValue: nextProps.value };
+      return { innerValue: nextProps.value }
     }
 
-    return null;
+    return null
   }
 
   onBlur = (event) => {
-    event.stopPropagation();
-    const { onBlur } = this.props;
-    this.setState({ isFocused: false });
-    onBlur && onBlur(event);
-  };
+    event.stopPropagation()
+    const { onBlur } = this.props
+    this.setState({ isFocused: false })
+    onBlur && onBlur(event)
+  }
 
   onFocus = (event) => {
-    event.stopPropagation();
-    const { onFocus } = this.props;
-    this.setState({ isFocused: true });
-    onFocus && onFocus(event);
-  };
+    event.stopPropagation()
+    const { onFocus } = this.props
+    this.setState({ isFocused: true })
+    onFocus && onFocus(event)
+  }
 
   onChange = (event) => {
-    event.stopPropagation();
-    const { type, onChange, getValue } = this.props;
-    const { value, checked } = event.target;
+    event.stopPropagation()
+    const { type, onChange, getValue } = this.props
+    const { value, checked } = event.target
 
-    if (type !== "checkbox" && type !== "radio") {
+    if (type !== 'checkbox' && type !== 'radio') {
       this.setState({
         innerValue: value,
-        isPristine: false,
-      });
-      getValue && getValue(value);
+        isPristine: false
+      })
+      getValue && getValue(value)
     } else {
-      getValue && getValue(checked);
+      getValue && getValue(checked)
     }
 
-    onChange && onChange(event);
-  };
+    onChange && onChange(event)
+  }
 
   onInput = (event) => {
-    event.stopPropagation();
-    const { type, onInput } = this.props;
-    if (type !== "checkbox" && type !== "radio") {
+    event.stopPropagation()
+    const { type, onInput } = this.props
+    if (type !== 'checkbox' && type !== 'radio') {
       this.setState({
         innerValue: event.target.value,
-        isPristine: false,
-      });
+        isPristine: false
+      })
     }
 
-    onInput && onInput(event);
-  };
+    onInput && onInput(event)
+  }
 
   setFocus = () => {
-    this.inputElementRef.current.focus();
-  };
+    this.inputElementRef.current.focus()
+  }
 
   render() {
     const {
       background,
       children,
       className,
+      color,
       containerClass,
       dataTest,
       disabled,
       error,
       filled,
       focused,
+      fontSize,
       gap,
       getValue,
       group,
@@ -133,98 +136,86 @@ class Input extends React.Component {
       valueDefault,
       width,
       ...attributes
-    } = this.props;
+    } = this.props
 
-    const { innerValue, isFocused } = this.state;
+    const { innerValue, isFocused } = this.state
     const isNotEmpty =
       (!!innerValue || !!hint || isFocused || innerValue === 0) &&
-      type !== "checkbox" &&
-      type !== "radio";
-    let TagInput = "";
-    let formControlClass = "";
-    let formSizeClass = "";
+      type !== 'checkbox' &&
+      type !== 'radio'
+    let TagInput = ''
+    let formControlClass = ''
+    let formSizeClass = ''
 
-    if (type === "textarea") {
-      formControlClass = material ? "md-textarea form-control" : "form-control";
-      TagInput = "textarea";
-      formSizeClass = size ? `form-control-${size}` : false;
+    if (type === 'textarea') {
+      formControlClass = material ? 'md-textarea form-control' : 'form-control'
+      TagInput = 'textarea'
+      formSizeClass = size ? `form-control-${size}` : false
     } else {
-      formControlClass = "form-control";
-      TagInput = "input";
-      attributes.type = type;
-      formSizeClass = size ? `form-control-${size}` : false;
+      formControlClass = 'form-control'
+      TagInput = 'input'
+      attributes.type = type
+      formSizeClass = size ? `form-control-${size}` : false
     }
 
-    if (type === "checkbox" || type === "radio") {
-      formControlClass = null;
-      formSizeClass = null;
+    if (type === 'checkbox' || type === 'radio') {
+      formControlClass = null
+      formSizeClass = null
     }
 
     const inputStyle = {
-      height:height,
-      width:width,
+      height: height,
+      width: width
     }
 
-    attributes.disabled = disabled;
+    attributes.disabled = disabled
 
     const classes = classNames(
       formControlClass,
       formSizeClass,
-      background && "bg",
-      material && background && "md-bg",
-      validate ? "validate" : false,
-      filled ? "filled-in" : false,
-      gap ? "with-gap" : false,
-      type === "checkbox" ? (gap ? false : "form-check-input") : false,
-      type === "radio" ? "form-check-input" : false,
-      "rounded-0",
+      background && 'bg',
+      material && background && 'md-bg',
+      validate ? 'validate' : false,
+      filled ? 'filled-in' : false,
+      gap ? 'with-gap' : false,
+      type === 'checkbox' ? (gap ? false : 'form-check-input') : false,
+      type === 'radio' ? 'form-check-input' : false,
       className
-    );
+    )
 
     const containerClassFix = classNames(
-      type === "checkbox" || type === "radio"
-        ? typeof label === "boolean" && label
-          ? "d-flex"
-          : "form-check"
-        : "md-form",
-      group ? "form-group" : false,
-      size ? `form-${size}` : false, 
-      material ? false : "md-outline",
-      containerClass
-    );
+      type === 'checkbox' || type === 'radio'
+        ? typeof label === 'boolean' && label
+          ? 'd-flex'
+          : 'form-check'
+        : 'cdb-form',
 
-    const iconPrefix =
-      iconRegular
-        ? "far"
-        : iconLight
-        ? "fal"
-        : iconBrand
-        ? "fab"
-        : "fa";
+      group ? 'form-group' : false,
+      size ? `form-${size}` : false,
+      material ? false : 'md-outline',
+      containerClass
+    )
 
     const iconClassFix = classNames(
-      iconPrefix,
-      icon ? `fa-${icon}` : false,
-      iconSize ? `fa-${size}` : false,
-      isNotEmpty && isFocused ? "active" : false,
+      isNotEmpty && isFocused ? 'active' : false,
       iconClass,
-      "prefix"
-    );
+      'prefix'
+    )
 
     const labelClassFix = classNames(
-      (isNotEmpty && !isControlled) || hint ? "active" : false,
-      disabled ? "disabled" : false,
-      type === "checkbox" ? "form-check-label" : false,
-      type === "radio" ? "form-check-label" : false,
+      (isNotEmpty && !isControlled) || hint ? 'active' : false,
+      disabled ? 'disabled' : false,
+      type === 'checkbox' ? 'form-check-label' : false,
+      type === 'radio' ? 'form-check-label' : false,
       labelClass
-    );
+    )
+    console.log(innerValue, 'innerValue')
 
     const renderFunction = () => (
       <ThemeProvider theme={theme}>
-        <React.Fragment>
+        <Fragment>
           {icon && (
-            <i 
-              data-test="fa"
+            <CDBIcon
               icon={icon}
               size={iconSize}
               brand={iconBrand}
@@ -234,9 +225,7 @@ class Input extends React.Component {
               onClick={onIconClick || this.setFocus}
               onMouseEnter={onIconMouseEnter}
               onMouseLeave={onIconMouseLeave}
-              {...attributes} 
-            >
-            </i>
+            />
           )}
           <TagInput
             data-test={dataTest}
@@ -253,7 +242,7 @@ class Input extends React.Component {
             onFocus={this.onFocus}
             aria-disabled={disabled}
           />
-          {label && (
+          {innerValue.length <= 0 && label && (
             <label
               className={labelClassFix}
               htmlFor={id}
@@ -268,17 +257,21 @@ class Input extends React.Component {
             </label>
           )}
           {children}
-        </React.Fragment>
+        </Fragment>
       </ThemeProvider>
-    );
+    )
 
     return noTag ? (
       renderFunction()
     ) : (
-      <StyledComponent className={containerClassFix}>
+      <StyledComponent
+        className={containerClassFix}
+        size={fontSize}
+        color={color}
+      >
         {renderFunction()}
       </StyledComponent>
-    );
+    )
   }
 }
 
@@ -286,11 +279,13 @@ Input.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   containerClass: PropTypes.string,
+  color: PropTypes.string,
   dataTest: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.string,
   filled: PropTypes.bool,
   focused: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  fontSize: PropTypes.number,
   gap: PropTypes.bool,
   getValue: PropTypes.func,
   group: PropTypes.bool,
@@ -310,7 +305,7 @@ Input.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.object,
-    PropTypes.bool,
+    PropTypes.bool
   ]),
   labelClass: PropTypes.string,
   labelId: PropTypes.string,
@@ -332,27 +327,28 @@ Input.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
-    PropTypes.bool,
+    PropTypes.bool
   ]),
   valueDefault: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  width: PropTypes.string,
-};
+  width: PropTypes.string
+}
 
 Input.defaultProps = {
-  className: "",
-  containerClass: "",
-  dataTest: "input",
+  className: '',
+  containerClass: '',
+  dataTest: 'input',
   disabled: false,
-  error: "",
+  error: '',
   filled: false,
   gap: false,
   group: false,
   hint: undefined,
-  icon: "",
+  icon: '',
   iconBrand: false,
   focused: false,
+  fontSize: 15,
   indeterminate: false,
-  iconClass: "",
+  iconClass: '',
   iconLight: false,
   onIconMouseEnter: () => {},
   onIconMouseLeave: () => {},
@@ -362,16 +358,17 @@ Input.defaultProps = {
   isControlled: false,
   noTag: false,
   material: false,
-  label: " ",
-  labelClass: "",
-  labelId: "",
-  size: "lg",
-  success: "",
-  tag: "div",
-  type: "text",
+  label: ' ',
+  labelClass: '',
+  labelId: '',
+  size: 'lg',
+  success: '',
+  tag: 'div',
+  type: 'text',
   validate: false,
-  valueDefault: "",
-};
+  valueDefault: '',
+  color: 'dark'
+}
 
-export default Input;
-export { Input as CDBInput };
+export default Input
+export { Input as CDBInput }

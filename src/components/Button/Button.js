@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { Component } from "./Button.style";
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { Component } from './Button.style'
 
 const Button = (props) => {
   let {
@@ -26,32 +26,31 @@ const Button = (props) => {
     target,
     type,
     ...attributes
-  } = props;
+  } = props
 
   const buttonClasses = classNames(
-    "btn",
-    "Ripple-parent",
+    'Ripple-parent',
     {
       active,
-      "btn-block": block,
-      "btn-action": action,
+      'btn-block': block,
+      'btn-action': action,
       [`btn-${social}`]: social,
-      disabled,
+      disabled
     },
     className
-  );
+  )
 
-  if (attributes.href && tag === "button") {
-    tag = "a";
+  if (attributes.href && tag === 'button') {
+    tag = 'a'
   }
 
   return (
     <Component
-      data-test="button"
-      type={tag === "button" && !type ? "button" : type}
+      data-test='button'
+      type={tag === 'button' && !type ? 'button' : type}
       as={tag}
       target={target}
-      role={tag === "a" && !role ? "button" : role}
+      role={tag === 'a' && !role ? 'button' : role}
       className={buttonClasses}
       colors={color}
       ref={innerRef}
@@ -66,15 +65,15 @@ const Button = (props) => {
     >
       {children}
     </Component>
-  );
-};
+  )
+}
 
 Button.defaultProps = {
-  color: "primary",
-  tag: "button",
-  size: "medium",
-  circle: true,
-};
+  color: 'primary',
+  tag: 'button',
+  size: 'medium',
+  circle: false
+}
 
 Button.propTypes = {
   action: PropTypes.bool,
@@ -94,8 +93,8 @@ Button.propTypes = {
   social: PropTypes.string,
   tag: PropTypes.string,
   target: PropTypes.string,
-  type: PropTypes.string,
-};
+  type: PropTypes.string
+}
 
-export default Button;
-export { Button as CDBBtn };
+export default Button
+export { Button as CDBBtn }
