@@ -38,9 +38,7 @@ const Sidebar = forwardRef(
     });
 
     useEffect(() => {
-      if (toggled) {
-        handleToggleSidebar(!toggled);
-      }
+      handleToggleSidebar(!toggled);
     }, [toggled]);
 
     const sidebarRef = ref ? ref : React.createRef();
@@ -84,8 +82,10 @@ Sidebar.propTypes = {
   textColor: PropTypes.string,
   backgroundColor: PropTypes.string,
   breakpoint: PropTypes.number,
-  toggled: PropTypes.boolean,
+  toggled: PropTypes.bool,
 };
+
+Sidebar.displayName = "Sidebar";
 
 export default Sidebar;
 
