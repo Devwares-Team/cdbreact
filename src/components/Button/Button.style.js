@@ -3,6 +3,7 @@ import { variant } from 'styled-system'
 import colors from '../../theme/colors'
 import tinycolor from 'tinycolor2'
 
+
 export const Component = styled.div`
   box-shadow: ${(props) =>
     props.flat

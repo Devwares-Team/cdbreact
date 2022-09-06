@@ -3,7 +3,34 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Component } from './Button.style'
 
-const Button = (props) => {
+export interface Props{
+  action ?: boolean,
+  active ?: boolean,
+  block ?: boolean,
+  children ?: React.ReactNode,
+  circle ?: boolean,
+  className ?: string,
+  color ?: string,
+  disabled ?: boolean,
+  download ?: string,
+  flat ?: boolean,
+  innerRef ?: [Function,  string],
+  onClick ?: Function,
+  role ?: string,
+  size ?: string,
+  social ?: string,
+  tag ?: string,
+  target ?: string,
+  type ?: string,
+  rounded ?: string,
+  gradient ?: string,
+  outline ?: boolean,
+  href ?: string
+  
+  
+}
+
+const Button = (props: Props) => {
   let {
     action,
     active,
@@ -44,36 +71,42 @@ const Button = (props) => {
     tag = 'a'
   }
 
-  return (
+  return 
+  (
     <Component
-      data-test='button'
-      type={tag === 'button' && !type ? 'button' : type}
-      as={tag}
-      target={target}
-      role={tag === 'a' && !role ? 'button' : role}
-      className={buttonClasses}
-      colors={color}
-      ref={innerRef}
-      size={size}
-      flat={flat}
-      {...attributes}
-      download={download}
-      circle={circle}
-      disabled={disabled}
-      outline={outline}
-      bg={color}
+    data-test='button'
+    type={tag === 'button' && !type ? 'button' : type}
+    as={tag}
+    target={target}
+    role={tag === 'a' && !role ? 'button' : role}
+    className={buttonClasses}
+    colors={color}
+    ref={innerRef}
+    size={size}
+    flat={flat}
+    {...attributes}
+    download={download}
+    circle={circle}
+    disabled={disabled}
+    outline={outline}
+    bg={color}
     >
-      {children}
+    {children}
     </Component>
-  )
+
+    )
+  
 }
 
-Button.defaultProps = {
+ Button.defaultProps = {
   color: 'primary',
   tag: 'button',
   size: 'medium',
   circle: false
 }
+
+ 
+
 
 Button.propTypes = {
   action: PropTypes.bool,
@@ -95,6 +128,7 @@ Button.propTypes = {
   target: PropTypes.string,
   type: PropTypes.string
 }
+
 
 export default Button
 export { Button as CDBBtn }
