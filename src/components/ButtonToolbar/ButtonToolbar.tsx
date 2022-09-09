@@ -2,10 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../theme";
+import { theme } from "../../theme";
 
 
-const ButtonToolbar = ({ className, children, ...attributes }) => {
+interface Props{
+  children: React.ReactNode,
+  className: string,
+  role: string
+}
+
+const ButtonToolbar = (props) => {
+
+  let { className, children, ...attributes } = props
+
     const classes = classNames('btn-toolbar', className );
 
     return (

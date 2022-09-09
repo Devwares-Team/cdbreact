@@ -2,9 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../../theme";
+import { theme } from "../../../theme";
 
-const CarouselIndicator = (props) => {
+interface Props{
+  active: boolean,
+  alt: string,
+  children: React.ReactNode,
+  className: string,
+  img: string,
+}
+
+const CarouselIndicator = (props: Props) => {
   const { active, alt, children, className, img, ...attributes } = props;
 
   const classes = classNames(active && "active", className);

@@ -3,9 +3,16 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Component } from "./Card.style";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../theme";
+import { theme } from "../../theme";
 
-const Card = (props) => {
+interface Props{
+  className: string,
+  color: string,
+  tag: string,
+  border: boolean,
+}
+
+const Card = (props: Props) => {
   const { className, tag, color, border, ...attributes } = props;
 
   const classes = classNames(color, className);

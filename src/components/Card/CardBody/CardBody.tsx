@@ -3,10 +3,16 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Component } from './CardBody.style';
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../../theme";
+import { theme } from "../../../theme";
 
 
-const CardBody = props => {
+interface Props{
+    cascade: boolean,
+    className: string,
+    tag: [Function, string]
+}
+
+const CardBody = (props: Props) => {
     const { className, tag, cascade, ...attributes } = props;
 
     const classes = classNames('card-body', cascade && 'card-body-cascade', className);

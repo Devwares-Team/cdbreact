@@ -2,10 +2,34 @@ import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../theme";
+import { theme } from "../../theme";
 import { Component, Button } from "./Alert.style";
 
-const Alert = (props) => {
+
+enum colors {
+  primary ="primary",
+  secondary = "secondary",
+ success =  "success",
+  danger = "danger",
+ warning = "warning",
+ info =  "info",
+ dark =  "dark",
+  light = "light"
+}
+
+ interface Props{
+  className ?: string,
+  color ?: colors,
+  onClose ?: Function,
+  onClosed ?: Function,
+  tag ?: string,
+  children ?: React.ReactNode,
+  dismiss ?: Function
+ }
+
+
+
+const Alert = (props: Props) => {
   const { className, tag, color, children, dismiss, ...attributes } = props;
 
   const alertClasses = classNames("alert", className);

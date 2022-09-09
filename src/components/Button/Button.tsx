@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Component } from './Button.style'
 
-export interface Props{
+ interface Props{
   action ?: boolean,
   active ?: boolean,
   block ?: boolean,

@@ -3,9 +3,21 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import { Component } from "./Badge.style";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../theme";
+import { theme } from "../../theme";
 
-const Badge = (props) => {
+interface Props {
+  children: React.ReactNode,
+  className ?: string,
+  flat ?: boolean,
+  size ?: string,
+  borderType ?: string,
+  color ?: string,
+  tag ?: string,
+  icon ?: any;
+  intensity ?: any,
+}
+
+const Badge = (props: Props) => {
   const {
     className,
     tag,
@@ -60,7 +72,7 @@ Badge.propTypes = {
   flat: PropTypes.bool,
   size: PropTypes.string,
   borderType: PropTypes.string,
-  colors: PropTypes.string,
+  color: PropTypes.string,
   tag: PropTypes.string,
   intensity: PropTypes.oneOf([50, 100, 200, 300, 400, 500, 600, 700, 800, 900]),
 };

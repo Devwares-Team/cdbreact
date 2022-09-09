@@ -4,15 +4,27 @@ import classNames from "classnames";
 import AccordionItem from "./AccordionItem";
 import { Component } from "./Accordion.style";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../theme";
+import { theme } from "../../theme";
 
-const Accordion = (props) => {
+
+interface Props {
+
+  accordionClass ?: string,
+  accordionHeaderClass ?: string,
+  accordionBodyClass ?: string,
+  hideIcon ?: boolean,
+  tag ?: string,
+  data ?: any,
+}
+
+const Accordion = (props: Props) => {
   const {
     data,
     accordionClass,
     accordionHeaderClass,
     accordionBodyClass,
     hideIcon,
+    
   } = props;
   const accordionClassName = classNames("wrapper", accordionClass);
   return (
@@ -36,16 +48,8 @@ const Accordion = (props) => {
   );
 };
 
-AccordionItem.propTypes = {
-  accordionClass: PropTypes.string,
-  accordionHeaderClass: PropTypes.string,
-  accordionBodyClass: PropTypes.string,
-  hideIcon: PropTypes.bool,
-  tag: PropTypes.string,
-};
-AccordionItem.defaultProps = {
-  tag: "div",
-};
+
+
 
 export default Accordion;
 

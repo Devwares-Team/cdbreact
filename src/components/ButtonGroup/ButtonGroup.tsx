@@ -3,15 +3,28 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Component } from "./ButtonGroup.style";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../theme";
+import { theme } from "../../theme";
 
-const ButtonGroup = ({
-  className,
+interface Props{
+ 
+  children: React.ReactNode,
+  className: string,
+  role: string,
+  size: string,
+  vertical: boolean,
+  
+}
+
+
+const ButtonGroup = (props : Props) => {
+ let  {className,
   size,
   vertical,
   children,
+  role,
   ...attributes
-}) => {
+} = props 
+
   const classes = classNames(
     size ? `btn-group-${size}` : false,
     vertical ? "btn-group-vertical" : "btn-group",

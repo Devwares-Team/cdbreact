@@ -2,9 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../../theme";
+import { theme } from "../../../theme";
 
-const CarouselInner = (props) => {
+interface Props{
+  active: boolean,
+  children: React.ReactNode,
+  className: string,
+  tag: any,
+  childrenCount: any
+}
+
+const CarouselInner = (props: Props) => {
   const {
     active,
     children,

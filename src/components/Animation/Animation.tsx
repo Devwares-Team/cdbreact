@@ -4,9 +4,30 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Component, Container } from "./Animation.style";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../theme";
+import { theme } from "../../theme";
 
-const Animation = (props) => {
+interface Props{
+  className: string,
+  count?: number,
+  delay?: string,
+  duration?: [string, number],
+  infinite?: boolean,
+  onAnimationEnd?: Function,
+  onAnimationIteration?: Function,
+  onAnimationStart?: Function,
+  reveal?: boolean,
+  style?: React.ReactNode,
+  tag ?: [Function, string],
+  type ?: string,
+  elemRef ?: Function,
+  countIterations ?: any, 
+  children ? : React.ReactNode,
+  clientHeight ?: number,
+  currentRef ?: any, 
+  
+}
+
+const Animation = (props: Props) => {
   const {
     tag,
     children,
@@ -17,6 +38,8 @@ const Animation = (props) => {
     infinite,
     reveal,
     style,
+    currentRef,
+    clientHeight,
     type,
     countIterations,
     onAnimationStart,
@@ -171,10 +194,12 @@ Animation.propTypes = {
   onAnimationEnd: PropTypes.func,
   onAnimationIteration: PropTypes.func,
   onAnimationStart: PropTypes.func,
+ 
   reveal: PropTypes.bool,
   style: PropTypes.node,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   type: PropTypes.string,
+  countIterations : PropTypes.number
 };
 
 Animation.defaultProps = {

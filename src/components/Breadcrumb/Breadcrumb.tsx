@@ -1,12 +1,22 @@
-import React from "react";
+import React, { Children } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Component } from "./Breadcrumb.style";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../theme";
+import { theme } from "../../theme";
 
-const Breadcrumb = (props) => {
-  const { className, light, uppercase, bold, ...attributes } = props;
+
+interface Props{
+  bold ?: boolean,
+  children ?: React.ReactNode,
+  className ?: string,
+  light ?: boolean,
+  uppercase ?:boolean,
+  child ?: any
+}
+
+const Breadcrumb = (props: Props) => {
+  const { className,  light, uppercase, bold, ...attributes } = props;
 
   const classes = classNames("breadcrumb", className);
 
@@ -40,6 +50,7 @@ Breadcrumb.propTypes = {
   className: PropTypes.string,
   light: PropTypes.bool,
   uppercase: PropTypes.bool,
+  child : PropTypes.node
 };
 
 export default Breadcrumb;

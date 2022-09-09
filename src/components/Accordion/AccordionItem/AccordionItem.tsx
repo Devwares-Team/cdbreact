@@ -3,9 +3,17 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Component } from "./AccordionItem.style";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../../theme";
+import { theme } from "../../../theme";
 
-const AccordionItem = (props) => {
+
+interface Props {
+  className ?: string,
+  onClick ?: Function,
+  title ?: any;
+  content ?: any,
+}
+
+const AccordionItem = (props: Props) => {
   const [opened, setOpened] = useState(false);
   const { title, content } = props;
   const accordionItemClassName = classNames(
@@ -37,10 +45,18 @@ const AccordionItem = (props) => {
   return accordionItemComp;
 };
 
-AccordionItem.defaultProps = {};
+AccordionItem.defaultProps = {
+
+  tag: "div",
+};
 
 AccordionItem.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
+  accordionClass: PropTypes.string,
+  accordionHeaderClass: PropTypes.string,
+  accordionBodyClass: PropTypes.string,
+  hideIcon: PropTypes.bool,
+  tag: PropTypes.string,
 };
 export default AccordionItem;
