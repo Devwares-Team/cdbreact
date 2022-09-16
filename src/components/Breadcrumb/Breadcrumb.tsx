@@ -8,11 +8,11 @@ import { theme } from "../../theme";
 
 interface Props{
   bold ?: boolean,
-  children ?: React.ReactNode,
+  children ?: [any, React.ReactNode],
   className ?: string,
   light ?: boolean,
   uppercase ?:boolean,
-  child ?: any
+  
 }
 
 const Breadcrumb = (props: Props) => {
