@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import CarouselControl from "./CarouselControl";
@@ -8,7 +8,7 @@ import { Tag } from "./Carousel.style";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
-class Carousel extends Component {
+const  Carousel = (props) => {
   state = {
     activeItem: this.props.activeItem,
     initialLength: this.props.length,
@@ -17,10 +17,11 @@ class Carousel extends Component {
     initialX: null,
     initialY: null,
   };
+  const [activeItems, set]
 
   carouselRef = React.createRef();
 
-  componentDidMount() {
+  useEffect(() => {
     const { interval, thumbnails, length } = this.props;
     if (interval === false) {
       return;
@@ -41,30 +42,30 @@ class Carousel extends Component {
     }
 
     this.setState({ initialLength: length });
-  }
+  }, [])
 
-  componentDidUpdate(prevProps, prevState) {
+  useEffect((prevProps, prevState) =>{
     const { length } = this.props;
     const initialLength = length;
 
     if (prevState.initialLength !== length) {
       this.setState({ initialLength });
     }
-  }
+  },[])
 
-  componentWillUnmount() {
+  useEffect(() {
     const { interval } = this.props;
     if (interval === false) {
       return;
     }
     this.clearCycleIntervalHandler();
-  }
+  },[])
 
-  clearCycleIntervalHandler = () => clearInterval(this.cycleInterval);
+ const  clearCycleIntervalHandler = () => clearInterval(this.cycleInterval);
 
-  swipeAvailableHandler = () => this.setState({ swipeAvailable: true });
+ const  swipeAvailableHandler = () => this.setState({ swipeAvailable: true });
 
-  restartInterval = () => {
+ const restartInterval = () => {
     const { interval } = this.props;
 
     if (interval !== false) {
@@ -73,7 +74,7 @@ class Carousel extends Component {
     }
   };
 
-  next = () => {
+  const next = () => {
     const { activeItem, initialLength } = this.state;
     const nextIndex = activeItem + 1;
     const nextItem = nextIndex > initialLength ? 1 : nextIndex;
@@ -81,7 +82,7 @@ class Carousel extends Component {
     this.goToIndex(nextItem);
   };
 
-  prev = () => {
+ const  prev = () => {
     const { activeItem, initialLength } = this.state;
     const prevIndex = activeItem - 1;
     const prevItem = prevIndex < 1 ? initialLength : prevIndex;
@@ -89,7 +90,7 @@ class Carousel extends Component {
     this.goToIndex(prevItem);
   };
 
-  goToIndex = (item) => {
+  const goToIndex = (item) => {
     this.setState({
       ...this.state,
       activeItem: item,
@@ -98,7 +99,7 @@ class Carousel extends Component {
     this.restartInterval();
   };
 
-  startTouch = (e) => {
+  const startTouch = (e) => {
     const { mobileGesture } = this.props;
     if (mobileGesture !== false) {
       this.setState({
@@ -108,7 +109,7 @@ class Carousel extends Component {
     }
   };
 
-  moveTouch = (e) => {
+ const  moveTouch = (e) => {
     this.setState({
       swipeAvailable: false,
     });
@@ -140,7 +141,7 @@ class Carousel extends Component {
     });
   };
 
-  getChildContext() {
+ const  getChildContext = () => {
     const { activeItem, initialLength } = this.state;
     const { slide } = this.props;
     return {
@@ -150,7 +151,9 @@ class Carousel extends Component {
     };
   }
 
-  render() {
+  return 
+  <>
+    
     const {
       activeItem,
       children,
@@ -166,7 +169,7 @@ class Carousel extends Component {
       testimonial,
       thumbnails,
       ...attributes
-    } = this.props;
+    } = props;
 
     const { initialLength, srcArray, swipeAvailable } = this.state;
     const ariaLabel = "carousel";
@@ -257,7 +260,7 @@ class Carousel extends Component {
         </Tag>
       </ThemeProvider>
     );
-  }
+  </>
 }
 
 Carousel.propTypes = {

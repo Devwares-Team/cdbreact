@@ -1,31 +1,34 @@
-import React, { Component } from "react";
+import React, { useState, } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./../../../theme";
 
-class CarouselItem extends Component {
-  moveForward = () => {
-    this.style = {
+const CarouselItem = (props) =>{
+  const [style, setStyle] = useState({})
+  const [context, setContext] = useState({})
+  
+ const moveForward = () => {
+    setStyle({
       position: "absolute",
       left: "100%",
-    };
+    })
   };
 
-  moveBackwards = () => {
-    this.style = {
+  const moveBackwards = () => {
+    setStyle({
       position: "absolute",
       left: "-100%",
-    };
+    })
   };
 
-  makeVisible = () => {
-    this.style = {
+ const  makeVisible = () => {
+    setStyle({
       left: "0",
-    };
+    })
   };
 
-  render() {
+
     let {
       active,
       children,
@@ -33,9 +36,9 @@ class CarouselItem extends Component {
       itemId,
       tag: Tag,
       ...attributes
-    } = this.props;
+    } = props;
 
-    let { slide, activeItem } = this.context;
+    setContext({ slide, activeItem }) 
 
     itemId = parseInt(itemId, 10);
 
@@ -52,14 +55,14 @@ class CarouselItem extends Component {
 
     if (slide) {
       if (slideIndex < 0) {
-        this.moveForward();
+        setStyle(moveForward);
       } else if (slideIndex > 0) {
-        this.moveBackwards();
+        setStyle(moveBackwards);
       } else {
-        this.makeVisible();
+        setStyle(makeVisible);
       }
     } else {
-      this.makeVisible();
+      setStyle(makeVisible);
     }
 
     return (
@@ -68,13 +71,13 @@ class CarouselItem extends Component {
           data-test="carousel-item"
           {...attributes}
           className={classes}
-          style={this.style}
+          style={style}
         >
           {children}
         </Tag>
       </ThemeProvider>
     );
-  }
+  
 }
 
 CarouselItem.propTypes = {

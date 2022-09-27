@@ -11,7 +11,7 @@ interface Props {
   flat ?: boolean,
   size ?: string,
   borderType ?: string,
-  color ?: string,
+  colors ?: string,
   tag ?: string,
   icon ?: any;
   intensity ?: any,
@@ -21,7 +21,7 @@ const Badge = (props: Props) => {
   const {
     className,
     tag,
-    color,
+    colors,
     intensity,
     children,
     icon,
@@ -31,7 +31,7 @@ const Badge = (props: Props) => {
     ...attributes
   } = props;
   const badgeClasses = classNames(className);
-  const colors = `${color}${intensity.toString()}`;
+  const color = `${colors}${intensity.toString()}`;
   const badgeComponent = (
     <ThemeProvider theme={theme}>
       <Component
@@ -60,7 +60,7 @@ const Badge = (props: Props) => {
 
 Badge.defaultProps = {
   tag: "span",
-  color: "primary",
+  colors: "primary",
   borderType: "pill",
   size: "medium",
   intensity: "900",
@@ -72,7 +72,7 @@ Badge.propTypes = {
   flat: PropTypes.bool,
   size: PropTypes.string,
   borderType: PropTypes.string,
-  color: PropTypes.string,
+  colors: PropTypes.string,
   tag: PropTypes.string,
   intensity: PropTypes.oneOf([50, 100, 200, 300, 400, 500, 600, 700, 800, 900]),
 };

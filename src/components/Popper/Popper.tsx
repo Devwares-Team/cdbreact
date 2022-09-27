@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, createRef } from 'react'
 import classNames from 'classnames'
 import Popper from 'popper.js'
 import PropTypes from 'prop-types'
@@ -6,17 +6,17 @@ import { Tag } from './Popper.style'
 import { ThemeProvider } from 'styled-components'
 import { theme } from '../../theme'
 
-class Popover extends React.Component {
+const Popover =()=> {
   state = {
     popperJS: null,
     visible: this.props.isVisible,
     showPopper: this.props.isVisible
   }
 
-  popoverWrapperRef = React.createRef()
-  referenceElm = React.createRef()
+  const popoverWrapperRef = createRef()
+  const referenceElm = createRef()
 
-  componentDidUpdate(prevProps, prevState) {
+  useEffect ((prevProps, prevState) => {
     const { showPopper } = this.state
     const { isVisible, onChange } = this.props
     this.setPopperJS()
@@ -33,12 +33,12 @@ class Popover extends React.Component {
     if (showPopper && prevState.showPopper !== showPopper) {
       this.createPopper()
     }
-  }
+  }, [])
 
-  componentDidMount() {
+  useEffect(() => {
     this.timer = setInterval(() => this.setPopperJS(), 3)
     document.addEventListener('click', this.handleClick)
-  }
+  }, [])
 
   setPopperJS = () => {
     const { showPopper, popperJS } = this.state
@@ -48,8 +48,8 @@ class Popover extends React.Component {
     }
   }
 
-  createPopper = () => {
-    const { placement, modifiers } = this.props
+  const createPopper = (props) => {
+    const { placement, modifiers } = props
     const { popperJS } = this.state
     if (this.referenceElm && this.popoverWrapperRef) {
       this.setState({

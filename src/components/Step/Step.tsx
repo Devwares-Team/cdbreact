@@ -9,7 +9,20 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 import { useEffect } from "react";
 
-export const Step = (props) => {
+interface Props{
+  name: string,
+  icon: string,
+  far: boolean,
+  fab: boolean,
+  fas: boolean,
+  id: number,
+  component: React.ReactNode,
+  children: React.ReactNode,
+  handleClick: Function
+  
+}
+
+export const Step = (props: Props) => {
   let{
     name,
     icon,

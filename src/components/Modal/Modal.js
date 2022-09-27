@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { Transition } from "react-transition-group";
@@ -8,14 +8,14 @@ import { Component as StyledComponent } from "./Modal.style";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./../../theme";
 
-class Modal extends Component {
+const Modal =() => {
   state = {
     initialIsOpen: this.props.isOpen || false,
   };
 
   modalContent = React.createRef();
 
-  componentDidUpdate = (prevProps, prevState) => {
+  useEffect((prevProps, prevState) => {
     const { isOpen, overflowScroll } = this.props;
     const overflowStatement = overflowScroll
       ? "overflow-hidden"
@@ -30,7 +30,7 @@ class Modal extends Component {
         }
       });
     }
-  };
+  }, []);
 
   handleOnEntered = (type, node) => {
     if (type === "backdrop" && this.props.fade === false) {

@@ -23,7 +23,7 @@ const Breadcrumb = (props: Props) => {
   let children;
 
   if (bold) {
-    children = React.Children.map(props.children, (child) => {
+    children = Children.map(props.children, (child) => {
       return React.cloneElement(child, {
         bold: true,
       });
