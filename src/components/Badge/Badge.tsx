@@ -15,6 +15,7 @@ interface Props {
   tag ?: string,
   icon ?: any;
   intensity ?: any,
+  
 }
 
 const Badge = (props: Props) => {
@@ -28,6 +29,7 @@ const Badge = (props: Props) => {
     borderType,
     size,
     flat,
+    
     ...attributes
   } = props;
   const badgeClasses = classNames(className);
