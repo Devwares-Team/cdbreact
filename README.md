@@ -88,6 +88,18 @@ export default Alert;
 - [Widgets](https://www.devwares.com/docs/contrast/react/widgets/)
 - [Forms](https://www.devwares.com/docs/contrast/react/forms/)
 
+## Blog articles
+
+- [How to use tailwind CSS grid templates in your project.](https://www.devwares.com/blog/how-to-add-tailwind-css-grid-to-your-project/)
+- [How to use Tailwind CSS Width](https://www.devwares.com/blog/Tailwind-width/)
+- [How to use tailwind CSS padding, margin and border in your project](https://www.devwares.com/blog/how-to-use-tailwind-css-padding-margin-and-border-in-your-project/)
+- [How to create a Beautiful Responsive Navigation bar Using Tailwind CSS](https://www.devwares.com/blog/how-to-create-a-beautiful-responsive-navbar-using-tailwind-css/)
+- [How to create and style a Responsive Form using Tailwind CSS](https://www.devwares.com/blog/how-to-create-and-style-a-responsive-form-using-tailwindcss/)
+- [How to use Tailwind CSS Flex](https://www.devwares.com/blog/how-to-use-tailwind-css-flex/)
+- [How to use tailwind CSS padding, margin and border in your project](https://www.devwares.com/blog/how-to-use-tailwind-css-padding-margin-and-border-in-your-project/)
+- [How to use the Tailwind CSS JIT CDN](https://www.devwares.com/blog/how-to-use-the-tailwind-css-JIT-CDN/)
+- [Tailwind CSS Colors 3.0](https://www.devwares.com/blog/How-to-add-color-to-Tailwind/)
+- [How to create Tailwind CSS Animation](https://www.devwares.com/blog/create-animation-with-tailwind-css/)
 
 # Demo
 
