@@ -6,7 +6,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 
-interface Props{
+interface Props {
   src: string,
   allowFullScreen: boolean,
   className: string,
@@ -18,11 +18,11 @@ interface Props{
   onMouseOver: Function,
   ratio: any,
   sandbox: string,
-  iframe : any,
+  iframe: any,
   styles: object,
   title: string,
   width: any,
-  style : any,
+  style: any,
   iframeAttributes: any
 }
 
@@ -110,6 +110,7 @@ const Iframe = (props: Props) => {
 
     return newAttributesObject;
   };
+  
   iframeAttributes = returnAttributes(iframeAttributes);
 
   return (

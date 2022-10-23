@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
-import { StepperContext } from "../Stepper/Stepper";
-import PropTypes from "prop-types";
-import StepperDivider from "../Stepper/StepperDivider";
-import ReactTooltip from "react-tooltip";
-import classNames from "classnames";
-import { Component } from "./Step.style";
-import { ThemeProvider } from "styled-components";
-import { theme } from "../../theme";
-import { useEffect } from "react";
+import React, { useContext } from 'react'
+import { StepperContext } from '../Stepper/Stepper'
+import PropTypes from 'prop-types'
+import StepperDivider from '../Stepper/StepperDivider'
+import ReactTooltip from 'react-tooltip'
+import classNames from 'classnames'
+import { Component } from './Step.style'
+import { ThemeProvider } from 'styled-components'
+import { theme } from '../../theme'
+import { useEffect } from 'react'
 
-interface Props{
+interface Props {
   name: string,
   icon: string,
   far: boolean,
@@ -18,12 +18,13 @@ interface Props{
   id: number,
   component: React.ReactNode,
   children: React.ReactNode,
-  handleClick: Function
-  
+  handleClick: Function,
+
+  active: any
 }
 
 export const Step = (props: Props) => {
-  let{
+  let {
     name,
     icon,
     children,
@@ -44,25 +45,25 @@ export const Step = (props: Props) => {
     stepSize,
     setActive,
     showTooltip,
-    showTitle,
-  } = useContext(StepperContext);
-  const stepClasses = classNames("default-node", id === active && "active");
+    showTitle
+  } = useContext(StepperContext)
+  const stepClasses = classNames('default-node', id === active && 'active')
 
-  const status = id < active ? "prev" : id === active ? "active" : "next";
+  const status = id < active ? 'prev' : id === active ? 'active' : 'next'
 
-  const iconPrefix = far ? "far" : fas ? "fas" : fab ? "fab" : "fa";
+  const iconPrefix = far ? 'far' : fas ? 'fas' : fab ? 'fab' : 'fa'
 
-  const iconClass = classNames(iconPrefix, icon ? `fa-${icon}` : false);
+  const iconClass = classNames(iconPrefix, icon ? `fa-${icon}` : false)
 
   useEffect(() => {
-    setActive(active);
-  }, [active]);
+    setActive(active)
+  }, [active])
 
-  let stepIcon = icon ? <i className={iconClass}></i> : null;
+  let stepIcon = icon ? <i className={iconClass}></i> : null
   return (
     <ThemeProvider theme={theme}>
       <Component
-        className="steps"
+        className='steps'
         key={name}
         icon={icon}
         {...attributes}
@@ -74,13 +75,13 @@ export const Step = (props: Props) => {
         size={stepSize}
       >
         {showTitle && (
-          <div className="step-title">
-            <span className="step-number">0{id}</span>
-            <div className="step-text">{name}</div>
+          <div className='step-title'>
+            <span className='step-number'>0{id}</span>
+            <div className='step-text'>{name}</div>
           </div>
         )}
         <div
-          className="step-indicators"
+          className='step-indicators'
           data-for={`tip ${name}`}
           key={name}
           data-tip
@@ -90,19 +91,19 @@ export const Step = (props: Props) => {
           </div>
           {id < mainChildren.length && <StepperDivider status={status} />}
           {showTooltip && (
-            <ReactTooltip id={`tip ${name}`} place="top" effect="solid">
+            <ReactTooltip id={`tip ${name}`} place='top' effect='solid'>
               {name}
             </ReactTooltip>
           )}
         </div>
       </Component>
     </ThemeProvider>
-  );
-};
+  )
+}
 
 Step.defaultProps = {
-  component: <div>Hello</div>,
-};
+  component: <div>Hello</div>
+}
 
 Step.propTypes = {
   name: PropTypes.string,
@@ -111,9 +112,9 @@ Step.propTypes = {
   fab: PropTypes.bool,
   fas: PropTypes.bool,
   id: PropTypes.number,
-  component: PropTypes.node,
-};
+  component: PropTypes.node
+}
 
-export default Step;
+export default Step
 
-export { Step as CDBStep };
+export { Step as CDBStep }

@@ -4,11 +4,32 @@ import classNames from "classnames";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./../../../theme";
 
-const CarouselItem = (props) =>{
+
+interface Props {
+  active: boolean,
+  children: React.ReactNode,
+  className: string,
+  itemId: any,
+  tag: [Function, string],
+}
+
+
+
+const CarouselItem = (props: Props) => {
+
+
+  const {
+    active,
+    children,
+    className,
+    itemId,
+    tag: Tag,
+    ...attributes
+  } = props;
   const [style, setStyle] = useState({})
   const [context, setContext] = useState({})
-  
- const moveForward = () => {
+
+  const moveForward = () => {
     setStyle({
       position: "absolute",
       left: "100%",
@@ -22,62 +43,55 @@ const CarouselItem = (props) =>{
     })
   };
 
- const  makeVisible = () => {
+  const makeVisible = () => {
     setStyle({
       left: "0",
     })
   };
 
 
-    let {
-      active,
-      children,
-      className,
-      itemId,
-      tag: Tag,
-      ...attributes
-    } = props;
 
-    setContext({ slide, activeItem }) 
 
-    itemId = parseInt(itemId, 10);
+  setContext({ slide, activeItem })
 
-    const classes = classNames(
-      "carousel-item",
-      {
-        "active carousel-slide-item": slide,
-        active: !slide && itemId === activeItem,
-      },
-      className
-    );
+  itemId = parseInt(itemId, 10);
 
-    const slideIndex = activeItem - itemId;
+  const classes = classNames(
+    "carousel-item",
+    {
+      "active carousel-slide-item": slide,
+      active: !slide && itemId === activeItem,
+    },
+    className
+  );
 
-    if (slide) {
-      if (slideIndex < 0) {
-        setStyle(moveForward);
-      } else if (slideIndex > 0) {
-        setStyle(moveBackwards);
-      } else {
-        setStyle(makeVisible);
-      }
+  const slideIndex = activeItem - itemId;
+
+  if (slide) {
+    if (slideIndex < 0) {
+      setStyle(moveForward);
+    } else if (slideIndex > 0) {
+      setStyle(moveBackwards);
     } else {
       setStyle(makeVisible);
     }
+  } else {
+    setStyle(makeVisible);
+  }
 
-    return (
-      <ThemeProvider theme={theme}>
-        <Tag
-          data-test="carousel-item"
-          {...attributes}
-          className={classes}
-          style={style}
-        >
-          {children}
-        </Tag>
-      </ThemeProvider>
-    );
-  
+  return (
+    <ThemeProvider theme={theme}>
+      <Tag
+        data-test="carousel-item"
+        {...attributes}
+        className={classes}
+        style={style}
+      >
+        {children}
+      </Tag>
+    </ThemeProvider>
+  );
+
 }
 
 CarouselItem.propTypes = {

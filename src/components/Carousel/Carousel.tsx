@@ -1,266 +1,287 @@
-import React, { useState, Fragment, useEffect } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import CarouselControl from "./CarouselControl";
-import CarouselIndicator from "./CarouselIndicator";
-import CarouselIndicators from "./CarouselIndicators";
-import { Tag } from "./Carousel.style";
-import { ThemeProvider } from "styled-components";
-import { theme } from "../../theme";
+import React, { Fragment, useEffect, useState, useRef } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import CarouselControl from './CarouselControl'
+import CarouselIndicator from './CarouselIndicator'
+import CarouselIndicators from './CarouselIndicators'
+import { Tag } from './Carousel.style'
+import { ThemeProvider } from 'styled-components'
+import { theme } from './../../theme'
 
-const  Carousel = (props) => {
-  state = {
-    activeItem: this.props.activeItem,
-    initialLength: this.props.length,
+interface Props {
+  length: number,
+  activeItem: number,
+  children: React.ReactNode,
+  className: string,
+  interval: [number, boolean],
+  mobileGesture: boolean,
+  multiItem: boolean,
+  onHoverStop: boolean,
+  showControls: boolean,
+  showIndicators: boolean,
+  slide: boolean,
+  tag: [Function, string],
+  testimonial: boolean,
+  thumbnails: boolean,
+
+
+
+}
+
+const Carousel = (props: Props) => {
+  const {
+    length,
+    activeItem,
+    children,
+    className,
+    interval,
+    mobileGesture,
+    multiItem,
+    onHoverStop,
+    showControls,
+    showIndicators,
+
+    slide,
+    tag,
+    testimonial,
+    thumbnails,
+    ...attributes
+  } = props
+
+  const [state, setState] = useState({
+    activeItem: activeItem,
+    initialLength: length,
     srcArray: [],
     swipeAvailable: true,
     initialX: null,
-    initialY: null,
-  };
-  const [activeItems, set]
-
-  carouselRef = React.createRef();
+    initialY: null
+  })
+  const [cycleInterval, setCycleInterval] = useState()
+  const carouselRef = useRef(null)
 
   useEffect(() => {
-    const { interval, thumbnails, length } = this.props;
+    const { interval, thumbnails, length } = props
     if (interval === false) {
-      return;
+      return
     }
-    this.cycleInterval = setInterval(this.next, interval);
+    setCycleInterval(setInterval(next, interval))
 
     // get images src atr
     if (thumbnails) {
-      const CarouselItemsArray = this.carouselRef.current.querySelectorAll(
-        ".carousel-item img"
-      );
+      const CarouselItemsArray = carouselRef.current.querySelectorAll(
+        '.carousel-item img'
+      )
 
       const srcArray = Array.prototype.map.call(
         CarouselItemsArray,
         (item) => item.src
-      );
-      this.setState({ ...this.state, srcArray });
+      )
+      setState({ ...state, srcArray })
     }
 
-    this.setState({ initialLength: length });
+    setState({ ...state, initialLength: length })
+
+    return () => {
+      const { interval } = props
+      if (interval === false) {
+        return
+      }
+      clearCycleIntervalHandler()
+    }
   }, [])
 
-  useEffect((prevProps, prevState) =>{
-    const { length } = this.props;
-    const initialLength = length;
+  useEffect(() => {
+    const { length } = props
+    const initialLength = length
 
-    if (prevState.initialLength !== length) {
-      this.setState({ initialLength });
+    if (state.initialLength !== length) {
+      setState({ ...state, initialLength })
     }
-  },[])
+  }, [state])
 
-  useEffect(() {
-    const { interval } = this.props;
-    if (interval === false) {
-      return;
-    }
-    this.clearCycleIntervalHandler();
-  },[])
+  const clearCycleIntervalHandler = () => clearInterval(cycleInterval)
 
- const  clearCycleIntervalHandler = () => clearInterval(this.cycleInterval);
+  const swipeAvailableHandler = () =>
+    setState({ ...state, swipeAvailable: true })
 
- const  swipeAvailableHandler = () => this.setState({ swipeAvailable: true });
-
- const restartInterval = () => {
-    const { interval } = this.props;
+  const restartInterval = () => {
+    const { interval } = props
 
     if (interval !== false) {
-      this.clearCycleIntervalHandler();
-      this.cycleInterval = setInterval(this.next, interval);
+      clearCycleIntervalHandler()
+      setCycleInterval(setInterval(next, interval))
     }
-  };
+  }
 
   const next = () => {
-    const { activeItem, initialLength } = this.state;
-    const nextIndex = activeItem + 1;
-    const nextItem = nextIndex > initialLength ? 1 : nextIndex;
+    const { activeItem, initialLength } = state
+    const nextIndex = activeItem + 1
+    const nextItem = nextIndex > initialLength ? 1 : nextIndex
 
-    this.goToIndex(nextItem);
-  };
+    goToIndex(nextItem)
+  }
 
- const  prev = () => {
-    const { activeItem, initialLength } = this.state;
-    const prevIndex = activeItem - 1;
-    const prevItem = prevIndex < 1 ? initialLength : prevIndex;
+  const prev = () => {
+    const { activeItem, initialLength } = state
+    const prevIndex = activeItem - 1
+    const prevItem = prevIndex < 1 ? initialLength : prevIndex
 
-    this.goToIndex(prevItem);
-  };
+    goToIndex(prevItem)
+  }
 
   const goToIndex = (item) => {
-    this.setState({
-      ...this.state,
-      activeItem: item,
-    });
+    setState({
+      ...state,
+      activeItem: item
+    })
 
-    this.restartInterval();
-  };
+    restartInterval()
+  }
 
   const startTouch = (e) => {
-    const { mobileGesture } = this.props;
+    const { mobileGesture } = props
     if (mobileGesture !== false) {
-      this.setState({
+      setState({
+        ...state,
         initialX: e.touches[0].clientX,
-        initialY: e.touches[0].clientY,
-      });
+        initialY: e.touches[0].clientY
+      })
     }
-  };
+  }
 
- const  moveTouch = (e) => {
-    this.setState({
-      swipeAvailable: false,
-    });
+  const moveTouch = (e) => {
+    setState({
+      ...state,
+      swipeAvailable: false
+    })
 
-    const { initialX, initialY } = this.state;
+    const { initialX, initialY } = state
 
     if (initialX === null || initialY === null) {
-      return;
+      return
     }
 
-    const currentX = e.touches[0].clientX;
-    const currentY = e.touches[0].clientY;
+    const currentX = e.touches[0].clientX
+    const currentY = e.touches[0].clientY
 
-    const diffX = initialX - currentX;
-    const diffY = initialY - currentY;
+    const diffX = initialX - currentX
+    const diffY = initialY - currentY
 
     if (Math.abs(diffX) > Math.abs(diffY)) {
       // sliding horizontally
       if (diffX > 0) {
-        this.next();
+        next()
       } else {
-        this.prev();
+        prev()
       }
     }
 
-    this.setState({
+    setState({
+      ...state,
       initialX: null,
-      initialY: null,
-    });
-  };
+      initialY: null
+    })
+  }
 
- const  getChildContext = () => {
-    const { activeItem, initialLength } = this.state;
-    const { slide } = this.props;
+  const getChildContext = () => {
+    const { activeItem, initialLength } = state
+    const { slide } = props
     return {
       activeItem,
       length: initialLength,
-      slide,
-    };
+      slide
+    }
   }
 
-  return 
-  <>
-    
-    const {
-      activeItem,
-      children,
-      className,
-      interval,
-      mobileGesture,
-      multiItem,
-      onHoverStop,
-      showControls,
-      showIndicators,
-      slide,
-      tag,
-      testimonial,
-      thumbnails,
-      ...attributes
-    } = props;
+  const { initialLength, srcArray, swipeAvailable } = state
+  const ariaLabel = 'carousel'
 
-    const { initialLength, srcArray, swipeAvailable } = this.state;
-    const ariaLabel = "carousel";
+  const classes = classNames(
+    'carousel',
+    multiItem ? 'carousel-multi-item' : 'carousel-fade',
+    thumbnails ? 'carousel-thumbnails' : '',
+    testimonial ? 'testimonial-carousel' : '',
+    className
+  )
 
-    const classes = classNames(
-      "carousel",
-      multiItem ? "carousel-multi-item" : "carousel-fade",
-      thumbnails ? "carousel-thumbnails" : "",
-      testimonial ? "testimonial-carousel" : "",
-      className
-    );
+  const CarouselIndicatorsArray = []
+  for (let i = 1; i <= initialLength; i++) {
+    const { activeItem } = state
+    CarouselIndicatorsArray.push(
+      <CarouselIndicator
+        img={thumbnails ? srcArray[i - 1] : null}
+        key={i}
+        active={activeItem === i}
+        onClick={() => goToIndex(i)}
+      />
+    )
+  }
 
-    const CarouselIndicatorsArray = [];
-    for (let i = 1; i <= initialLength; i++) {
-      const { activeItem } = this.state;
-      CarouselIndicatorsArray.push(
-        <CarouselIndicator
-          img={thumbnails ? srcArray[i - 1] : null}
-          key={i}
-          active={activeItem === i}
-          onClick={() => this.goToIndex(i)}
-        />
-      );
-    }
+  const isMultiItem = !!multiItem
+  const isTestimonial = !!testimonial
 
-    const isMultiItem = !!multiItem;
-    const isTestimonial = !!testimonial;
-
-    return (
-      <ThemeProvider theme={theme}>
-        <Tag
-          data-test="carousel"
-          ref={this.carouselRef}
-          {...attributes}
-          className={classes}
-          aria-label={ariaLabel}
-          onTouchStart={this.startTouch}
-          onTouchMove={swipeAvailable ? this.moveTouch : null}
-          onTouchEnd={this.swipeAvailableHandler}
-          onMouseEnter={onHoverStop ? this.clearCycleIntervalHandler : null}
-          onMouseLeave={onHoverStop ? this.restartInterval : null}
-          as={tag}
-        >
-          {showControls && multiItem && (
-            <div className="controls-top">
-              <CarouselControl
-                testimonial={isTestimonial}
-                multiItem={isMultiItem}
-                iconLeft
-                className="btn-floating"
-                direction="prev"
-                role="button"
-                onClick={this.prev}
-              />
-              <CarouselControl
-                testimonial={isTestimonial}
-                multiItem={isMultiItem}
-                iconRight
-                className="btn-floating"
-                direction="next"
-                role="button"
-                onClick={this.next}
-              />
-            </div>
-          )}
-          {children}
-          {showControls && !multiItem && (
-            <Fragment>
-              <CarouselControl
-                testimonial={isTestimonial}
-                multiItem={isMultiItem}
-                direction="prev"
-                role="button"
-                onClick={this.prev}
-              />
-              <CarouselControl
-                testimonial={isTestimonial}
-                multiItem={isMultiItem}
-                direction="next"
-                role="button"
-                onClick={this.next}
-              />
-            </Fragment>
-          )}
-          {showIndicators && (
-            <CarouselIndicators>{CarouselIndicatorsArray}</CarouselIndicators>
-          )}
-        </Tag>
-      </ThemeProvider>
-    );
-  </>
+  return (
+    <ThemeProvider theme={theme}>
+      <Tag
+        data-test='carousel'
+        ref={carouselRef}
+        {...attributes}
+        className={classes}
+        aria-label={ariaLabel}
+        onTouchStart={startTouch}
+        onTouchMove={swipeAvailable ? moveTouch : null}
+        onTouchEnd={swipeAvailableHandler}
+        onMouseEnter={onHoverStop ? clearCycleIntervalHandler : null}
+        onMouseLeave={onHoverStop ? restartInterval : null}
+        as={tag}
+      >
+        {showControls && multiItem && (
+          <div className='controls-top'>
+            <CarouselControl
+              testimonial={isTestimonial}
+              multiItem={isMultiItem}
+              iconLeft
+              className='btn-floating'
+              direction='prev'
+              role='button'
+              onClick={prev}
+            />
+            <CarouselControl
+              testimonial={isTestimonial}
+              multiItem={isMultiItem}
+              iconRight
+              className='btn-floating'
+              direction='next'
+              role='button'
+              onClick={next}
+            />
+          </div>
+        )}
+        {children}
+        {showControls && !multiItem && (
+          <Fragment>
+            <CarouselControl
+              testimonial={isTestimonial}
+              multiItem={isMultiItem}
+              direction='prev'
+              role='button'
+              onClick={prev}
+            />
+            <CarouselControl
+              testimonial={isTestimonial}
+              multiItem={isMultiItem}
+              direction='next'
+              role='button'
+              onClick={next}
+            />
+          </Fragment>
+        )}
+        {showIndicators && (
+          <CarouselIndicators>{CarouselIndicatorsArray}</CarouselIndicators>
+        )}
+      </Tag>
+    </ThemeProvider>
+  )
 }
 
 Carousel.propTypes = {
@@ -278,7 +299,8 @@ Carousel.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   testimonial: PropTypes.bool,
   thumbnails: PropTypes.bool,
-};
+
+}
 
 Carousel.defaultProps = {
   interval: 6000,
@@ -286,14 +308,14 @@ Carousel.defaultProps = {
   onHoverStop: true,
   showControls: true,
   showIndicators: true,
-  tag: "div",
-};
+  tag: 'div'
+}
 
 Carousel.childContextTypes = {
   activeItem: PropTypes.any,
   length: PropTypes.any,
-  slide: PropTypes.any,
-};
+  slide: PropTypes.any
+}
 
-export default Carousel;
-export { Carousel as CDBCarousel };
+export default Carousel
+export { Carousel as CDBCarousel }
