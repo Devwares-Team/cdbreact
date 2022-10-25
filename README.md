@@ -93,7 +93,7 @@ export default Alert;
 
 - [How to create Tailwind CSS Modal](https://www.devwares.com/blog/how-to-create-tailwind-css-modal)
 
-- [How to use tailwind CSS in HTML]  (https://www.devwares.com/blog/how-to-use-tailwind-css-in-HTML)
+- [How to use tailwind CSS in HTML](https://www.devwares.com/blog/how-to-use-tailwind-css-in-HTML)
 
 - [Get Contrast PRO](https://www.devwares.com/product/contrast-pro)
 
