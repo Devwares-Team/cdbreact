@@ -155,8 +155,7 @@ export default Alert;
 
 - [How to create a beautiful Bootstrap 5 stepper](https://www.devwares.com/blog/create-stepper-with-contrast/)
 
-- [How to create a beautiful React Bootstrap table]
-(https://www.devwares.com/blog/create-tables-with-contrast/)
+- [How to create a beautiful React Bootstrap table](https://www.devwares.com/blog/create-tables-with-contrast/)
 
 - [How to create beautiful React Bootstrap tabs](https://www.devwares.com/blog/create-tabs-with-contrast/)
 
