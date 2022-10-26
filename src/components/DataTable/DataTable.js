@@ -1,520 +1,577 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import DataTableTable from "./DataTableTable";
-import DataTableTableScroll from "./DataTableTableScroll";
-import DataTableEntries from "./DataTableEntries";
-import DataTableSearch from "./DataTableSearch";
-import DataTableInfo from "./DataTableInfo";
-import DataTablePagination from "./DataTablePagination";
-import { ThemeProvider } from "styled-components";
-import { theme } from "./../../theme";
+import React, { useEffect, useState, useRef } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import DataTableTable from './DataTableTable'
+import DataTableTableScroll from './DataTableTableScroll'
+import DataTableEntries from './DataTableEntries'
+import DataTableSearch from './DataTableSearch'
+import DataTableInfo from './DataTableInfo'
+import DataTablePagination from './DataTablePagination'
+import { ThemeProvider } from 'styled-components'
+import { theme } from './../../theme'
 
-class DataTable extends Component {
-  state = {
+interface Props {
+  autoWidth: boolean;
+  barReverse: boolean;
+  bordered: boolean;
+  borderless: boolean;
+  btn: boolean;
+  children: Node.ReactNode;
+  className: string;
+  dark: boolean;
+  data: [object, string];
+  disableRetreatAfterSorting: boolean;
+  displayEntries: boolean;
+  entries: number;
+  entriesLabel: [string, number, object];
+  entriesOptions: number;
+  exportToCSV: boolean;
+  filter: string;
+  fixed: boolean;
+  hover: boolean;
+  info: boolean;
+  infoLabel: [array, object, string];
+  materialSearch: boolean;
+  maxHeight: string;
+  noBottomColumns: boolean;
+  noRecordsFoundLabel: string;
+  onPageChange: Function;
+  onSearch: Function;
+  onSort: Function;
+  order: string;
+  pagesAmount: number;
+  paginationLabel: string;
+  paging: boolean;
+  proSelect: boolean;
+  responsive: boolean;
+  responsiveLg: boolean;
+  responsiveMd: boolean;
+  responsiveSm: boolean;
+  responsiveXl: boolean;
+  scrollX: boolean;
+  scrollY: boolean;
+  searching: boolean;
+  searchLabel: string;
+  small: boolean;
+  sortable: boolean;
+  sortRows: string;
+  striped: boolean;
+  tbodyColor: string;
+  tbodyTextWhite: boolean;
+  theadColor: string;
+  theadTextWhite: boolean;
+}
+
+const DataTable = (props: Props) => {
+  const {
+    autoWidth,
+    barReverse,
+    bordered,
+    borderless,
+    btn,
+    children,
+    className,
+    dark,
+    data,
+    disableRetreatAfterSorting,
+    displayEntries,
+    entriesLabel,
+    entriesOptions,
+    exportToCSV,
+    filter,
+    fixed,
+    hover,
+    info,
+    infoLabel,
+    maxHeight,
+    noBottomColumns,
+    noRecordsFoundLabel,
+    onPageChange,
+    onSearch,
+    onSort,
+    order,
+    pagesAmount,
+    paginationLabel,
+    paging,
+    responsive,
+    responsiveLg,
+    responsiveMd,
+    responsiveSm,
+    responsiveXl,
+    scrollX,
+    scrollY,
+    searching,
+    searchLabel,
+    small,
+    sortable,
+    sortRows,
+    striped,
+    tbodyColor,
+    tbodyTextWhite,
+    theadColor,
+    materialSearch,
+    theadTextWhite,
+    proSelect,
+    ...attributes
+  } = props
+
+  const [state, setState] = useState({
     activePage: 0,
-    columns: this.props.data.columns || [],
-    entries: this.props.entries,
-    filteredRows: this.props.data.rows || [],
+    columns: props.data.columns || [],
+    entries: props.entries,
+    filteredRows: props.data.rows || [],
     filterOptions: [],
-    order: this.props.order || [],
+    order: props.order || [],
     pages: [],
-    rows: this.props.data.rows || [],
-    search: "",
-    searchSelect: "",
+    rows: props.data.rows || [],
+    search: '',
+    searchSelect: '',
     sorted: false,
     translateScrollHead: 0,
-    unsearchable: [],
-  };
+    unsearchable: []
+  })
 
-  componentDidMount() {
-    const { data, paging } = this.props;
-    const { order, columns, pages, rows } = this.state;
+  useEffect(() => {
+    const { data, paging } = props
+    const { order, columns, pages, rows } = state
 
-    if (typeof data === "string") {
-      this.fetchData(data, this.paginateRows);
+    if (typeof data === 'string') {
+      fetchData(data, paginateRows)
     }
 
     if (order.length > 0) {
-      this.handleSort(order[0], order[1]);
+      handleSort(order[0], order[1])
     } else {
-      this.handleSort();
+      handleSort()
     }
 
-    this.setUnsearchable(columns);
+    state.setUnsearchable(columns)
 
     if (paging) {
-      this.paginateRowsInitialy();
+      paginateRowsInitialy()
     } else {
-      pages.push(rows);
+      pages.push(rows)
     }
+  }, [])
+
+  const refProps = useRef()
+  const refState = useRef()
+  const prevState = () => {
+    refState.current = state
+  }
+  const prevProps = () => {
+    refProps.current = props
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { columns } = this.state;
-    const { data } = this.props;
+  useEffect(() => {
+    const { columns } = state
+    const { data } = props
 
     if (prevProps.data !== data) {
-      typeof data === "string"
-        ? this.fetchData(data)
-        : this.setData(data.rows, data.columns, this.paginateRows);
+      typeof data === 'string'
+        ? fetchData(data)
+        : setData(data.rows, data.columns, paginateRows)
 
-      this.setUnsearchable(columns);
-      this.filterRows();
+      state.setUnsearchable(columns)
+      filterRows()
     }
-  }
+  }, [prevState, prevProps])
 
-  setData = (rows = [], columns = [], callback) => {
-    this.setState(
+  const setData = (rows = [], columns = [], callback) => {
+    setState(
       () => ({
+        ...state,
         columns,
         rows,
-        filteredRows: this.props.disableRetreatAfterSorting
-          ? this.filterRows()
-          : rows,
+        filteredRows: props.disableRetreatAfterSorting ? filterRows() : rows
       }),
-      callback && typeof callback === "function" && (() => callback())
-    );
-  };
+      callback && typeof callback === 'function' && (() => callback())
+    )
+  }
 
-  setUnsearchable = (columns) => {
-    const unsearchable = [];
+  state.setUnsearchable = (columns) => {
+    const unsearchable = []
 
     columns.forEach((column) => {
       if (column.searchable !== undefined && column.searchable === false) {
-        unsearchable.push(column.field);
+        unsearchable.push(column.field)
       }
-    });
+    })
 
-    this.setState({ unsearchable });
-  };
+    setState({ ...state, unsearchable })
+  }
 
-  fetchData = (link, isPaginateRows) => {
+  const fetchData = (link, isPaginateRows) => {
     fetch(link)
       .then((res) => res.json())
       .then((json) =>
-        this.setData(
-          json.rows,
-          json.columns,
-          isPaginateRows ? this.paginateRows : null
-        )
+        setData(json.rows, json.columns, isPaginateRows ? paginateRows : null)
       )
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => console.log(err))
+  }
 
-  pagesAmount = () =>
-    Math.ceil(this.state.filteredRows.length / this.state.entries);
+  state.pagesAmount = () => Math.ceil(state.filteredRows.length / state.entries)
 
-  paginateRowsInitialy = () => {
-    const { rows, entries, pages } = this.state;
+  const paginateRowsInitialy = () => {
+    const { rows, entries, pages } = state
 
-    const pagesAmount = this.pagesAmount();
+    const pagesAmount = state.pagesAmount
 
     for (let i = 1; i <= pagesAmount; i++) {
-      const pageEndIndex = i * entries;
-      pages.push(rows.slice(pageEndIndex - entries, pageEndIndex));
+      const pageEndIndex = i * entries
+      pages.push(rows.slice(pageEndIndex - entries, pageEndIndex))
     }
-  };
+  }
 
-  handleEntriesChange = (value) => {
-    this.setState({ entries: Array.isArray(value) ? value[0] : value }, () =>
-      this.paginateRows()
-    );
-  };
+  const handleEntriesChange = (value) => {
+    setState(
+      { ...state, entries: Array.isArray(value) ? value[0] : value },
+      () => paginateRows()
+    )
+  }
 
-  handleSearchChange = (e) => {
-    this.setState(
-      { search: e.target.value },
-      () => this.filterRows(),
-      this.props.onSearch &&
-        typeof this.props.onSearch === "function" &&
-        this.props.onSearch(e.target.value)
-    );
-  };
+  const handleSearchChange = (e) => {
+    setState(
+      { ...state, search: e.target.value },
+      () => filterRows(),
+      props.onSearch &&
+        typeof props.onSearch === 'function' &&
+        props.onSearch(e.target.value)
+    )
+  }
 
-  checkFieldValue = (array, field) => {
-    return array[field] && typeof array[field] !== "string"
+  const checkFieldValue = (array, field) => {
+    return array[field] && typeof array[field] !== 'string'
       ? array[field].props.searchvalue
-      : array[field];
-  };
+      : array[field]
+  }
 
-  checkField = (field, a, b, direction) => {
+  const checkField = (field, a, b, direction) => {
     const [aField, bField] = [
-      this.checkFieldValue(a, field),
-      this.checkFieldValue(b, field),
-    ];
+      checkFieldValue(a, field),
+      checkFieldValue(b, field)
+    ]
 
-    let comp = aField > bField ? -1 : 1;
-    if (direction === "asc") {
-      comp *= -1;
+    let comp = aField > bField ? -1 : 1
+    if (direction === 'asc') {
+      comp *= -1
     }
 
-    return comp;
-  };
+    return comp
+  }
 
-  sort = (rows, sortRows, field, direction) => {
+  const sort = (rows, sortRows, field, direction) => {
     rows.sort((a, b) => {
       if (sortRows && sortRows.includes(field)) {
-        return this.checkField(field, a, b, direction);
+        return checkField(field, a, b, direction)
       }
 
-      return direction === "asc"
+      return direction === 'asc'
         ? a[field] < b[field]
           ? -1
           : 1
         : a[field] > b[field]
         ? -1
-        : 1;
-    });
-  };
+        : 1
+    })
+  }
 
-  handleSort = (field, sort) => {
-    const { onSort } = this.props;
+  const handleSort = (field, sort) => {
+    const { onSort } = props
 
-    if (sort === "disabled") {
-      return;
+    if (sort === 'disabled') {
+      return
     }
 
-    this.setState(
+    setState(
       (prevState) => {
-        const { sortRows } = this.props;
-        const { rows, columns } = prevState;
-        const direction = sort === "desc" ? "desc" : "asc";
-
-        this.sort(rows, sortRows, field, direction);
+        const sort = () => (rows, sortRows, field, direction)
+        const { sortRows } = props
+        const { rows, columns } = prevState
+        const direction = sort === 'desc' ? 'desc' : 'asc'
 
         columns.forEach((col) => {
-          if (col.sort === "disabled") {
-            return;
+          if (col.sort === 'disabled') {
+            return
           }
 
           col.sort =
-            col.field === field ? (col.sort === "desc" ? "asc" : "desc") : "";
-        });
+            col.field === field ? (col.sort === 'desc' ? 'asc' : 'desc') : ''
+        })
 
         return {
+          ...state,
           rows,
           columns,
-          sorted: true,
-        };
+          sorted: true
+        }
       },
-      () => this.filterRows()
-    );
+      () => filterRows()
+    )
 
     onSort &&
-      typeof onSort === "function" &&
-      onSort({ column: field, direction: sort === "desc" ? "desc" : "asc" });
-  };
+      typeof onSort === 'function' &&
+      onSort({ column: field, direction: sort === 'desc' ? 'desc' : 'asc' })
+  }
 
-  filterRows = (search = this.state.search) => {
-    const { unsearchable } = this.state;
-    const { sortRows, noRecordsFoundLabel } = this.props;
+  const filterRows = (search = state.search) => {
+    const { unsearchable } = state
+    const { sortRows, noRecordsFoundLabel } = props
 
-    this.setState(
+    setState(
       (prevState) => {
         const filteredRows = prevState.rows.filter((row) => {
           for (const key in row) {
             if (
               (!unsearchable.length || !unsearchable.includes(key)) &&
-              typeof row[key] !== "function"
+              typeof row[key] !== 'function'
             ) {
-              let stringValue = "";
+              let stringValue = ''
 
-              if (sortRows && typeof row[key] !== "string") {
-                const content = [];
+              if (sortRows && typeof row[key] !== 'string') {
+                const content = []
                 const getContent = (element) =>
-                  typeof element === "object"
+                  typeof element === 'object'
                     ? element.props.children &&
                       Array.from(element.props.children).map((el) =>
                         getContent(el)
                       )
-                    : content.push(element);
+                    : content.push(element)
 
-                getContent(row[key]);
-                stringValue = content.join("");
+                getContent(row[key])
+                stringValue = content.join('')
               } else if (row[key]) {
-                stringValue = row[key].toString();
+                stringValue = row[key].toString()
               }
               if (stringValue.toLowerCase().includes(search.toLowerCase())) {
-                return true;
+                return true
               }
             }
           }
-          return false;
-        });
+          return false
+        })
 
         if (filteredRows.length === 0) {
+          console.log(prevState)
           filteredRows.push({
             message: noRecordsFoundLabel,
-            colspan: prevState.columns.length,
-          });
+
+            colspan: prevState?.columns?.length
+          })
         }
-        let test = {};
-        if (this.props.disableRetreatAfterSorting) {
+        let test = { ...state }
+        if (props.disableRetreatAfterSorting) {
           test = {
+            ...state,
             filteredRows,
             activePage: (prevState.activePage =
               prevState.activePage < prevState.pages.length ||
               prevState.activePage === 0
                 ? prevState.activePage
-                : prevState.pages.length - 1),
-          };
-        } else if (!this.props.disableRetreatAfterSorting) {
-          test = { filteredRows, activePage: 0 };
+                : prevState.pages.length - 1)
+          }
+        } else if (!props.disableRetreatAfterSorting) {
+          test = { ...state, filteredRows, activePage: 0 }
         }
 
-        return test;
+        return test
       },
-      () => this.paginateRows()
-    );
-  };
+      () => paginateRows()
+    )
+  }
 
-  paginateRows = () => {
-    const pagesAmount = this.pagesAmount();
+  const paginateRows = () => {
+    const pagesAmount = pagesAmount()
 
-    this.setState((prevState) => {
-      let { pages, entries, filteredRows, activePage } = prevState;
-      const { paging, disableRetreatAfterSorting } = this.props;
+    setState((prevState) => {
+      let { pages, entries, filteredRows, activePage } = prevState
+      const { paging, disableRetreatAfterSorting } = props
 
-      pages = [];
+      pages = []
 
       if (paging) {
         for (let i = 1; i <= pagesAmount; i++) {
-          const pageEndIndex = i * entries;
-          pages.push(filteredRows.slice(pageEndIndex - entries, pageEndIndex));
+          const pageEndIndex = i * entries
+          pages.push(filteredRows.slice(pageEndIndex - entries, pageEndIndex))
         }
         if (!disableRetreatAfterSorting) {
           activePage =
             activePage < pages.length || activePage === 0
               ? activePage
-              : pages.length - 1;
+              : pages.length - 1
         }
       } else {
-        pages.push(filteredRows);
-        activePage = 0;
+        pages.push(filteredRows)
+        activePage = 0
       }
-      return { pages, filteredRows, activePage };
-    });
-  };
+      return { ...state, pages, filteredRows, activePage }
+    })
+  }
 
-  changeActivePage = (page) => {
-    const { onPageChange } = this.props;
-    this.setState({ activePage: page });
+  const changeActivePage = (page) => {
+    const { onPageChange } = props
+    setState({ ...state, activePage: page })
 
     onPageChange &&
-      typeof onPageChange === "function" &&
-      onPageChange({ activePage: page + 1, pagesAmount: this.pagesAmount() });
-  };
+      typeof onPageChange === 'function' &&
+      onPageChange({ activePage: page + 1, pagesAmount: pagesAmount() })
+  }
 
-  handleTableBodyScroll = (e) => {
-    this.setState({ translateScrollHead: e.target.scrollLeft });
-  };
+  const handleTableBodyScroll = (e) => {
+    setState({ ...state, translateScrollHead: e.target.scrollLeft })
+  }
 
-  render() {
-    const {
-      autoWidth,
-      barReverse,
-      bordered,
-      borderless,
-      btn,
-      children,
-      className,
-      dark,
-      data,
-      disableRetreatAfterSorting,
-      displayEntries,
-      entriesLabel,
-      entriesOptions,
-      exportToCSV,
-      filter,
-      fixed,
-      hover,
-      info,
-      infoLabel,
-      maxHeight,
-      noBottomColumns,
-      noRecordsFoundLabel,
-      onPageChange,
-      onSearch,
-      onSort,
-      order,
-      pagesAmount,
-      paginationLabel,
-      paging,
-      responsive,
-      responsiveLg,
-      responsiveMd,
-      responsiveSm,
-      responsiveXl,
-      scrollX,
-      scrollY,
-      searching,
-      searchLabel,
-      small,
-      sortable,
-      sortRows,
-      striped,
-      tbodyColor,
-      tbodyTextWhite,
-      theadColor,
-      materialSearch,
-      theadTextWhite,
-      proSelect,
-      ...attributes
-    } = this.props;
+  const {
+    columns,
+    entries,
+    filteredRows,
+    pages,
+    activePage,
+    search,
+    sorted,
+    translateScrollHead
+  } = state
 
-    const {
-      columns,
-      entries,
-      filteredRows,
-      pages,
-      activePage,
-      search,
-      sorted,
-      translateScrollHead,
-    } = this.state;
+  const tableClasses = classNames('dataTables_wrapper', className)
 
-    const tableClasses = classNames("dataTables_wrapper", className);
-
-    return (
-      <ThemeProvider theme={theme}>
-        <div data-test="datatable" className={tableClasses}>
-          <div className={"row"}>
-            {barReverse ? (
-              <React.Fragment>
-                <DataTableSearch
-                  handleSearchChange={this.handleSearchChange}
-                  search={search}
-                  searching={searching}
-                  label={searchLabel}
-                  barReverse={barReverse}
-                  materialSearch={materialSearch}
-                />
-                <DataTableEntries
-                  paging={paging}
-                  displayEntries={displayEntries}
-                  entries={entries}
-                  handleEntriesChange={this.handleEntriesChange}
-                  entriesArr={entriesOptions}
-                  label={entriesLabel}
-                  barReverse={barReverse}
-                  proSelect={proSelect}
-                />
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                <DataTableEntries
-                  paging={paging}
-                  displayEntries={displayEntries}
-                  entries={entries}
-                  handleEntriesChange={this.handleEntriesChange}
-                  entriesArr={entriesOptions}
-                  label={entriesLabel}
-                  barReverse={barReverse}
-                  proSelect={proSelect}
-                />
-                <DataTableSearch
-                  handleSearchChange={this.handleSearchChange}
-                  search={search}
-                  searching={searching}
-                  label={searchLabel}
-                  barReverse={barReverse}
-                  materialSearch={materialSearch}
-                />
-              </React.Fragment>
-            )}
-          </div>
-          {!scrollY && !scrollX && (
-            <div className="row">
-              <DataTableTable
-                autoWidth={autoWidth}
-                bordered={bordered}
-                borderless={borderless}
-                btn={btn}
-                dark={dark}
-                fixed={fixed}
-                hover={hover}
-                noBottomColumns={noBottomColumns}
-                noRecordsFoundLabel={noRecordsFoundLabel}
-                responsive={responsive}
-                responsiveSm={responsiveSm}
-                responsiveMd={responsiveMd}
-                responsiveLg={responsiveLg}
-                responsiveXl={responsiveXl}
-                small={small}
-                striped={striped}
-                theadColor={theadColor}
-                theadTextWhite={theadTextWhite}
-                columns={columns}
-                handleSort={this.handleSort}
-                sortable={sortable}
-                tbodyColor={tbodyColor}
-                tbodyTextWhite={tbodyTextWhite}
-                rows={pages[activePage]}
-                sorted={sorted}
-                {...attributes}
+  return (
+    <ThemeProvider theme={theme}>
+      <div data-test='datatable' className={tableClasses}>
+        <div className={'row'}>
+          {barReverse ? (
+            <React.Fragment>
+              <DataTableSearch
+                handleSearchChange={this.handleSearchChange}
+                search={search}
+                searching={searching}
+                label={searchLabel}
+                barReverse={barReverse}
+                materialSearch={materialSearch}
               />
-            </div>
-          )}
-          {(scrollY || scrollX) && (
-            <div className="row">
-              <DataTableTableScroll
-                autoWidth={autoWidth}
-                bordered={bordered}
-                borderless={borderless}
-                btn={btn}
-                dark={dark}
-                fixed={fixed}
-                handleTableBodyScroll={this.handleTableBodyScroll}
-                hover={hover}
-                maxHeight={maxHeight}
-                responsive={responsive}
-                responsiveSm={responsiveSm}
-                responsiveMd={responsiveMd}
-                responsiveLg={responsiveLg}
-                responsiveXl={responsiveXl}
-                scrollX={scrollX}
-                scrollY={scrollY}
-                small={small}
-                striped={striped}
-                theadColor={theadColor}
-                theadTextWhite={theadTextWhite}
-                columns={columns}
-                handleSort={this.handleSort}
-                sortable={sortable}
-                sorted={sorted}
-                tbodyColor={tbodyColor}
-                tbodyTextWhite={tbodyTextWhite}
-                rows={pages[activePage]}
-                translateScrollHead={translateScrollHead}
-                {...attributes}
-              />
-            </div>
-          )}
-          {paging && (
-            <div className="row">
-              <DataTableInfo
-                activePage={activePage}
+              <DataTableEntries
+                paging={paging}
+                displayEntries={displayEntries}
                 entries={entries}
-                filteredRows={filteredRows}
-                info={info}
-                pages={pages}
-                label={infoLabel}
-                noRecordsFoundLabel={noRecordsFoundLabel}
+                handleEntriesChange={this.handleEntriesChange}
+                entriesArr={entriesOptions}
+                label={entriesLabel}
+                barReverse={barReverse}
+                proSelect={proSelect}
               />
-              <DataTablePagination
-                activePage={activePage}
-                changeActivePage={this.changeActivePage}
-                pages={pages}
-                pagesAmount={pagesAmount}
-                label={paginationLabel}
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <DataTableEntries
+                paging={paging}
+                displayEntries={displayEntries}
+                entries={entries}
+                handleEntriesChange={handleEntriesChange}
+                entriesArr={entriesOptions}
+                label={entriesLabel}
+                barReverse={barReverse}
+                proSelect={proSelect}
               />
-            </div>
+              <DataTableSearch
+                handleSearchChange={handleSearchChange}
+                search={search}
+                searching={searching}
+                label={searchLabel}
+                barReverse={barReverse}
+                materialSearch={materialSearch}
+              />
+            </React.Fragment>
           )}
         </div>
-      </ThemeProvider>
-    );
-  }
+        {!scrollY && !scrollX && (
+          <div className='row'>
+            <DataTableTable
+              autoWidth={autoWidth}
+              bordered={bordered}
+              borderless={borderless}
+              btn={btn}
+              dark={dark}
+              fixed={fixed}
+              hover={hover}
+              noBottomColumns={noBottomColumns}
+              noRecordsFoundLabel={noRecordsFoundLabel}
+              responsive={responsive}
+              responsiveSm={responsiveSm}
+              responsiveMd={responsiveMd}
+              responsiveLg={responsiveLg}
+              responsiveXl={responsiveXl}
+              small={small}
+              striped={striped}
+              theadColor={theadColor}
+              theadTextWhite={theadTextWhite}
+              columns={columns}
+              handleSort={handleSort}
+              sortable={sortable}
+              tbodyColor={tbodyColor}
+              tbodyTextWhite={tbodyTextWhite}
+              rows={pages[activePage]}
+              sorted={sorted}
+              {...attributes}
+            />
+          </div>
+        )}
+        {(scrollY || scrollX) && (
+          <div className='row'>
+            <DataTableTableScroll
+              autoWidth={autoWidth}
+              bordered={bordered}
+              borderless={borderless}
+              btn={btn}
+              dark={dark}
+              fixed={fixed}
+              handleTableBodyScroll={handleTableBodyScroll}
+              hover={hover}
+              maxHeight={maxHeight}
+              responsive={responsive}
+              responsiveSm={responsiveSm}
+              responsiveMd={responsiveMd}
+              responsiveLg={responsiveLg}
+              responsiveXl={responsiveXl}
+              scrollX={scrollX}
+              scrollY={scrollY}
+              small={small}
+              striped={striped}
+              theadColor={theadColor}
+              theadTextWhite={theadTextWhite}
+              columns={columns}
+              handleSort={this.handleSort}
+              sortable={sortable}
+              sorted={sorted}
+              tbodyColor={tbodyColor}
+              tbodyTextWhite={tbodyTextWhite}
+              rows={pages[activePage]}
+              translateScrollHead={translateScrollHead}
+              {...attributes}
+            />
+          </div>
+        )}
+        {paging && (
+          <div className='row'>
+            <DataTableInfo
+              activePage={activePage}
+              entries={entries}
+              filteredRows={filteredRows}
+              info={info}
+              pages={pages}
+              label={infoLabel}
+              noRecordsFoundLabel={noRecordsFoundLabel}
+            />
+            <DataTablePagination
+              activePage={activePage}
+              changeActivePage={changeActivePage}
+              pages={pages}
+              pagesAmount={pagesAmount}
+              label={paginationLabel}
+            />
+          </div>
+        )}
+      </div>
+    </ThemeProvider>
+  )
 }
 
 DataTable.propTypes = {
@@ -533,7 +590,7 @@ DataTable.propTypes = {
   entriesLabel: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.object,
+    PropTypes.object
   ]),
   entriesOptions: PropTypes.arrayOf(PropTypes.number),
   exportToCSV: PropTypes.bool,
@@ -544,7 +601,7 @@ DataTable.propTypes = {
   infoLabel: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
-    PropTypes.string,
+    PropTypes.string
   ]),
   materialSearch: PropTypes.bool,
   maxHeight: PropTypes.string,
@@ -574,8 +631,8 @@ DataTable.propTypes = {
   tbodyColor: PropTypes.string,
   tbodyTextWhite: PropTypes.bool,
   theadColor: PropTypes.string,
-  theadTextWhite: PropTypes.bool,
-};
+  theadTextWhite: PropTypes.bool
+}
 
 DataTable.defaultProps = {
   autoWidth: false,
@@ -586,43 +643,43 @@ DataTable.defaultProps = {
   dark: false,
   data: {
     columns: [],
-    rows: [],
+    rows: []
   },
   disableRetreatAfterSorting: false,
   displayEntries: true,
   entries: 10,
-  entriesLabel: "Show entries",
+  entriesLabel: 'Show entries',
   entriesOptions: [10, 20, 50, 100],
   exportToCSV: false,
   fixed: false,
   hover: false,
   info: true,
-  infoLabel: ["Showing", "to", "of", "entries"],
-  noRecordsFoundLabel: "No matching records found",
+  infoLabel: ['Showing', 'to', 'of', 'entries'],
+  noRecordsFoundLabel: 'No matching records found',
   noBottomColumns: false,
   order: [],
   pagesAmount: 8,
   paging: true,
-  paginationLabel: ["Prev", "Next"],
+  paginationLabel: ['Prev', 'Next'],
   responsive: false,
   responsiveSm: false,
   responsiveMd: false,
   responsiveLg: false,
   responsiveXl: false,
   searching: true,
-  searchLabel: "Search",
+  searchLabel: 'Search',
   scrollX: false,
   scrollY: false,
   sortable: true,
   small: false,
   striped: false,
-  theadColor: "",
+  theadColor: '',
   theadTextWhite: false,
-  tbodyColor: "",
+  tbodyColor: '',
   tbodyTextWhite: false,
   proSelect: false,
-  materialSearch: false,
-};
+  materialSearch: false
+}
 
-export default DataTable;
-export { DataTable as CDBDataTable };
+export default DataTable
+export { DataTable as CDBDataTable }
