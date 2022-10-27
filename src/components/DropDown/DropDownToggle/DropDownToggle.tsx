@@ -7,7 +7,25 @@ import { DropDownContext } from "../DropDownContext";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
-const DropdownToggle = (props) => {
+interface Props {
+  className: string,
+  colors: [string],
+  disabled?: boolean,
+  circle?: any,
+  color: string
+  dropleft: boolean,
+  dropright: boolean,
+  dropup: boolean,
+  dropdown: boolean,
+  position: string,
+  children: React.ReactNode,
+  caret: boolean,
+  size: string,
+  nav: boolean,
+  tag: [Function, string],
+}
+
+const DropdownToggle = (props: Props) => {
   const { isOpen } = useContext(DropDownContext);
   const [isOpenValue, setIsOpenValue] = isOpen;
 

@@ -8,7 +8,7 @@ import DataTableSearch from './DataTableSearch'
 import DataTableInfo from './DataTableInfo'
 import DataTablePagination from './DataTablePagination'
 import { ThemeProvider } from 'styled-components'
-import { theme } from './../../theme'
+import { theme } from '../../theme'
 
 interface Props {
   autoWidth: boolean;
@@ -16,7 +16,7 @@ interface Props {
   bordered: boolean;
   borderless: boolean;
   btn: boolean;
-  children: Node.ReactNode;
+  children: React.ReactNode;
   className: string;
   dark: boolean;
   data: [object, string];
@@ -30,7 +30,7 @@ interface Props {
   fixed: boolean;
   hover: boolean;
   info: boolean;
-  infoLabel: [array, object, string];
+  infoLabel: [object, string];
   materialSearch: boolean;
   maxHeight: string;
   noBottomColumns: boolean;
@@ -60,6 +60,8 @@ interface Props {
   tbodyTextWhite: boolean;
   theadColor: string;
   theadTextWhite: boolean;
+  rows?: any
+
 }
 
 const DataTable = (props: Props) => {
@@ -104,6 +106,8 @@ const DataTable = (props: Props) => {
     searchLabel,
     small,
     sortable,
+    rows,
+    
     sortRows,
     striped,
     tbodyColor,
@@ -235,8 +239,8 @@ const DataTable = (props: Props) => {
       { ...state, search: e.target.value },
       () => filterRows(),
       props.onSearch &&
-        typeof props.onSearch === 'function' &&
-        props.onSearch(e.target.value)
+      typeof props.onSearch === 'function' &&
+      props.onSearch(e.target.value)
     )
   }
 
@@ -271,8 +275,8 @@ const DataTable = (props: Props) => {
           ? -1
           : 1
         : a[field] > b[field]
-        ? -1
-        : 1
+          ? -1
+          : 1
     })
   }
 
@@ -285,7 +289,7 @@ const DataTable = (props: Props) => {
 
     setState(
       (prevState) => {
-        const sort = () => (rows, sortRows, field, direction)
+        const sort = () => ((rows)(sortRows)(field)(direction))
         const { sortRows } = props
         const { rows, columns } = prevState
         const direction = sort === 'desc' ? 'desc' : 'asc'
@@ -333,9 +337,9 @@ const DataTable = (props: Props) => {
                 const getContent = (element) =>
                   typeof element === 'object'
                     ? element.props.children &&
-                      Array.from(element.props.children).map((el) =>
-                        getContent(el)
-                      )
+                    Array.from(element.props.children).map((el) =>
+                      getContent(el)
+                    )
                     : content.push(element)
 
                 getContent(row[key])
@@ -366,7 +370,7 @@ const DataTable = (props: Props) => {
             filteredRows,
             activePage: (prevState.activePage =
               prevState.activePage < prevState.pages.length ||
-              prevState.activePage === 0
+                prevState.activePage === 0
                 ? prevState.activePage
                 : prevState.pages.length - 1)
           }

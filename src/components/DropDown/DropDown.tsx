@@ -5,7 +5,11 @@ import { Manager } from "react-popper";
 import { Component } from "./DropDown.style";
 import { DropDownProvider } from "./DropDownContext";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../theme";
+import { theme } from "../../theme";
+
+interface Props{
+  
+}
 
 const DropDown = (props) => {
   const { className, tag, children, dropleft, dropright, dropup, ...attributes } = props;
