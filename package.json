@@ -1,6 +1,6 @@
 {
   "name": "cdbreact",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Elegant UI Kit and reusable components for building mobile-first, responsive webistes and web apps",
   "repository": {
     "type": "git",
@@ -33,7 +33,7 @@
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
-     "release": "standard-version && git push --follow-tags && npm publish",
+    "release": "standard-version && git push --follow-tags && npm run build && npm publish",
     "prepare": "run-s build",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
