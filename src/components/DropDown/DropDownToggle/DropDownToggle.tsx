@@ -9,10 +9,8 @@ import { theme } from "../../../theme";
 
 interface Props {
   className: string,
-  colors: [string],
-  disabled?: boolean,
-  circle?: any,
   color: string
+  disabled: [Function, any]
   dropleft: boolean,
   dropright: boolean,
   dropup: boolean,
@@ -23,10 +21,13 @@ interface Props {
   size: string,
   nav: boolean,
   tag: [Function, string],
+  onClick: Function,
+  isOpen: Function,
+  circle: [string, Function]
 }
 
 const DropdownToggle = (props: Props) => {
-  const { isOpen } = useContext(DropDownContext);
+  const { isOpen } = useContext<any>(DropDownContext);
   const [isOpenValue, setIsOpenValue] = isOpen;
 
   const {
@@ -100,8 +101,8 @@ const DropdownToggle = (props: Props) => {
             size={size}
             disabled={disabled}
             circle={circle}
-            onClick={() => {
-              toggleDropdown();
+            onClick={(e) => {
+              toggleDropdown(e);
             }}
           >
             {dropleft && CaretIcon}

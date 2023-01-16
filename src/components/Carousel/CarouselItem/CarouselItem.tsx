@@ -1,29 +1,31 @@
-import React, { useState, } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../../theme";
-
+import { theme } from "../../../theme";
 
 interface Props {
   active: boolean,
   children: React.ReactNode,
   className: string,
   itemId: any,
-  tag: [Function, string],
+  Tag: any,
+  slide: [string, boolean],
+  activeItem: any
+
 }
-
-
 
 const CarouselItem = (props: Props) => {
 
 
   const {
+    activeItem,
+    slide,
     active,
     children,
     className,
     itemId,
-    tag: Tag,
+    Tag,
     ...attributes
   } = props;
   const [style, setStyle] = useState({})
@@ -54,7 +56,7 @@ const CarouselItem = (props: Props) => {
 
   setContext({ slide, activeItem })
 
-  itemId = parseInt(itemId, 10);
+  itemId.value = parseInt(itemId, 10);
 
   const classes = classNames(
     "carousel-item",

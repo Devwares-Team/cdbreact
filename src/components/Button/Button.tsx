@@ -3,31 +3,29 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Component } from './Button.style'
 
- interface Props{
-  action ?: boolean,
-  active ?: boolean,
-  block ?: boolean,
-  children ?: React.ReactNode,
-  circle ?: boolean,
-  className ?: string,
-  color ?: string,
-  disabled ?: boolean,
-  download ?: string,
-  flat ?: boolean,
-  innerRef ?: [Function,  string],
-  onClick ?: Function,
-  role ?: string,
-  size ?: string,
-  social ?: string,
-  tag ?: string,
-  target ?: string,
-  type ?: string,
-  rounded ?: string,
-  gradient ?: string,
-  outline ?: boolean,
-  href ?: string
-  
-  
+interface Props {
+  action: boolean,
+  active: boolean,
+  block: boolean,
+  children: React.ReactNode,
+  circle: boolean,
+  className: string,
+  color: string,
+  disabled: boolean,
+  download: string,
+  flat: boolean,
+  innerRef: [Function, string],
+  onClick: Function,
+  role: string,
+  size: string,
+  social: string,
+  tag: string,
+  target: string,
+  type: string,
+  gradient?: [any, string, boolean],
+  outline?: [any, boolean],
+  rounded?: [any],
+  href?: string
 }
 
 const Button = (props: Props) => {
@@ -52,6 +50,7 @@ const Button = (props: Props) => {
     tag,
     target,
     type,
+
     ...attributes
   } = props
 
@@ -71,42 +70,36 @@ const Button = (props: Props) => {
     tag = 'a'
   }
 
-  return 
-  (
+  return (
     <Component
-    data-test='button'
-    type={tag === 'button' && !type ? 'button' : type}
-    as={tag}
-    target={target}
-    role={tag === 'a' && !role ? 'button' : role}
-    className={buttonClasses}
-    colors={color}
-    ref={innerRef}
-    size={size}
-    flat={flat}
-    {...attributes}
-    download={download}
-    circle={circle}
-    disabled={disabled}
-    outline={outline}
-    bg={color}
+      data-test='button'
+      type={tag === 'button' && !type ? 'button' : type}
+      as={tag}
+      target={target}
+      role={tag === 'a' && !role ? 'button' : role}
+      className={buttonClasses}
+      colors={color}
+      ref={innerRef}
+      size={size}
+      flat={flat}
+      {...attributes}
+      download={download}
+      circle={circle}
+      disabled={disabled}
+      outline={outline}
+      bg={color}
     >
-    {children}
+      {children}
     </Component>
-
-    )
-  
+  )
 }
 
- Button.defaultProps = {
+Button.defaultProps = {
   color: 'primary',
   tag: 'button',
   size: 'medium',
   circle: false
 }
-
- 
-
 
 Button.propTypes = {
   action: PropTypes.bool,
@@ -128,7 +121,6 @@ Button.propTypes = {
   target: PropTypes.string,
   type: PropTypes.string
 }
-
 
 export default Button
 export { Button as CDBBtn }

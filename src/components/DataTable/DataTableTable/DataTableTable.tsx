@@ -7,7 +7,7 @@ import TableFooter from "../../Table/TableFooter";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
-interface Props{
+interface Props {
   autoWidth: boolean,
   bordered: boolean,
   borderless: boolean,
@@ -16,6 +16,7 @@ interface Props{
   fixed: boolean,
   handleSort: Function,
   hover: boolean,
+  noRecordsFoundLabel: string
   responsive: boolean,
   responsiveLg: boolean,
   responsiveMd: boolean,
@@ -29,36 +30,28 @@ interface Props{
   tbodyTextWhite: boolean,
   theadColor: string,
   theadTextWhite: boolean,
-  children: React.ReactNode
-  columns : any,
-  noBottomColumns: any,
-  rows: any,
-  noRecordsFoundLabel: any,
-  DataTableHead : any,
-  TableBody : any;
-  Table: any,
-  TableFooter: any,
+  children: React.ReactNode,
+  columns: any[],
+  noBottomColumns: boolean,
+  rows: any[],
 }
 
-const DataTableTable = (props : Props) => {
+const DataTableTable = (props: Props) => {
   const {
     autoWidth,
     bordered,
     borderless,
     btn,
-    TableFooter,
     children,
     columns,
     dark,
     fixed,
     handleSort,
     hover,
-    Table,
     noBottomColumns,
     noRecordsFoundLabel,
     responsive,
     responsiveLg,
-    DataTableHead,
     responsiveMd,
     responsiveSm,
     responsiveXl,
@@ -70,7 +63,6 @@ const DataTableTable = (props : Props) => {
     tbodyColor,
     tbodyTextWhite,
     theadColor,
-    TableBody,
     theadTextWhite,
     ...attributes
   } = props;
@@ -79,7 +71,7 @@ const DataTableTable = (props : Props) => {
     <ThemeProvider theme={theme}>
       <div data-test="datatable-table" className="col-sm-12">
         <Table
-          autoWidth={autoWidth}
+          maxHeight={""} scrollY={false} theadColor={""} wrapperClassName={""} autoWidth={autoWidth}
           bordered={bordered}
           borderless={borderless}
           btn={btn}
@@ -94,28 +86,24 @@ const DataTableTable = (props : Props) => {
           small={small}
           striped={striped}
           className="dataTable"
-          {...attributes}
-        >
+          {...attributes}        >
           <DataTableHead
             color={theadColor}
             textWhite={theadTextWhite}
             columns={columns}
             handleSort={handleSort}
             sortable={sortable}
-            sorted={sorted}
-          />
+            sorted={sorted} />
           <TableBody
             color={tbodyColor}
             textWhite={tbodyTextWhite}
             rows={rows}
-            columns={columns}
-          />
+            columns={columns} children={undefined} />
           {!noBottomColumns && (
             <TableFooter
               color={theadColor}
               textWhite={theadTextWhite}
-              columns={columns}
-            />
+              columns={columns} children={undefined} />
           )}
           {children}
         </Table>
@@ -151,6 +139,11 @@ DataTableTable.propTypes = {
   noBottomColumns: PropTypes.bool,
   rows: PropTypes.arrayOf(PropTypes.object),
 };
+
+DataTableTable.defaultProps = {
+  children: "",
+
+}
 
 export default DataTableTable;
 export { DataTableTable as MDBDataTableTable };

@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
-import classNames from "classnames";
-import Popper from "popper.js";
-import PropTypes from "prop-types";
-import { Tag } from "./Popper.style";
-import { ThemeProvider } from "styled-components";
-import { theme } from "./../../theme";
+import React, { Fragment, useEffect, useRef, useState } from 'react'
+import classNames from 'classnames'
+import Popper from 'popper.js'
+import PropTypes from 'prop-types'
+import { Tag } from './Popper.style'
+import { ThemeProvider } from 'styled-components'
+import { theme } from '../../theme'
 
 const Popover = (props) => {
   const {
@@ -25,16 +25,16 @@ const Popover = (props) => {
     tag,
     ...attributes
   } = props;
-  
-  const [state, setState] = useState({
+
+  const [state, setState] = useState<any>({
     popperJS: null,
     visible: props.isVisible,
     showPopper: props.isVisible,
   });
-  const [timer, setTimer] = useState();
+  const [timer, setTimer] = useState<NodeJS.Timer>();
 
-  const popoverWrapperRef = useRef();
-  const referenceElm = useRef();
+  const popoverWrapperRef = useRef<any>();
+  const referenceElm = useRef<any>();
 
   useEffect(() => {
     const { showPopper } = state;
@@ -120,7 +120,7 @@ const Popover = (props) => {
     }
   };
 
-  
+
 
   const { visible, showPopper } = state;
   const Popper = children[1];

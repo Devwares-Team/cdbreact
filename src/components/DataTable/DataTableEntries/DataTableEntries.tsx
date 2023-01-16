@@ -4,18 +4,16 @@ import DataTableSelectFree from '../DataTableSelect';
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
-interface Props{
+interface Props {
   displayEntries: boolean,
   entries: number,
-  entriesArr:[number],
-  handleEntriesChange : any,
+  entriesArr: number[],
+  handleEntriesChange: any,
   label: [number, object, string],
   paging: boolean,
-  barReverse: any,
-  onChange : Function,
-  justifyContent : any ,
+  barReverse: boolean,
+  onChange: any,
   proSelect: boolean,
-  DataTableSelectFree : any
 }
 
 
@@ -26,12 +24,12 @@ const DataTableEntries = (props: Props) => {
     entries,
     entriesArr,
     paging,
-    justifyContent,
     onChange,
     label,
     barReverse,
+
     proSelect,
-    DataTableSelectFree,
+
     ...attributes
   } = props;
 
@@ -40,20 +38,23 @@ const DataTableEntries = (props: Props) => {
       <div
         data-test='datatable-entries'
         className='col-sm-12 col-md-6'
-        style={{ display: 'flex', alignItems: 'center', justifyContent : barReverse && 'flex-end' }}
+        style={{
+          display: 'flex', alignItems: 'center', justifyContent: barReverse ? 'flex-end' : ''
+
+        }}
       >
         {paging && displayEntries && !proSelect && (
           <DataTableSelectFree
             value={entries}
             onChange={handleEntriesChange}
-            
+
             entries={entriesArr}
             label={label}
-            barReverse={barReverse}
+            // barReverse={barReverse}
             {...attributes}
           />
         )}
-        
+
       </div>
     </ThemeProvider>
   );
@@ -67,8 +68,10 @@ DataTableEntries.propTypes = {
   label: PropTypes.oneOfType([PropTypes.number, PropTypes.object, PropTypes.string]).isRequired,
   paging: PropTypes.bool.isRequired,
   barReverse: PropTypes.bool,
-  proSelect: PropTypes.bool
+  proSelect: PropTypes.bool,
+  onChange: PropTypes.func,
 };
+
 
 export default DataTableEntries;
 export { DataTableEntries as MDBDataTableEntries };

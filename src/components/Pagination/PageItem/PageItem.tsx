@@ -11,10 +11,11 @@ interface Props {
   className: string,
   disabled: boolean,
   tag: [Function, string],
+  onClick: Function
 }
 
 const PageItem = (props: Props) => {
-  const { active, className, children, disabled, tag, ...attributes } = props;
+  const { active, className, children, onClick, disabled, tag, ...attributes } = props;
 
   const pageItemClasses = classNames(
     {

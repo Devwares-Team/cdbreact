@@ -1,78 +1,75 @@
-import React, { useContext, useEffect } from "react";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import { Component } from "./DropDownMenu.style";
-import { DropDownContext } from "../DropDownContext";
-import { Transition } from "react-spring/renderprops";
-import { Popper } from "react-popper";
-import { ThemeProvider } from "styled-components";
-import { theme } from "../../../theme";
+import React, { useContext, useEffect } from 'react'
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import { Component } from './DropDownMenu.style'
+import { DropDownContext } from '../DropDownContext'
+import { Transition } from 'react-spring/renderprops'
+import { Popper } from 'react-popper'
+import { ThemeProvider } from 'styled-components'
+import { theme } from '../../../theme'
 
-
-interface Props{
-  className: string,
-  colors: string,
-  onClose: Function,
-  onClosed: Function,
-  tag: string,
-  dropleft: boolean,
-  dropright: boolean,
-  dropup: boolean,
-  top : number,
-  color : [string, number],
-  children: React.ReactNode,
-  right : any,
-  dropdown: boolean,
-  placement : any,
-  
-
+interface Props {
+  className: string
+  colors: string
+  onClose: Function
+  onClosed: Function
+  tag: string
+  dropleft: boolean
+  dropright: boolean
+  dropup: boolean
+  dropdown: boolean
+  color: any
+  children: any
+  right: any
+  placement: any
+  top: any
 }
 
-const Null = () => null;
+const Null = () => null
 
 const modifiers = [
   {
-    name: "flip",
-    enabled: false,
+    name: 'flip',
+    enabled: false
   },
   {
-    name: "hide",
-    enabled: false,
-  },
-];
+    name: 'hide',
+    enabled: false
+  }
+]
 
 const popperModifiers = [
   ...modifiers,
   {
-    name: "arrow",
+    name: 'arrow',
     options: {
-      padding: 5,
-    },
+      padding: 5
+    }
   },
   {
-    name: "offset",
+    name: 'offset',
     options: {
-      offset: [0, 14],
-    },
-  },
-];
+      offset: [0, 14]
+    }
+  }
+]
 
 const animatedModifiers = [
   ...popperModifiers,
   {
-    name: "computeStyles",
+    name: 'computeStyles',
     options: {
-      adaptive: false,
-    },
+      adaptive: false
+    }
   },
 
   {
-    name: "computeStyles",
+    name: 'computeStyles',
     options: {
-      gpuAcceleration: false,
-    },
-  },
-];
+      gpuAcceleration: false
+    }
+  }
+]
 
 const DropDownMenu = (props: Props) => {
   const {
@@ -81,33 +78,32 @@ const DropDownMenu = (props: Props) => {
     color,
     children,
     right,
-    top,
     dropleft,
     dropright,
+    top,
     dropdown,
     dropup,
-    
     ...attrs
-  } = props;
-  const { isOpen } = useContext(DropDownContext);
-  const [isOpenValue] = isOpen;
+  } = props
+  const { isOpen } = useContext<any>(DropDownContext)
+  const [isOpenValue] = isOpen
 
   useEffect(() => {
-    const { dropup, dropleft, dropright } = props;
+    const { dropup, dropleft, dropright } = props
     const position1 = dropup
-      ? "top"
+      ? 'top'
       : dropright
-      ? "right"
-      : dropleft
-      ? "left"
-      : "bottom";
+        ? 'right'
+        : dropleft
+          ? 'left'
+          : 'bottom'
 
-    const position2 = right ? "end" : "start";
+    const position2 = right ? 'end' : 'start'
 
-    attrs.placement = `${position1}-${position2}`;
-  });
+    attrs.placement = `${position1}-${position2}`
+  })
 
-  const dropDownMenuClasses = classNames("dropdown-menu", className);
+  const dropDownMenuClasses = classNames('dropdown-menu', className)
 
   let dropDownMenuComponent = (
     <ThemeProvider theme={theme}>
@@ -121,61 +117,67 @@ const DropDownMenu = (props: Props) => {
         {(show) =>
           show
             ? ({ scale, opacity, top: topOffset }) => (
-                <Popper placement={attrs.placement} modifiers={animatedModifiers}>
-                  {({
-                    ref,
-                    style: { top, left, position },
-                    placement,
-                    arrowProps,
-                  }) => (
-                    <Component
-                      className={dropDownMenuClasses}
-                      ref={ref}
-                      style={{
-                        opacity,
-                        top: 0,
-                        left: 0,
-                        position,
-                        padding: "1em",
-                        transform: `translate3d(${left}, ${
-                          parseInt(top) + topOffset
+              <Popper
+                placement={attrs.placement}
+                modifiers={animatedModifiers}
+              >
+                {({
+                  ref,
+                  style: { top, left, position },
+                  placement,
+                  arrowProps
+                }) => (
+                  <Component
+                    className={dropDownMenuClasses}
+                    ref={ref}
+                    style={{
+                      opacity,
+                      top: 0,
+                      left: 0,
+                      position,
+                      padding: '1em',
+                      transform: `translate3d(${left}, ${(top
+                        ? typeof top === 'string'
+                          ? parseInt(top)
+                          : top
+                        : 0) + topOffset
                         }px, 0) scale(${scale})`,
-                        transformOrigin: "top center",
-                      }}
-                      data-placement={placement}
-                    >
-                      {children}
-                    </Component>
-                  )}
-                </Popper>
-              )
+                      transformOrigin: 'top center'
+                    }}
+                    data-placement={placement}
+                  >
+                    {children}
+                  </Component>
+                )}
+              </Popper>
+            )
             : Null
         }
       </Transition>
     </ThemeProvider>
-  );
+  )
 
-  return dropDownMenuComponent;
-};
+  return dropDownMenuComponent
+}
 
 DropDownMenu.defaultProps = {
-  colors: "primary",
+  colors: 'primary',
   right: false,
-  tag: "span",
+  tag: 'span',
   dropleft: false,
   dropright: false,
-  dropup: false,
-};
+  dropup: false
+}
 
 DropDownMenu.propTypes = {
   className: PropTypes.string,
   colors: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "success",
-    "danger",
-    "warning",
-    "info",
+    'primary',
+    'secondary',
+    'success',
+    'danger',
+    'warning',
+    'info'
   ]),
   onClose: PropTypes.func,
   onClosed: PropTypes.func,
@@ -183,8 +185,8 @@ DropDownMenu.propTypes = {
   dropleft: PropTypes.bool,
   dropright: PropTypes.bool,
   dropup: PropTypes.bool,
-  dropdown: PropTypes.bool,
-};
+  dropdown: PropTypes.bool
+}
 
-export default DropDownMenu;
-export { DropDownMenu as CDBDropDownMenu };
+export default DropDownMenu
+export { DropDownMenu as CDBDropDownMenu }

@@ -31,18 +31,11 @@ interface Props {
   theadTextWhite: boolean
   translateScrollHead: number
   children: React.ReactNode
-  style: React.ReactNode
   columns: any
   maxHeight: string
-  minWidth: any
   rows: any
   scrollX: boolean
   scrollY: boolean
-
-  DataTableHead: any
-  TableBody: any
-
-  Table: any
 }
 
 const DataTableTableScroll = (props: Props) => {
@@ -51,16 +44,13 @@ const DataTableTableScroll = (props: Props) => {
     bordered,
     borderless,
     btn,
-
     children,
     columns,
     dark,
-    TableBody,
     fixed,
     handleSort,
     handleTableBodyScroll,
     hover,
-    style,
     maxHeight,
     responsive,
     responsiveLg,
@@ -68,13 +58,10 @@ const DataTableTableScroll = (props: Props) => {
     responsiveSm,
     responsiveXl,
     rows,
-
     scrollX,
-    Table,
     scrollY,
     small,
     sortable,
-    DataTableHead,
     sorted,
     striped,
     tbodyColor,
@@ -87,8 +74,8 @@ const DataTableTableScroll = (props: Props) => {
 
   const minWidth = scrollX
     ? `${columns
-        .map((col) => col.width)
-        .reduce((prev, curr) => prev + curr, 0)}px`
+      .map((col) => col.width)
+      .reduce((prev, curr) => prev + curr, 0)}px`
     : 'auto'
 
   return (
@@ -107,7 +94,7 @@ const DataTableTableScroll = (props: Props) => {
               }}
             >
               <Table
-                autoWidth={autoWidth}
+                theadColor={''} autoWidth={false} maxHeight={''} wrapperClassName={''} scrollY={false}
                 bordered={bordered}
                 borderless={borderless}
                 btn={btn}
@@ -122,8 +109,7 @@ const DataTableTableScroll = (props: Props) => {
                 small={small}
                 striped={striped}
                 className='dataTable'
-                {...attributes}
-              >
+                {...attributes}              >
                 <DataTableHead
                   color={theadColor}
                   textWhite={theadTextWhite}
@@ -144,9 +130,10 @@ const DataTableTableScroll = (props: Props) => {
             onScroll={handleTableBodyScroll}
           >
             <Table
-              style={{
-                minWidth
-              }}
+              theadColor={''} wrapperClassName={''}
+              // style={{
+              //   minWidth
+              // }}
               autoWidth={autoWidth}
               bordered={bordered}
               borderless={borderless}
@@ -164,8 +151,7 @@ const DataTableTableScroll = (props: Props) => {
               small={small}
               striped={striped}
               className='dataTable'
-              {...attributes}
-            >
+              {...attributes}            >
               <colgroup>
                 {columns.map((col) => (
                   <col
@@ -181,8 +167,7 @@ const DataTableTableScroll = (props: Props) => {
                 color={tbodyColor}
                 textWhite={tbodyTextWhite}
                 rows={rows}
-                columns={columns}
-              />
+                columns={columns} children={undefined} />
               {children}
             </Table>
           </div>
@@ -224,5 +209,8 @@ DataTableTableScroll.propTypes = {
   scrollY: PropTypes.bool
 }
 
+DataTableTableScroll.defaultProps = {
+  children: "",
+}
 export default DataTableTableScroll
 export { DataTableTableScroll as MDBDataTableTableScroll }

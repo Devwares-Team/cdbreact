@@ -5,27 +5,23 @@ import { CDBInput } from "../../Input/Input";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
-interface Props{
+interface Props {
   barReverse: boolean,
   label: string,
   materialSearch: boolean,
-  onChange ?: any,
+  onChange: Function,
   value: string,
-  CDBInput: any
+
 }
 
-const DataTableInput = (props: Props) => {
- let{ value,
+const DataTableInput = ({
+  value,
   onChange,
   label,
+
   barReverse,
   materialSearch,
-  CDBInput 
- }
- = props
-
-
-
+}) => {
   return (
     <ThemeProvider theme={theme}>
       <div
@@ -33,19 +29,17 @@ const DataTableInput = (props: Props) => {
         className={classNames(
           "mdb-datatable-filter",
           "flex-row",
-          barReverse,  "text-left"
+          barReverse && "text-left"
         )}
       >
         {materialSearch ? (
           <CDBInput
-            hint="Search"
-            containerClass="mt-0"
+            //  hint="Search" 
             value={value}
             onChange={onChange}
             type="search"
-            className="form-control form-control-sm"
-            placeholder={label || "Search"}
-          />
+            className="form-control form-control-sm mt-0"
+            placeholder={label || "Search"} />
         ) : (
           <input
             className="form-control form-control-sm ml-0 my-1"
@@ -58,8 +52,8 @@ const DataTableInput = (props: Props) => {
         )}
       </div>
     </ThemeProvider>
-  );}
-
+  );
+};
 
 DataTableInput.propTypes = {
   barReverse: PropTypes.bool,

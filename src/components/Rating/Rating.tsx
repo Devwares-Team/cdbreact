@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from "react";
-import classNames from "classnames";
-import CDBBtn from "../Button"
-import CDBPopoverBody from "../Popper/PopoverBody";
-import CDBPopoverHeader from "../Popper/PopoverHeader";
-import CDBTooltip from "../Popper";
-import { ThemeProvider } from "styled-components";
-import { theme } from "../../theme";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from 'react'
+import classNames from 'classnames'
+import CDBTooltip from '../Popper'
+import { ThemeProvider } from 'styled-components'
+import { theme } from '../../theme'
 
+import PropTypes from 'prop-types'
 
-interface Props{
-  containerClassName:string,
+interface Props {
+  containerClassName: string
+  type: string,
+  CDBBtn: any,
+  CDBPopoverBody: any,
   data: any
-  feedback: boolean,
-  fillClassName: string,
-  fillColors:[boolean, string]
-  getValue: Function,
-  iconClassName: string,
-  iconFaces: boolean,
-  iconRegular: boolean,
-  iconSize: string,
-  submitHandler: Function,
-  tag: string,
-  tooltip: any,
-  choosed: any,
+  CDBPopoverHeader: any,
+  feedback: boolean
+  fillClassName: string
+  fillColors: [boolean, string]
+  getValue: Function
+  iconClassName: string
+  iconFaces: boolean
+  iconRegular: boolean
+  iconSize: string
+  submitHandler: Function
+  tag: any
+  tooltip: any
+  choosed: any
 }
 
 const Rating = (props: Props) => {
-
   const {
     tag: Tag,
     containerClassName,
@@ -38,207 +38,211 @@ const Rating = (props: Props) => {
     fillClassName,
     fillColors,
     tooltip,
-    
+    CDBBtn,
+    CDBPopoverBody,
+    CDBPopoverHeader,
+    type,
     getValue,
     feedback,
     submitHandler,
     ...commonAttributes
-  } = props;
+  } = props
 
-  const [data, setData] = useState([]);
-  const [hovered, setHovered] = useState(null);
-  const [choosed, setChoosed] = useState({
-    title: "",
-    index: null,
-  });
-  const [feedbackValue, setFeedbackValue] = useState("");
-  const [openedForm, setOpenedForm] = useState(null);
+  const [data, setData] = useState<any>([])
+  const [hovered, setHovered] = useState(null)
+  const [choosed, setChoosed] = useState<{
+    title: string
+    index: null | number
+  }>({
+    title: '',
+    index: null
+  })
+  const [feedbackValue, setFeedbackValue] = useState('')
+  const [openedForm, setOpenedForm] = useState(null)
 
   const onDocumentClick = (e) => {
-    if (!e.target.closest(".popover")) {
-      setOpenedForm(null);
+    if (!e.target.closest('.popover')) {
+      setOpenedForm(null)
     }
-  };
+  }
 
   useEffect(() => {
-    window.addEventListener("click", onDocumentClick);
-    return () => window.removeEventListener("click", onDocumentClick);
-  }, []);
+    window.addEventListener('click', onDocumentClick)
+    return () => window.removeEventListener('click', onDocumentClick)
+  }, [])
 
   useEffect(() => {
-    setData(props.data);
+    setData(props.data)
     // eslint-disable-next-line react/destructuring-assignment
-  }, [props.data]);
+  }, [props.data])
 
   useEffect(() => {
-    const choosedIndex = data.findIndex((item) => item.choosed);
+    const choosedIndex = data.findIndex((item) => item.choosed)
 
     if (choosedIndex !== -1) {
-      setChoosed({ title: data[choosedIndex].tooltip, index: choosedIndex });
+      setChoosed({ title: data[choosedIndex].tooltip, index: choosedIndex })
     }
-  }, [data]);
+  }, [data])
 
   useEffect(() => {
     if (props.getValue) {
-      let { title, index } = choosed;
-      index = index !== null ? index + 1 : index;
+      let { title, index } = choosed
+      index = index !== null ? index + 1 : index
 
-      props.getValue({ title, value: index });
+      props.getValue({ title, value: index })
     }
-  }, [choosed, props]);
+  }, [choosed, props])
 
   const handleMouseEnter = (_, index) => {
-    setHovered(index);
-  };
+    setHovered(index)
+  }
 
   const handleMouseLeave = () => {
-    setHovered(null);
-  };
+    setHovered(null)
+  }
 
   const handleClick = (title, index, e) => {
-    e.stopPropagation();
+    e.stopPropagation()
     if (title === choosed.title && index === choosed.index) {
-      setChoosed({ title: "", index: null });
-      feedback && setOpenedForm(null);
+      setChoosed({ title: '', index: null })
+      feedback && setOpenedForm(null)
     } else {
-      setChoosed({ title, index });
+      setChoosed({ title, index })
       feedback &&
         setTimeout(() => {
-          setOpenedForm(index);
-        }, 1);
+          setOpenedForm(index)
+        }, 1)
     }
-  };
+  }
 
   const onCloseHanlder = () => {
-    setFeedbackValue("");
-    setOpenedForm(null);
-  };
+    setFeedbackValue('')
+    setOpenedForm(null)
+  }
 
   const feedbackValueHandler = (e) => {
-    setFeedbackValue(e.target.value);
-  };
-
- 
+    setFeedbackValue(e.target.value)
+  }
 
   const containerClasses = classNames(
-    "mdb-rating",
-    "d-flex",
-    "justify-content-start",
-    "align-items-center",
+    'mdb-rating',
+    'd-flex',
+    'justify-content-start',
+    'align-items-center',
     containerClassName
-  );
+  )
 
-  let renderedIcons = [];
+  let renderedIcons = []
 
   if (data.length) {
     renderedIcons = data.map(
       (
-        { icon = "star", tooltip, far, size, choosed: _, ...itemAttributes },
+        { icon = 'star', tooltip, far, size, choosed: _, ...itemAttributes },
         index
       ) => {
-        const isChoosed = choosed.index !== null;
-        const isHovered = hovered !== null;
-        const isFormOpened = openedForm !== null;
-        const isFormActive = feedback && isFormOpened && openedForm === index;
+        const isChoosed = choosed.index !== null
+        const isHovered = hovered !== null
+        const isFormOpened = openedForm !== null
+        const isFormActive = feedback && isFormOpened && openedForm === index
 
-        let toFill = false;
+        let toFill = false
 
         if (isChoosed) {
-          toFill = index <= choosed.index;
+          toFill = index <= choosed.index!
 
-          if (isHovered && hovered > choosed.index) {
-            toFill = index <= hovered;
+          if (isHovered && hovered > choosed.index!) {
+            toFill = index <= hovered
           }
         } else if (isHovered) {
-          toFill = index <= hovered;
+          toFill = index <= hovered
         }
 
-        let fillColor = "";
+        let fillColors: string = ''
 
         if (fillColors) {
-          let current = null;
+          let current: number | null = null
 
           if (isChoosed) {
-            current = choosed.index;
+            current = choosed.index!
             if (isHovered) {
-              current = hovered;
+              current = hovered
             }
           } else if (isHovered) {
-            current = hovered;
+            current = hovered
           }
 
-          const isCustom = Array.isArray(fillColors);
+          const isCustom = Array.isArray(fillColors)
 
           const defaultFillColors = [
-            "oneStar",
-            "twoStars",
-            "threeStars",
-            "fourStars",
-            "fiveStars",
-          ];
+            'oneStar',
+            'twoStars',
+            'threeStars',
+            'fourStars',
+            'fiveStars'
+          ]
 
           if (current !== null) {
-            fillColor = isCustom
+            fillColors = isCustom
               ? fillColors[current]
-              : defaultFillColors[current];
+              : defaultFillColors[current]
           }
         }
 
-        let renderIcon = icon;
+        let renderIcon = icon
 
         if (iconFaces) {
-          const faces = ["angry", "frown", "meh", "smile", "laugh"];
-          renderIcon = "meh-blank";
+          const faces = ['angry', 'frown', 'meh', 'smile', 'laugh']
+          renderIcon = 'meh-blank'
 
-          if (isChoosed && index <= choosed.index) {
-            renderIcon = faces[choosed.index];
+          if (isChoosed && index <= choosed.index!) {
+            renderIcon = faces[choosed.index!]
 
             if (isHovered) {
-              renderIcon = faces[hovered];
+              renderIcon = faces[hovered]
             }
           } else if (isHovered && index <= hovered) {
-            renderIcon = faces[hovered];
+            renderIcon = faces[hovered]
           }
         }
 
         const iconClasses = classNames(
-          iconRegular ? "far" : false,
+          iconRegular ? 'far' : false,
           icon ? `fa fa-${renderIcon}` : false,
           iconSize ? `fa-${size}` : false,
-          "py-2 px-1 rate-popover",
-          toFill && (fillColors ? fillColor : fillClassName),
+          'py-2 px-1 rate-popover',
+          toFill && (fillColors ? fillColors : fillClassName),
           iconClassName
-        );
+        )
 
-        let tooltipContent = tooltip;
+        let tooltipContent = tooltip
 
         if (isFormActive) {
           tooltipContent = (
             <form
               onSubmit={(e) => {
-                submitHandler(e, tooltip, openedForm + 1, feedbackValue);
-                onCloseHanlder();
+                submitHandler(e, tooltip, openedForm + 1, feedbackValue)
+                onCloseHanlder()
               }}
             >
               <CDBPopoverHeader>{tooltip}</CDBPopoverHeader>
               <CDBPopoverBody>
                 <textarea
-                  type="text"
-                  className="md-textarea form-control py-0"
+
+                  className='md-textarea form-control py-0'
                   value={feedbackValue}
                   onChange={feedbackValueHandler}
-                  // style={{ resize: 'none' }}
+                // style={{ resize: 'none' }}
                 />
-                <div className="d-flex align-items-center justify-content-around mt-2">
-                  <CDBBtn type="submit" color="primary" size="sm">
+                <div className='d-flex align-items-center justify-content-around mt-2'>
+                  <CDBBtn type='submit' color='primary' size='sm'>
                     Submit!
                   </CDBBtn>
                   <button
                     onMouseDown={onCloseHanlder}
                     style={{
-                      backgroundColor: "#fff",
-                      border: "none",
-                      padding: "0.5rem 1.6rem",
+                      backgroundColor: '#fff',
+                      border: 'none',
+                      padding: '0.5rem 1.6rem'
                     }}
                   >
                     Close
@@ -246,22 +250,22 @@ const Rating = (props: Props) => {
                 </div>
               </CDBPopoverBody>
             </form>
-          );
+          )
         }
 
         return (
           <CDBTooltip
             key={tooltip}
             domElement
-            placement="top"
-            tag="span"
+            placement='top'
+            tag='span'
             popover={isFormActive}
             isVisible={isFormActive}
             clickable={isFormActive}
           >
             <span>
               <i
-                style={{ cursor: "pointer" }}
+                style={{ cursor: 'pointer' }}
                 {...commonAttributes}
                 {...itemAttributes}
                 className={iconClasses}
@@ -272,21 +276,21 @@ const Rating = (props: Props) => {
                 onClick={(e) => handleClick(tooltip, index, e)}
               ></i>
             </span>
-            <div style={{ userSelect: "none" }}>{tooltipContent}</div>
+            <div style={{ userSelect: 'none' }}>{tooltipContent}</div>
           </CDBTooltip>
-        );
+        )
       }
-    );
+    )
   }
 
   return (
     <ThemeProvider theme={theme}>
-      <Tag data-test="rating" className={containerClasses}>
+      <Tag data-test='rating' className={containerClasses}>
         {renderedIcons}
       </Tag>
     </ThemeProvider>
-  );
-};
+  )
+}
 
 Rating.propTypes = {
   containerClassName: PropTypes.string,
@@ -294,14 +298,14 @@ Rating.propTypes = {
     PropTypes.shape({
       choosed: PropTypes.bool,
       icon: PropTypes.string,
-      tooltip: PropTypes.string,
+      tooltip: PropTypes.string
     })
   ),
   feedback: PropTypes.bool,
   fillClassName: PropTypes.string,
   fillColors: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.arrayOf(PropTypes.string)
   ]),
   getValue: PropTypes.func,
   iconClassName: PropTypes.string,
@@ -309,36 +313,36 @@ Rating.propTypes = {
   iconRegular: PropTypes.bool,
   iconSize: PropTypes.string,
   submitHandler: PropTypes.func,
-  tag: PropTypes.string,
-};
+  tag: PropTypes.string
+}
 
 Rating.defaultProps = {
-  containerClassName: "",
+  containerClassName: '',
   data: [
     {
-      tooltip: "Very Bad",
+      tooltip: 'Very Bad'
     },
     {
-      tooltip: "Poor",
+      tooltip: 'Poor'
     },
     {
-      tooltip: "Ok",
+      tooltip: 'Ok'
     },
     {
-      tooltip: "Good",
+      tooltip: 'Good'
     },
     {
-      tooltip: "Excellent",
-    },
+      tooltip: 'Excellent'
+    }
   ],
   feedback: false,
-  fillClassName: "fiveStars",
-  iconClassName: "",
-  iconSize: "1x",
+  fillClassName: 'fiveStars',
+  iconClassName: '',
+  iconSize: '1x',
   iconRegular: false,
-  tag: "div",
-  submitHandler: (e) => e.preventDefault(),
-};
+  tag: 'div',
+  submitHandler: (e) => e.preventDefault()
+}
 
-export default Rating;
-export { Rating as CDBRating };
+export default Rating
+export { Rating as CDBRating }

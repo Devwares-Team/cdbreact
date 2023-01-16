@@ -9,6 +9,7 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from './../../theme'
 
 interface Props {
+
   length: number,
   activeItem: number,
   children: React.ReactNode,
@@ -23,6 +24,7 @@ interface Props {
   tag: [Function, string],
   testimonial: boolean,
   thumbnails: boolean,
+  CarouselControl: any
 
 
 
@@ -40,7 +42,7 @@ const Carousel = (props: Props) => {
     onHoverStop,
     showControls,
     showIndicators,
-
+    CarouselControl,
     slide,
     tag,
     testimonial,
@@ -48,7 +50,16 @@ const Carousel = (props: Props) => {
     ...attributes
   } = props
 
-  const [state, setState] = useState({
+  type StateType = {
+    activeItem: number,
+    initialLength: number
+    srcArray: string[]
+    swipeAvailable: boolean
+    initialX: any
+    initialY: any
+  }
+
+  const [state, setState] = useState<StateType>({
     activeItem: activeItem,
     initialLength: length,
     srcArray: [],
@@ -56,19 +67,20 @@ const Carousel = (props: Props) => {
     initialX: null,
     initialY: null
   })
-  const [cycleInterval, setCycleInterval] = useState()
-  const carouselRef = useRef(null)
+  const [cycleInterval, setCycleInterval] = useState<NodeJS.Timer>()
+
+  const carouselRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const { interval, thumbnails, length } = props
-    if (interval === false) {
+    if (typeof interval === "boolean" && interval === false) {
       return
     }
-    setCycleInterval(setInterval(next, interval))
+    typeof interval === "number" && setCycleInterval(setInterval(next, interval))
 
     // get images src atr
     if (thumbnails) {
-      const CarouselItemsArray = carouselRef.current.querySelectorAll(
+      const CarouselItemsArray = carouselRef.current!.querySelectorAll(
         '.carousel-item img'
       )
 
@@ -83,7 +95,7 @@ const Carousel = (props: Props) => {
 
     return () => {
       const { interval } = props
-      if (interval === false) {
+      if (typeof interval === "boolean" && interval === false) {
         return
       }
       clearCycleIntervalHandler()
@@ -107,7 +119,7 @@ const Carousel = (props: Props) => {
   const restartInterval = () => {
     const { interval } = props
 
-    if (interval !== false) {
+    if (typeof interval === "number") {
       clearCycleIntervalHandler()
       setCycleInterval(setInterval(next, interval))
     }
@@ -204,15 +216,15 @@ const Carousel = (props: Props) => {
     className
   )
 
-  const CarouselIndicatorsArray = []
+  const CarouselIndicatorsArray: React.ReactNode[] = []
   for (let i = 1; i <= initialLength; i++) {
     const { activeItem } = state
     CarouselIndicatorsArray.push(
       <CarouselIndicator
-        img={thumbnails ? srcArray[i - 1] : null}
+        img={thumbnails ? srcArray[i - 1] : ""}
         key={i}
         active={activeItem === i}
-        onClick={() => goToIndex(i)}
+        onClick={(e) => goToIndex(i)}
       />
     )
   }

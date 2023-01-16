@@ -5,8 +5,8 @@ import { Component } from "./Pagination.style";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
-interface Props{
-  children: React.ReactNode,
+interface Props {
+  children?: React.ReactNode,
   circle: boolean,
   className: string,
   colors: string
@@ -21,8 +21,8 @@ const Pagination = (props: Props) => {
   const {
     children,
     className,
-    
     color,
+    colors,
     tag,
     shape,
     size,
@@ -37,7 +37,7 @@ const Pagination = (props: Props) => {
       <Component
         as={tag}
         data-test="pagination"
-        color={color}
+        colors={color}
         circle={circle}
         shape={shape}
         size={size}
@@ -75,7 +75,11 @@ Pagination.defaultProps = {
   circle: false,
   className: "",
   color: "dark",
+  colors: "dark",
   tag: "ul",
+  shape: "",
+  size: "lg",
+  sm: false
 };
 
 export default Pagination;

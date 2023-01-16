@@ -5,9 +5,7 @@ import StepperContent from './StepperContent'
 import { ThemeProvider } from 'styled-components'
 import { theme } from '../../theme'
 
-export const StepperContext = createContext({})
-
-interface Props{
+interface Props {
   direction: string,
   currentStepNumber: number,
   steps: [any],
@@ -16,27 +14,25 @@ interface Props{
   goTo: Function,
   showTooltip: boolean,
   showTitle: boolean
-  children: [any]
-  node: any
-  containerRef: any
-  
+  children: any
 }
 
-const Stepper = (props : Props) => {
+export const StepperContext = createContext({})
+
+const Stepper = (props: Props) => {
   const {
+    direction,
     children,
     mainColor,
     stepSize,
     showTooltip,
-
     showTitle,
-  
     ...attributes
   } = props
-  const containerRef = useRef()
+  const containerRef = useRef<any>(null)
   const [width, setWidth] = useState(null)
   const [height, setHeight] = useState(null)
-  const [content, setContent] = useState([])
+  const [content, setContent] = useState<any>([])
   const [active, setActive] = useState(1)
 
   useEffect(() => {
@@ -46,7 +42,7 @@ const Stepper = (props : Props) => {
     })
   }, [])
   useEffect(() => {
-    const contentArray = []
+    const contentArray: any[] = []
     children.forEach((child, index) => {
       contentArray.push({ node: child.props.component, id: index + 1 })
     })
@@ -57,7 +53,7 @@ const Stepper = (props : Props) => {
     <ThemeProvider theme={theme}>
       <StepperContext.Provider
         value={{
-          direction: 'horizontal',
+          direction,
           mainColor,
           width,
           height,
@@ -71,7 +67,7 @@ const Stepper = (props : Props) => {
         }}
       >
         <StyledComponent
-          direction='horizontal'
+          direction={direction}
           {...attributes}
           background={mainColor}
           ref={containerRef}
@@ -98,7 +94,7 @@ Stepper.defaultProps = {
   showTitle: true
 }
 Stepper.propTypes = {
-  direction: PropTypes.string,
+  direction: PropTypes.string.isRequired,
   currentStepNumber: PropTypes.number.isRequired,
   steps: PropTypes.array.isRequired,
   stepSize: PropTypes.number,

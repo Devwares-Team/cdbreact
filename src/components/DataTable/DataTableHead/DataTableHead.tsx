@@ -6,7 +6,7 @@ import { theme } from "../../../theme";
 
 
 
-interface Props{
+interface Props {
   sorted: boolean,
   color: string,
   columns: any,
@@ -15,13 +15,10 @@ interface Props{
   scrollY: boolean,
   sortable: boolean,
   textWhite: boolean,
-  width : any,
-  
-  colgroup : any
 }
 
 const DataTableHead = (props: Props) => {
-  const { color, columns, handleSort, scrollX, scrollY,width, sortable, sorted, textWhite } = props;
+  const { color, columns, handleSort, scrollX, scrollY, sortable, sorted, textWhite } = props;
 
   const theadClasses = classNames(
     color && (color !== 'dark' && color !== 'light' ? color : `thead-${color}`),
@@ -53,8 +50,8 @@ const DataTableHead = (props: Props) => {
                 className={classNames(
                   col.hasOwnProperty('minimal') ? `th-${col.minimal}` : null,
                   sortable &&
-                    col.sort !== 'disabled' &&
-                    (sorted && col.sort ? `sorting_${col.sort === 'asc' ? 'desc' : 'asc'}` : 'sorting')
+                  col.sort !== 'disabled' &&
+                  (sorted && col.sort ? `sorting_${col.sort === 'asc' ? 'desc' : 'asc'}` : 'sorting')
                 )}
                 {...col.attributes}
               >

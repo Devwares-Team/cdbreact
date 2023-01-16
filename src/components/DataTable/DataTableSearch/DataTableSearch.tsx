@@ -5,17 +5,17 @@ import classNames from 'classnames';
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
-interface Props{
+interface Props {
   handleSearchChange: any,
   search: string,
   searching: boolean,
   barReverse: boolean,
   label: string,
   materialSearch: boolean
-  wrapperSearchStyle : any,
-  wrapperSearchClasses : any,
-  onChange ?: any,
-  DataTableInput : any
+  wrapperSearchStyle: any,
+  wrapperSearchClasses: string,
+  onChange?: any,
+
 }
 
 const DataTableSearch = (props: Props) => {
@@ -26,7 +26,6 @@ const DataTableSearch = (props: Props) => {
     onChange,
     label,
     barReverse,
-    DataTableInput,
     wrapperSearchStyle,
     wrapperSearchClasses,
     materialSearch,
@@ -68,8 +67,15 @@ DataTableSearch.propTypes = {
   searching: PropTypes.bool.isRequired,
   barReverse: PropTypes.bool,
   label: PropTypes.string,
-  materialSearch: PropTypes.bool
+  materialSearch: PropTypes.bool,
+  wrapperSearchStyle: PropTypes.any,
+  wrapperSearchClasses: PropTypes.string
 };
+
+DataTableSearch.defaultProps = {
+  wrapperSearchStyle: {},
+  wrapperSearchClasses: ""
+}
 
 export default DataTableSearch;
 export { DataTableSearch as MDBDataTableSearch };

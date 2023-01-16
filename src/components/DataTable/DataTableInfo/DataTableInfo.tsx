@@ -1,16 +1,16 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
-interface Props{
+interface Props {
   activePage: number,
   entries: number,
-  filteredRows : [any],
+  filteredRows: any[],
   info: boolean,
   noRecordsFoundLabel: string,
-  pages : [any]
-  label : number
+  pages: any[],
+  label: string[]
 }
 
 const DataTableInfo = (props: Props) => {

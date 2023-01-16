@@ -6,12 +6,12 @@ import { theme } from "../../../theme";
 
 interface Props {
   children: React.ReactNode,
-  className: string
+  className: string,
   center: any,
-  end: any;
-  start: any;
+  start: any,
+  end: any,
   around: any,
-  between: any;
+  between: any
 }
 
 const ModalFooter = (props: Props) => {

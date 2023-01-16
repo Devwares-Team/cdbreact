@@ -5,15 +5,14 @@ import { Component } from "./ModalHeader.style";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
-interface Props{
-  children: React.ReactNode
+interface Props {
+  children: React.ReactNode,
   className: string,
   closeAriaLabel: string,
   tag: any,
-  toggle: any,
+  toggle: Function,
   titleClass: any,
-  onClick: any
-  
+
 
 }
 
@@ -23,10 +22,10 @@ const ModalHeader = (props: Props) => {
     className,
     children,
     toggle,
+
     tag: Tag,
     closeAriaLabel,
     titleClass,
-    onClick,
     ...attributes
   } = props;
 
@@ -36,9 +35,9 @@ const ModalHeader = (props: Props) => {
 
   if (toggle) {
     closeButton = (
-      <button
+      < button
         type="button"
-        onClick={toggle}
+        onClick={() => toggle}
         className="close"
         aria-label={closeAriaLabel}
       >

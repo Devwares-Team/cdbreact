@@ -4,7 +4,8 @@ import classNames from 'classnames';
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
-interface Props{
+
+interface Props {
   children: React.ReactNode,
   className: string
 }
@@ -16,10 +17,10 @@ const ModalBody = (props: Props) => {
 
   return (
     <ThemeProvider theme={theme}>
-	    <div data-test='modal-body' {...attributes} className={classes}>
-	      {children}
-	    </div>
-	</ThemeProvider>
+      <div data-test='modal-body' {...attributes} className={classes}>
+        {children}
+      </div>
+    </ThemeProvider>
   );
 };
 

@@ -1,15 +1,16 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
-interface Props{
+interface Props {
   active: boolean,
   alt: string,
-  children: React.ReactNode,
+  children: React.ReactNode
   className: string,
   img: string,
+  onClick: MouseEventHandler<HTMLElement>
 }
 
 const CarouselIndicator = (props: Props) => {
@@ -33,12 +34,15 @@ CarouselIndicator.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   img: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 CarouselIndicator.defaultProps = {
   alt: "Carousel thumbnail",
   className: "",
   img: "",
+  onClick: (event: React.MouseEvent<HTMLInputElement>) => { },
+  children: null
 };
 
 export default CarouselIndicator;

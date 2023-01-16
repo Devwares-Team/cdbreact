@@ -1,13 +1,13 @@
-import React, { useContext } from 'react'
-import { StepperContext } from '../Stepper/Stepper'
-import PropTypes from 'prop-types'
-import StepperDivider from '../Stepper/StepperDivider'
-import ReactTooltip from 'react-tooltip'
-import classNames from 'classnames'
-import { Component } from './Step.style'
-import { ThemeProvider } from 'styled-components'
-import { theme } from '../../theme'
-import { useEffect } from 'react'
+import React, { useContext } from "react";
+import { StepperContext } from "../Stepper/Stepper";
+import PropTypes from "prop-types";
+import StepperDivider from "../Stepper/StepperDivider";
+import ReactTooltip from "react-tooltip";
+import classNames from "classnames";
+import { Component } from "./Step.style";
+import { ThemeProvider } from "styled-components";
+import { theme } from "../../theme";
+import { useEffect } from "react";
 
 interface Props {
   name: string,
@@ -46,7 +46,7 @@ export const Step = (props: Props) => {
     setActive,
     showTooltip,
     showTitle
-  } = useContext(StepperContext)
+  } = useContext<any>(StepperContext)
   const stepClasses = classNames('default-node', id === active && 'active')
 
   const status = id < active ? 'prev' : id === active ? 'active' : 'next'
@@ -86,7 +86,7 @@ export const Step = (props: Props) => {
           key={name}
           data-tip
         >
-          <div className={stepClasses} onClick={handleClick}>
+          <div className={stepClasses} onClick={() => handleClick()}>
             {icon ? stepIcon : `0${id}`}
           </div>
           {id < mainChildren.length && <StepperDivider status={status} />}

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import PropTypes, { any } from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import { omit } from "../../utils";
 import { Component } from "./DropDownItem.style";
@@ -7,7 +7,7 @@ import { DropDownContext } from "../DropDownContext";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
-interface Props{
+interface Props {
   active: boolean,
   children: React.ReactNode,
   className: any,
@@ -17,15 +17,15 @@ interface Props{
   onClick: Function,
   tag: [string, Function],
   toggle: boolean,
-  href : any,
+  href: any,
   tagType: any,
-  Component : any;
-  type : any
+  Component: any;
+  type: any
 
 }
 
 const DropDownItem = (props: Props) => {
-  const { isOpen } = useContext(DropDownContext);
+  const { isOpen } = useContext<any>(DropDownContext);
   const [isOpenValue, setIsOpenValue] = isOpen;
   const {
     disabled,
@@ -56,7 +56,7 @@ const DropDownItem = (props: Props) => {
   useEffect(() => {
     const { header, divider, href } = props;
     const tagType = header ? "h6" : divider ? "div" : href ? "a" : "button";
-    
+
   });
 
   const toggleDropDown = (e) => {
@@ -84,6 +84,7 @@ const DropDownItem = (props: Props) => {
         data-test="dropdown-item"
         {...attrs}
         type={tagType}
+
         tabIndex={tabIndex}
         className={dropDownItemClasses}
         onClick={toggleDropDown}
