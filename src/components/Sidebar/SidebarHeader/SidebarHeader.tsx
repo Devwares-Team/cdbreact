@@ -1,16 +1,22 @@
 import React, { forwardRef, useContext } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import { SidebarContext } from "../Sidebar";
+import { SidebarContext, SidebarContextType } from "../Sidebar";
 import { HeaderContainer } from "./SidebarHeader.style";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../../theme";
+import { theme } from "../../../theme";
 
-const SidebarHeader = forwardRef(
-  ({ children, prefix, onToggle, className, ...rest }, ref) => {
+interface Props {
+  children: React.ReactNode
+  prefix: React.ReactNode
+  className: string
+}
+
+const SidebarHeader = forwardRef<HTMLDivElement, Props>(
+  ({ children, prefix, className, ...rest }, ref) => {
     const sidebarHeaderRef = ref ? ref : React.createRef();
 
-    const { toggled, handleToggleSidebar } = useContext(SidebarContext);
+    const { toggled, handleToggleSidebar } = useContext<SidebarContextType>(SidebarContext);
 
     return (
       <ThemeProvider theme={theme}>
@@ -36,9 +42,12 @@ const SidebarHeader = forwardRef(
   }
 );
 
+
+
 SidebarHeader.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node,
+  className: PropTypes.string.isRequired,
+  children: PropTypes.any, // PropTypes.node,
+  prefix: PropTypes.any, // PropTypes.node
 };
 
 export default SidebarHeader;

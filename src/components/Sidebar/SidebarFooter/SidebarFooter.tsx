@@ -2,11 +2,15 @@ import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import PropTypes from "prop-types";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../../theme";
+import { theme } from "../../../theme";
 
+interface Props {
+  children: React.ReactNode,
+  className: string
+}
 
-const SidebarFooter = forwardRef(({ children, className, ...rest }, ref) => {
-  const sidebarFooterRef = ref ? ref : React.createRef();
+const SidebarFooter = forwardRef<HTMLDivElement, Props>(({ children, className, ...rest }: Props, ref) => {
+  const sidebarFooterRef = ref ? ref : React.createRef<HTMLDivElement>();
   return (
     <ThemeProvider theme={theme}>
       <div
@@ -22,8 +26,8 @@ const SidebarFooter = forwardRef(({ children, className, ...rest }, ref) => {
 
 
 SidebarFooter.propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.node
+    className: PropTypes.string.isRequired,
+    children: PropTypes.any, // PropTypes.node.isRequired
 }
 
 export default SidebarFooter;

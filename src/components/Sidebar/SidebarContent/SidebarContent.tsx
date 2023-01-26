@@ -2,17 +2,25 @@ import React, { forwardRef, useEffect, useState, useContext } from 'react';
 import classNames from 'classnames';
 import PropTypes from "prop-types";
 import { ContentContainer } from "./SidebarContent.style"
-import { SidebarContext } from '../Sidebar';
+import { SidebarContext, SidebarContextType } from '../Sidebar';
 import { ThemeProvider } from "styled-components";
-import { theme } from "./../../../theme";
+import { theme } from "../../../theme";
 
 
-const SidebarContent = forwardRef(({ children, className, ...rest }, ref) => {
+interface Props  {
+  children: React.ReactNode,
+    className: string,
+  
+}
 
-  const { handleToggleSidebar, breakpoint } = useContext(SidebarContext);
+const SidebarContent = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const { children, className, ...rest } = props
+
+  const { handleToggleSidebar, breakpoint } = useContext<SidebarContextType>(SidebarContext);
 
 
   const [width, setWidth] = useState(0);
+
   const finalbreakpoint = breakpoint || 720;
 
 
@@ -54,8 +62,8 @@ const SidebarContent = forwardRef(({ children, className, ...rest }, ref) => {
 });
 
 SidebarContent.propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.node
+  className: PropTypes.string.isRequired,
+  children: PropTypes.any, // PropTypes.node
 }
 
 
