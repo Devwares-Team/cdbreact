@@ -136,7 +136,11 @@ Icon.defaultProps = {
   rotate: "",
   size: "",
   spin: false,
-  stack: ""
+  stack: "",
+  duotone: false,
+  solid: false,
+  fad: false,
+  fas: false
 };
 
 export default Icon;
