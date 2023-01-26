@@ -33,6 +33,7 @@
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
+    "release": "standard-version && git push --follow-tags && npm run build && npm publish",
     "prepare": "run-s build",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
@@ -93,6 +94,7 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.1",
+    "standard-version": "^9.5.0",
     "typescript": "^4.8.2"
   },
   "files": [
