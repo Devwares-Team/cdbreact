@@ -1,4 +1,4 @@
-export function getTetherAttachments(placement) {
+export function getTetherAttachments(placement: string) {
   let attachments = {};
   switch (placement) {
     case "top":
@@ -121,8 +121,8 @@ export function getScrollbarWidth() {
   return scrollbarWidth;
 }
 
-export function setScrollbarWidth(padding) {
-  document.body.style.paddingRight = padding > 0 ? `${padding}px` : null;
+export function setScrollbarWidth(padding: number | string) {
+  document.body.style.paddingRight = padding > 0 ? `${padding}px` : "";
 }
 
 export function isBodyOverflowing() {
@@ -133,7 +133,7 @@ export function getOriginalBodyPadding() {
   return parseInt(
     window
       .getComputedStyle(document.body, null)
-      .getPropertyValue("padding-right") || 0,
+      .getPropertyValue("padding-right") || "0",
     10
   );
 }
@@ -145,7 +145,7 @@ export function conditionallyUpdateScrollbar() {
     ".navbar-fixed-top, .navbar-fixed-bottom, .is-fixed"
   )[0];
   const bodyPadding = fixedContent
-    ? parseInt(fixedContent.style.paddingRight || 0, 10)
+    ? parseInt((fixedContent as HTMLElement).style.paddingRight || "0", 10)
     : 0;
 
   if (isBodyOverflowing()) {
@@ -153,7 +153,7 @@ export function conditionallyUpdateScrollbar() {
   }
 }
 
-export function mapToCssModules(className, cssModule) {
+export function mapToCssModules(className: string, cssModule: any) {
   if (!cssModule) {
     return className;
   }
@@ -165,7 +165,7 @@ export function mapToCssModules(className, cssModule) {
 
 // Returns a new object with the key/value pairs from `obj` that are not in the array `omitKeys`.
 
-export function omit(obj, omitKeys) {
+export function omit(obj: any, omitKeys: any[]) {
   const result = {};
   Object.keys(obj).forEach((key) => {
     if (omitKeys.indexOf(key) === -1) {
@@ -183,7 +183,7 @@ export const keyCodes = {
   down: 40,
 };
 
-export const returnAttributes = (attributes) => {
+export const returnAttributes = (attributes: any) => {
   const newAttributesObject = Object.keys(attributes).reduce(
     (previousValue, currentElement) => {
       if (attributes[currentElement]) {
@@ -197,7 +197,7 @@ export const returnAttributes = (attributes) => {
   return newAttributesObject;
 };
 
-export const getColorClass = (color) => {
+export const getColorClass = (color : string) => {
   const colorArray = color.split(" ");
   const specialColors = [
     "danger",
@@ -230,10 +230,10 @@ export const getColorClass = (color) => {
   return colorClasses;
 };
 
-export function debounce(fn, time = 166) {
-  let timeout;
+export function debounce(fn: any, time = 166) {
+  let timeout: NodeJS.Timer;
 
-  function debounced(...args) {
+  function debounced(this: any, ...args: any) {
     const that = this;
     const later = () => {
       fn.apply(that, args);
@@ -249,7 +249,7 @@ export function debounce(fn, time = 166) {
   return debounced;
 }
 
-export const makeFirstLetterUpper = (element) => {
+export const makeFirstLetterUpper = (element: string) => {
   return element.charAt(0).toUpperCase() + element.slice(1);
 };
 
@@ -282,8 +282,8 @@ const themeColorsOpacity = {
   dark: "rgba(33, 33, 33, .2)",
 };
 
-export const takeThemeColor = (theme) => themeColors[theme];
-export const takeThemeColorOpacity = (theme) => themeColorsOpacity[theme];
+export const takeThemeColor = (theme: any) => themeColors[theme];
+export const takeThemeColorOpacity = (theme: any) => themeColorsOpacity[theme];
 
 export const testData = {
   columns: [
