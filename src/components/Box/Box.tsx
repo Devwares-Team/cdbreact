@@ -103,7 +103,7 @@ const Box = (props: Props) => {
   return (
     <ThemeProvider theme={theme}>
       <Component
-        as={tag}
+        as={(tag as unknown) as undefined}
         data-test="box"
         {...attributes}
         className={isEmptyClass}

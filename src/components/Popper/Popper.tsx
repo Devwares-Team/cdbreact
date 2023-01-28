@@ -186,7 +186,7 @@ const Popover = (props) => {
             className={classes}
             data-popper={id}
             {...attributes}
-            as={tag}
+            as={(tag as unknown) as undefined}
           >
             <Popper.type
               className={classNames(

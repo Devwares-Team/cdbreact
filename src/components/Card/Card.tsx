@@ -21,7 +21,7 @@ const Card = (props: Props) => {
     <ThemeProvider theme={theme}>
       <Component
         data-test="card"
-        as={tag}
+        as={(tag as unknown) as undefined} 
         {...attributes}
         className={classes}
         border={border}

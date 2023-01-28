@@ -19,7 +19,7 @@ const CardBody = (props: Props) => {
 
     return (
 	    <ThemeProvider theme={theme}>
-	    	<Component data-test='card-body' as={tag} {...attributes} className={classes} />
+	    	<Component data-test='card-body' as={(tag as unknown) as undefined} {...attributes} className={classes} />
 	    </ThemeProvider>
    	);
 };

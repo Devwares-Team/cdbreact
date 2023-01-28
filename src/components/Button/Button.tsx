@@ -74,7 +74,7 @@ const Button = (props: Props) => {
     <Component
       data-test='button'
       type={tag === 'button' && !type ? 'button' : type}
-      as={tag}
+      as={(tag as unknown) as undefined}
       target={target}
       role={tag === 'a' && !role ? 'button' : role}
       className={buttonClasses}

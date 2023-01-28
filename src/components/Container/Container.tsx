@@ -23,7 +23,7 @@ const Container = (props : Props) => {
   let containerComponent = (
     <ThemeProvider theme={theme}>
       <Component
-        as={tag}
+        as={(tag as unknown) as undefined}
         data-test="container"
         {...attributes}
         className={containerClasses}

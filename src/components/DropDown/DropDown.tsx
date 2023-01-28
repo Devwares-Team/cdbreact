@@ -22,7 +22,7 @@ const DropDown = (props) => {
           <Component
             className={dropdownClasses}
             role="dropdown"
-            as={tag}
+            as={(tag as unknown) as undefined}
             dropleft={dropleft}
             dropright={dropright}
             dropup={dropup}

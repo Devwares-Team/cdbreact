@@ -92,7 +92,7 @@ const Navbar = (props: Props) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Component as={tag} data-test='navbar' {...attributes} className={classes} role='navigation' />
+            <Component as={(tag as unknown) as undefined} data-test='navbar' {...attributes} className={classes} role='navigation' />
         </ThemeProvider>
     );
 }

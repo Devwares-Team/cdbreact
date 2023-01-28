@@ -21,7 +21,7 @@ const PageLink = (props: Props) => {
   let pageLinkComponent = (
     <ThemeProvider theme={theme}>
       <Component
-        as={tag}
+        as={(tag as unknown) as undefined}
         data-test="page-link"
         {...attributes}
         className={pageLinkClasses}

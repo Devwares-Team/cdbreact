@@ -29,7 +29,7 @@ const NavToggle = (props: Props) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Component data-test='navbar-toggler' as={tag} {...attributes} className={classes}>
+            <Component data-test='navbar-toggler' as={(tag as unknown) as undefined} {...attributes} className={classes}>
                 {children ||
                     (image ? (
                         <span className='navbar-toggler-icon' style={{ backgroundImage: `url("${image}")` }} />

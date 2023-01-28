@@ -41,7 +41,7 @@ const Spinner = (props: Props) => {
     <ThemeProvider theme={theme}>
       <Component
         className={spinnerClasses}
-        as={tag}
+        as={(tag as unknown) as undefined}
         size={size}
         {...attributes}
         width={sizeValue}

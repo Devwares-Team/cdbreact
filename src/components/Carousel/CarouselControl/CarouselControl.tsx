@@ -91,6 +91,9 @@ Control.propTypes = {
 
 Control.defaultProps = {
   tag: "a",
+  iconRight: false,
+  iconLeft: false,
+  className: ''
 };
 
 export default Control;

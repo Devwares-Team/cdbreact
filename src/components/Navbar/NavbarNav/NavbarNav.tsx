@@ -25,7 +25,7 @@ const NavbarNav = (props: Props) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Component as={tag} data-test='navbar-nav' {...attributes} className={classes}>
+            <Component as={(tag as unknown) as undefined} data-test='navbar-nav' {...attributes} className={classes}>
                 {children}
             </Component>
         </ThemeProvider>

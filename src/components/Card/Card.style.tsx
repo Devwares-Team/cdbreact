@@ -1,6 +1,10 @@
 import styled, { css } from "styled-components";
 
-export const Component = styled.div`
+interface Props {
+  border: boolean
+}
+
+export const Component = styled.div<Props>`
   position: relative;
   background-color: #ffffff;
   ${(props) =>

@@ -50,7 +50,7 @@ const Progress = (props: Props) => {
       <Container {...attributes}>
         <div className="progress-text">{text}</div>
         <Component
-          as={tag}
+          as={(tag as unknown) as undefined}
           data-test="progress"
           {...attributes}
           className={progressClasses}

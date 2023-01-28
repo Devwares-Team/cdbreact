@@ -39,7 +39,7 @@ const Badge = (props: Props) => {
       <Component
         className={badgeClasses}
         role="badge"
-        as={tag}
+        as={(tag as unknown) as undefined}
         bg={colors}
         borderType={borderType}
         size={size}

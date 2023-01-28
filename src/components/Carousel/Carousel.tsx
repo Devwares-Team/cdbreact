@@ -21,13 +21,9 @@ interface Props {
   showControls: boolean,
   showIndicators: boolean,
   slide: boolean,
-  tag: [Function, string],
+  tag:  string,
   testimonial: boolean,
   thumbnails: boolean,
-  CarouselControl: any
-
-
-
 }
 
 const Carousel = (props: Props) => {
@@ -42,7 +38,6 @@ const Carousel = (props: Props) => {
     onHoverStop,
     showControls,
     showIndicators,
-    CarouselControl,
     slide,
     tag,
     testimonial,
@@ -69,7 +64,7 @@ const Carousel = (props: Props) => {
   })
   const [cycleInterval, setCycleInterval] = useState<NodeJS.Timer>()
 
-  const carouselRef = useRef<HTMLElement>(null)
+  const carouselRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const { interval, thumbnails, length } = props
@@ -86,7 +81,7 @@ const Carousel = (props: Props) => {
 
       const srcArray = Array.prototype.map.call(
         CarouselItemsArray,
-        (item) => item.src
+        (item: { src: any }) => item.src
       )
       setState({ ...state, srcArray })
     }
@@ -141,7 +136,7 @@ const Carousel = (props: Props) => {
     goToIndex(prevItem)
   }
 
-  const goToIndex = (item) => {
+  const goToIndex = (item: number) => {
     setState({
       ...state,
       activeItem: item
@@ -150,7 +145,7 @@ const Carousel = (props: Props) => {
     restartInterval()
   }
 
-  const startTouch = (e) => {
+  const startTouch = (e: React.TouchEvent<HTMLDivElement>) => {
     const { mobileGesture } = props
     if (mobileGesture !== false) {
       setState({
@@ -161,7 +156,7 @@ const Carousel = (props: Props) => {
     }
   }
 
-  const moveTouch = (e) => {
+  const moveTouch = (e: React.TouchEvent<HTMLDivElement>) => {
     setState({
       ...state,
       swipeAvailable: false
@@ -224,7 +219,7 @@ const Carousel = (props: Props) => {
         img={thumbnails ? srcArray[i - 1] : ""}
         key={i}
         active={activeItem === i}
-        onClick={(e) => goToIndex(i)}
+        onClick={(_e) => goToIndex(i)}
       />
     )
   }
@@ -236,16 +231,16 @@ const Carousel = (props: Props) => {
     <ThemeProvider theme={theme}>
       <Tag
         data-test='carousel'
-        ref={carouselRef}
+       ref={carouselRef}
         {...attributes}
         className={classes}
         aria-label={ariaLabel}
         onTouchStart={startTouch}
-        onTouchMove={swipeAvailable ? moveTouch : null}
-        onTouchEnd={swipeAvailableHandler}
-        onMouseEnter={onHoverStop ? clearCycleIntervalHandler : null}
-        onMouseLeave={onHoverStop ? restartInterval : null}
-        as={tag}
+        onTouchMove={swipeAvailable ? moveTouch : undefined}
+         onTouchEnd={swipeAvailableHandler}
+         onMouseEnter={onHoverStop ? clearCycleIntervalHandler : undefined}
+         onMouseLeave={onHoverStop ? restartInterval : undefined}
+        as={(tag as unknown) as undefined}
       >
         {showControls && multiItem && (
           <div className='controls-top'>
@@ -255,16 +250,15 @@ const Carousel = (props: Props) => {
               iconLeft
               className='btn-floating'
               direction='prev'
-              role='button'
-              onClick={prev}
-            />
+              // role='button'
+              onClick={prev}         />
             <CarouselControl
               testimonial={isTestimonial}
               multiItem={isMultiItem}
               iconRight
               className='btn-floating'
               direction='next'
-              role='button'
+              // role='button'
               onClick={next}
             />
           </div>
@@ -276,16 +270,15 @@ const Carousel = (props: Props) => {
               testimonial={isTestimonial}
               multiItem={isMultiItem}
               direction='prev'
-              role='button'
+              // role='button'
               onClick={prev}
             />
             <CarouselControl
               testimonial={isTestimonial}
               multiItem={isMultiItem}
               direction='next'
-              role='button'
-              onClick={next}
-            />
+              // role='button'
+              onClick={next} />
           </Fragment>
         )}
         {showIndicators && (

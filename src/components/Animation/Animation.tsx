@@ -163,7 +163,7 @@ const Animation = (props: Props) => {
     <ThemeProvider theme={theme}>
       <Container>
       <Component
-        as={tag}
+        as={(tag as unknown) as undefined}
         data-test="animation"
         className={classes}
         onAnimationEnd={handleEnd}

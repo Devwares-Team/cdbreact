@@ -20,7 +20,7 @@ const Mask = (props: Props) => {
   let maskComponent = (
     <ThemeProvider theme={theme}>
       <Component
-        as={tag}
+        as={(tag as unknown) as undefined}
         data-test="mask"
         {...attributes}
         pattern={pattern}

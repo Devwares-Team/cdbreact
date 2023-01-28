@@ -20,7 +20,7 @@ const NavItem = (props: Props) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Component as={tag} data-test='nav-item' {...attributes} className={classes}>
+            <Component as={(tag as unknown) as undefined} data-test='nav-item' {...attributes} className={classes}>
                 {children}
             </Component>
         </ThemeProvider>

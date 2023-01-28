@@ -30,7 +30,7 @@ const PageItem = (props: Props) => {
       <Component
         data-test="page-item"
         {...attributes}
-        as={tag}
+        as={(tag as unknown) as undefined}
         className={pageItemClasses}
       >
         {children}

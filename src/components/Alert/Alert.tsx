@@ -40,7 +40,7 @@ const Alert = (props: Props) => {
 
   let alertComponent = (
     <ThemeProvider theme={theme}>
-    <Component {...attributes} className={alertClasses} role="alert" as={tag} colors={color} >
+    <Component {...attributes} className={alertClasses} role="alert" as={(tag as unknown) as undefined} colors={color} >
       {children}
       { dismiss ? 
         <Button onClick={close} >&times;</Button>

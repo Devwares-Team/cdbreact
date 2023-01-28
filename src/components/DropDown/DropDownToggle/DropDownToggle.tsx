@@ -96,7 +96,7 @@ const DropdownToggle = (props: Props) => {
           <Component
             className={dropdownToggleClasses}
             ref={ref}
-            as={tag}
+            as={(tag as unknown) as undefined}
             colors={color}
             size={size}
             disabled={disabled}

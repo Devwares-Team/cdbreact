@@ -50,7 +50,7 @@ const View = (props: Props) => {
   return (
     <ThemeProvider theme={theme}>
       <Component
-        as={tag}
+        as={(tag as unknown) as undefined}
         {...attributes}
         className={viewClasses}
         data-test="view"
