@@ -158,7 +158,7 @@ const Modal = (props: Props) => {
     }
   }
 
-  const handleOnExit = (type: string, node: HTMLElement) => {
+  const handleOnExit = (type: string, node?: HTMLElement) => {
     if (type === 'backdrop' && props.fade === false) {
       return
     }
@@ -315,7 +315,7 @@ const Modal = (props: Props) => {
             mountOnEnter
             unmountOnExit
             onEntered={(node: any) => handleOnEntered('backdrop', node)}
-            onExit={(node) => handleOnExit('backdrop', node)}
+            onExit={(node?: any) => handleOnExit('backdrop', node)}
             onExited={handleOnExited}
           >
             <div className={backdropClasses} />
@@ -329,7 +329,7 @@ const Modal = (props: Props) => {
           unmountOnExit
           onMouseDown={(e: any) => handleBackdropClick(e)}
           onEntered={(node: any) => handleOnEntered('modal', node)}
-          onExit={(node) => handleOnExit('modal', node)}
+          onExit={(node?) => handleOnExit('modal', node)}
         >
           {!disableFocusTrap ? <FocusTrap>{modal}</FocusTrap> : modal}
         </Transition>

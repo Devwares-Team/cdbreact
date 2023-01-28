@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { colorStyle } from "styled-system";
-export const Component = styled.ul`
+
+export const Component = styled.ul<any>`
   padding: 15px;
   border: 0.75px solid #ccc;
   border-radius: 0;

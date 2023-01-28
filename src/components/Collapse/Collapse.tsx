@@ -7,7 +7,10 @@ import { theme } from '../../theme'
 interface Props {
   children: React.ReactNode
   className?: string
-  delay?: number
+  delay: {
+    show: number,
+    hide: number
+  }
   id?: string
   isOpen?: string | boolean
   navbar?: boolean
@@ -82,7 +85,7 @@ const Collapse = (props: Props) => {
 
   function getDelay(key) {
     const { delay } = props
-    if (typeof delay === 'object') {
+    if (typeof delay === 'object' && delay !== null) {
       return isNaN(delay[key]) ? DEFAULT_DELAYS[key] : delay[key]
     }
     return delay

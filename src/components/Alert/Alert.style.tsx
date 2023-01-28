@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { colorStyle } from "styled-system";
 
-export const Component = styled.div`
+export const Component = styled.div<any>`
     ${colorStyle}
     border-radius: 0px;
     align-items:center;
     justify-content:space-between;
     min-width:500px;
 `;
-export const Button = styled.button`
+export const Button = styled.button<any>`
 	color:inherit;
 	border:none;
 	background-color:transparent;
