@@ -10,7 +10,7 @@ interface Props{
     color: string,
     dark: boolean,
     double: boolean,
-    expand: [boolean, string],
+    expand: boolean| string,
     fixed: string,
     light: boolean,
     scrolling: boolean,
@@ -46,7 +46,7 @@ const Navbar = (props: Props) => {
         }
     });
 
-    const getExpandClass = expand => {
+    const getExpandClass = (expand: boolean | string) => {
         if (expand === false) {
             return false;
         }

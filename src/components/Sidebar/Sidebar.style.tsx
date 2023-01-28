@@ -1,6 +1,13 @@
 import styled from "styled-components";
 
-export const SidebarContainer = styled.div`
+interface ContainerProps {
+  backgroundColor: string
+  textColor: string
+  minWidth: string
+  maxWidth: string
+}
+
+export const SidebarContainer = styled.div<ContainerProps>`
   background: ${(props) => props.backgroundColor};
   color: ${(props) => props.textColor};
   height: 100%;

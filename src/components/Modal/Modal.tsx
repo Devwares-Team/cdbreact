@@ -145,7 +145,7 @@ const Modal = (props: Props) => {
     }
   }, [isModalOpen])
 
-  const handleOnEntered = (type, node) => {
+  const handleOnEntered = (type: string, node: HTMLElement) => {
     if (type === 'backdrop' && props.fade === false) {
       return
     }
@@ -158,7 +158,7 @@ const Modal = (props: Props) => {
     }
   }
 
-  const handleOnExit = (type, node) => {
+  const handleOnExit = (type: string, node: HTMLElement) => {
     if (type === 'backdrop' && props.fade === false) {
       return
     }
@@ -174,7 +174,7 @@ const Modal = (props: Props) => {
     props.hiddenModal && props.hiddenModal()
   }
 
-  const handleBackdropClick = (e) => {
+  const handleBackdropClick = (e: any) => {
     if (
       !props.backdrop ||
       (e.target.closest('[role="dialog"]') &&
@@ -194,7 +194,7 @@ const Modal = (props: Props) => {
     }
   }
 
-  const handleEscape = (e) => {
+  const handleEscape = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (props.keyboard && e.keyCode === 27) {
       e.preventDefault()
       props.toggle()
@@ -314,7 +314,7 @@ const Modal = (props: Props) => {
             appear={isModalOpen}
             mountOnEnter
             unmountOnExit
-            onEntered={(node) => handleOnEntered('backdrop', node)}
+            onEntered={(node: any) => handleOnEntered('backdrop', node)}
             onExit={(node) => handleOnExit('backdrop', node)}
             onExited={handleOnExited}
           >
@@ -327,8 +327,8 @@ const Modal = (props: Props) => {
           appear={isModalOpen}
           mountOnEnter
           unmountOnExit
-          onMouseDown={(e) => handleBackdropClick(e)}
-          onEntered={(node) => handleOnEntered('modal', node)}
+          onMouseDown={(e: any) => handleBackdropClick(e)}
+          onEntered={(node: any) => handleOnEntered('modal', node)}
           onExit={(node) => handleOnExit('modal', node)}
         >
           {!disableFocusTrap ? <FocusTrap>{modal}</FocusTrap> : modal}

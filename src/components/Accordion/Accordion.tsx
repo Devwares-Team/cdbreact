@@ -8,13 +8,12 @@ import { theme } from "../../theme";
 
 
 interface Props {
-
   accordionClass ?: string,
   accordionHeaderClass ?: string,
   accordionBodyClass ?: string,
   hideIcon ?: boolean,
   tag ?: string,
-  data ?: any,
+  data : any[],
 }
 
 const Accordion = (props: Props) => {
@@ -23,7 +22,7 @@ const Accordion = (props: Props) => {
     accordionClass,
     accordionHeaderClass,
     accordionBodyClass,
-    hideIcon,
+    hideIcon = false,
     
   } = props;
   const accordionClassName = classNames("wrapper", accordionClass);
@@ -52,8 +51,14 @@ const Accordion = (props: Props) => {
 };
 
 
-
-
+Accordion.prototype = {
+  accordionClass: PropTypes.string,
+  accordionHeaderClass : PropTypes.string,
+  accordionBodyClass : PropTypes.string,
+  hideIcon : PropTypes.bool,
+  tag : PropTypes.string,
+  data: PropTypes.arrayOf(PropTypes.any),
+}
 
 export default Accordion;
 
