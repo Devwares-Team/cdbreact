@@ -190,15 +190,15 @@ const Carousel = (props: Props) => {
     })
   }
 
-  const getChildContext = () => {
-    const { activeItem, initialLength } = state
-    const { slide } = props
-    return {
-      activeItem,
-      length: initialLength,
-      slide
-    }
-  }
+  // const getChildContext = () => {
+  //   const { activeItem, initialLength } = state
+  //   const { slide } = props
+  //   return {
+  //     activeItem,
+  //     length: initialLength,
+  //     slide
+  //   }
+  // }
 
   const { initialLength, srcArray, swipeAvailable } = state
   const ariaLabel = 'carousel'

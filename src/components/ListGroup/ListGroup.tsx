@@ -5,13 +5,13 @@ import { Component } from "./ListGroup.style";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
-interface Props{
-  children: React.ReactNode,
-  className: string,
-  tag: [Function, string],
+interface Props {
+  children?: React.ReactNode,
+  className?: string,
+  tag: Function | string,
 }
 
-const ListGroup = (props) => {
+const ListGroup = (props: Props) => {
   const { children, className, tag, ...attributes } = props;
 
   const classes = classNames("list-group", className);

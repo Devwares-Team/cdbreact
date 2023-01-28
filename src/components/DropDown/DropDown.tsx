@@ -7,11 +7,19 @@ import { DropDownProvider } from "./DropDownContext";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
-interface Props{
-  
+interface Props { 
+  className?: string,
+  children?: React.ReactNode
+  dropleft: boolean,
+  dropright: boolean,
+  dropup: boolean,
+  isOpen?: boolean,
+  toogle?: () => {},
+  tag: string,
 }
 
-const DropDown = (props) => {
+
+const DropDown = (props: Props ) => {
   const { className, tag, children, dropleft, dropright, dropup, ...attributes } = props;
   const dropdownClasses = classNames("dropdown", className);
 
