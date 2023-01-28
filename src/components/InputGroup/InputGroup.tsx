@@ -36,7 +36,6 @@ interface Props{
   icon: any,
   as ?: any,
   notag: any
-  CDBInput: any
   div: any
 }
 
@@ -53,7 +52,6 @@ const InputGroup = (props: Props) => {
     containerClassName,
     containerId,
     hint,
-    CDBInput,
     icon,
     id,
     div,
@@ -130,17 +128,17 @@ const InputGroup = (props: Props) => {
             )}
             {inputs || (
               <CDBInput
-                noTag
+                // noTag
                 type={type}
                 className={inputClassNames}
                 icon={icon}
                 id={id}
                 value={value}
                 valueDefault={valueDefault}
-                hint={hint}
+                // hint={hint}
                 aria-label={ariaLabel}
                 onChange={handleChange}
-                onIconClick={onIconClick}
+                // onIconClick={onIconClick}
               />
             )}
             {append && (

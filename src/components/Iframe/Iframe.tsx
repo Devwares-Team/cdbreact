@@ -81,7 +81,7 @@ const Iframe = (props: Props) => {
     ratio ? `embed-responsive-${ratio}` : "embed-responsive-16by9"
   );
 
-  let iframeAttributes = {
+  let iframeAttributes: any = {
     src,
     id: id || false,
     frameBorder: "0",
@@ -117,11 +117,11 @@ const Iframe = (props: Props) => {
     <ThemeProvider theme={theme}>
       <Component data-test="iframe" className={wrapperClasses} {...attributes}>
         <iframe
+          {...iframeAttributes}
+          {...props}
           title={title}
           className={classes}
           ratio={ratio}
-          {...iframeAttributes}
-          {...props}
         />
       </Component>
     </ThemeProvider>

@@ -1,7 +1,10 @@
 import styled, { css } from 'styled-components'
 import colors from '../../theme/colors'
 
-export const Component = styled.div`
+interface Props {
+  fontSize: number
+}
+export const Component = styled.div<Props>`
   // icon container
   .icon {
     position: absolute;
@@ -241,7 +244,7 @@ export const Component = styled.div`
       &-info {
         input[type='checkbox']:not(.browser-default):checked + label,
         input[type='radio']:not(.browser-default):checked + label {
-          background-color: ${colors.info100};
+          background-color: ${colors.info};
           border: 2px solid ${colors.info};
         }
         input[type='checkbox']:not(.browser-default):checked + label:after,
@@ -403,7 +406,7 @@ export const Component = styled.div`
       textarea {
         &:focus,
         &:focus-visible {
-          background: ${colors.info100};
+          background: ${colors.info};
         }
       }
     }

@@ -9,33 +9,31 @@ import {
 import { ThemeProvider } from 'styled-components'
 import { theme } from '../../theme'
 
-
 interface Props {
-  background: string,
+  background: string
   className: string
   color: string
   disabled: boolean
   focused: boolean
-  fontSize: number,
+  fontSize: number
   getValue: Function
-  placeholder: string,
-  id: string,
-  indeterminate: boolean,
-  inputClassName: string,
-  labelClassName: string,
-  onBlur: Function,
-  onChange: Function,
-  onFocus: Function,
-  onInput: Function,
-  size: string,
-  type: string,
-  value: string,
+  placeholder: string
+  id: string
+  indeterminate: boolean
+  inputClassName: string
+  labelClassName: string
+  onBlur: Function
+  onChange: Function
+  onFocus: Function
+  onInput: Function
+  size: string
+  type: string
+  value: string
   valueDefault: string
   icon: React.ReactNode
 }
 
 const Input = (props: Props) => {
-
   const {
     background,
     className,
@@ -59,17 +57,18 @@ const Input = (props: Props) => {
     type,
     value,
     valueDefault,
-    ...attributes }
-    = props
+    ...attributes
+  } = props
 
   {
     const [innerValue, setInnerValue] = useState(value || valueDefault)
     const [isFocused, setIsFocused] = useState(focused)
-    const inputRef = useRef<HTMLInputElement>()
+    const inputRef = useRef<HTMLElement>()
 
     useEffect(() => {
       isFocused && inputRef.current!.focus()
-      if (indeterminate) inputRef.current!.indeterminate = true
+      if (indeterminate && inputRef.current instanceof HTMLInputElement)
+        inputRef.current!.indeterminate = true
     }, [isFocused])
 
     const handleBlur = (event) => {
@@ -104,7 +103,10 @@ const Input = (props: Props) => {
       onInput && onInput(event)
     }
     const isNotEmpty =
-      (!!innerValue || !!placeholder || isFocused || (typeof innerValue === "number" && innerValue === 0)) &&
+      (!!innerValue ||
+        !!placeholder ||
+        isFocused ||
+        (typeof innerValue === 'number' && innerValue === 0)) &&
       type !== 'checkbox' &&
       type !== 'radio'
     const classes = classNames(
@@ -129,25 +131,25 @@ const Input = (props: Props) => {
           {icon && <span className='icon'>{icon}</span>}
           {type === 'textarea' ? (
             <StyledTextArea
-              fontSize={fontSize}
-              ref={inputRef}
+              // fontSize={fontSize}
+              ref={inputRef as React.MutableRefObject<HTMLTextAreaElement>}
               onBlur={handleBlur}
               onChange={handleChange}
               onInput={handleInput}
               onFocus={handleFocus}
-              type={type}
+              // type={type}
               placeholder={placeholder}
               {...attributes}
               className={inputClassName}
               id={id}
               value={innerValue}
               aria-disabled={disabled}
-              rows='10'
+              rows={10}
             />
           ) : (
             <StyledInput
-              fontSize={fontSize}
-              ref={inputRef}
+              // fontSize={fontSize}
+              ref={inputRef as React.MutableRefObject<HTMLInputElement>}
               onBlur={handleBlur}
               onChange={handleChange}
               onInput={handleInput}
@@ -215,10 +217,10 @@ Input.defaultProps = {
   labelClassName: '',
   type: 'text',
   value: '',
-  getValue: () => { },
-  onBlur: () => { },
-  onFocus: () => { },
-  onInput: () => { },
+  getValue: () => {},
+  onBlur: () => {},
+  onFocus: () => {},
+  onInput: () => {},
   size: '',
   icon: null
 }

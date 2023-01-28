@@ -11,7 +11,7 @@ interface Props{
   role: string
 }
 
-const ButtonToolbar = (props) => {
+const ButtonToolbar = (props : Props) => {
 
   let { className, children, ...attributes } = props
 
