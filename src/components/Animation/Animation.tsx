@@ -52,7 +52,7 @@ const Animation = (props: Props) => {
     revealed: false,
     countIterations: 0,
   });
-  const elemRef = createRef();
+  const elemRef = createRef<HTMLDivElement>();
   const handleStart = () => {
     setState({
       ...state,
@@ -96,7 +96,7 @@ const Animation = (props: Props) => {
     const windowHeight = window.innerHeight;
     const scroll = window.scrollY;
     const docHeight = document.documentElement.offsetHeight;
-    const currentRef = elemRef.current;
+    const currentRef = elemRef.current!;
     if (
       (windowHeight + scroll - 100 > getOffset(currentRef) &&
         scroll < getOffset(currentRef)) ||

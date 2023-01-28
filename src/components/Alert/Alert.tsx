@@ -34,7 +34,7 @@ const Alert = (props: Props) => {
 
   const alertClasses = classNames("alert", className);
 
-  const close = (e) => {
+  const close = (e: any) => {
     e.target.parentNode.remove();
   }
 

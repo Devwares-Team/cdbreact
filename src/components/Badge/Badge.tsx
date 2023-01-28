@@ -33,7 +33,7 @@ const Badge = (props: Props) => {
     ...attributes
   } = props;
   const badgeClasses = classNames(className);
-  const color = `${colors}${intensity.toString()}`;
+  // const color = `${colors}${intensity.toString()}`;
   const badgeComponent = (
     <ThemeProvider theme={theme}>
       <Component

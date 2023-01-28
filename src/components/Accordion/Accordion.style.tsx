@@ -1,6 +1,10 @@
 import styled, { css } from "styled-components";
 
-export const Component = styled.div`
+interface Props {
+  hideIcon: boolean
+}
+
+export const Component = styled.div<Props>`
   width: 100%;
   ${(props) =>
     props.hideIcon
