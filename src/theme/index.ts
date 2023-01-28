@@ -49,11 +49,11 @@ export const theme = {
       },
     },
     warning: {
-      color: colors.warningDark,
+      color: colors.dark,
       borderColor: colors.warning,
       backgroundColor: colors.warning,
       "&:hover": {
-        color: colors.warningDark,
+        color: colors.dark,
         backgroundColor: colors.warningHover,
       },
     },
@@ -107,7 +107,7 @@ export const theme = {
       backgroundColor: colors.danger,
     },
     warning: {
-      color: colors.warningDark,
+      color: colors.dark,
       borderColor: colors.warning,
       backgroundColor: colors.warning,
     },
@@ -134,7 +134,7 @@ export const theme = {
       backgroundColor: "#FCE9E9",
     },
     warning: {
-      color: colors.warningDark,
+      color: colors.dark,
       borderColor: colors.warning,
       backgroundColor: "#FFFBE6",
     },
