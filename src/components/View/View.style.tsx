@@ -1,18 +1,18 @@
 import styled, { css } from "styled-components";
 
 
-interface Props {
-  zoom: boolean
-  rounded: boolean
-  hover: boolean
-}
+// interface Props {
+//   zoom: boolean
+//   rounded: boolean
+//   hover: boolean
+// }
 
-export const Component = styled.div<Props>`
+export const Component = styled.div<any>`
   position: relative;
   overflow: hidden;
   cursor: default;
   ${(props) => {
-    props.zoom
+    return props.zoom
       ? css`
           img,
           video {

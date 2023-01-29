@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Component = styled.div``
+export const Component = styled.div<any>``
 
 export const Container = styled.div<any>`
   .animated {

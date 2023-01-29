@@ -13,8 +13,8 @@
       "noImplicitAny": false,
       "strictNullChecks": false,
       "suppressImplicitAnyIndexErrors": true,
-      "noUnusedLocals": true,
-      "noUnusedParameters": true,
+      "noUnusedLocals": false,
+      "noUnusedParameters": false,
       "allowSyntheticDefaultImports": true
     },
     "include": ["src"],

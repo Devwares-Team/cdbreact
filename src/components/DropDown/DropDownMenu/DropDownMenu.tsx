@@ -93,10 +93,10 @@ const DropDownMenu = (props: Props) => {
     const position1 = dropup
       ? 'top'
       : dropright
-        ? 'right'
-        : dropleft
-          ? 'left'
-          : 'bottom'
+      ? 'right'
+      : dropleft
+      ? 'left'
+      : 'bottom'
 
     const position2 = right ? 'end' : 'start'
 
@@ -117,40 +117,39 @@ const DropDownMenu = (props: Props) => {
         {(show) =>
           show
             ? ({ scale, opacity, top: topOffset }) => (
-              <Popper
-                placement={attrs.placement}
-                modifiers={animatedModifiers}
-              >
-                {({
-                  ref,
-                  style: { top, left, position },
-                  placement,
-                  arrowProps
-                }) => (
-                  <Component
-                    className={dropDownMenuClasses}
-                    ref={ref}
-                    style={{
-                      opacity,
-                      top: 0,
-                      left: 0,
-                      position,
-                      padding: '1em',
-                      transform: `translate3d(${left}, ${(top
-                        ? typeof top === 'string'
-                          ? parseInt(top)
-                          : top
-                        : 0) + topOffset
-                        }px, 0) scale(${scale})`,
-                      transformOrigin: 'top center'
-                    }}
-                    data-placement={placement}
-                  >
-                    {children}
-                  </Component>
-                )}
-              </Popper>
-            )
+                <Popper
+                  placement={attrs.placement}
+                  modifiers={animatedModifiers}
+                >
+                  {({
+                    ref,
+                    style: { top, left, position },
+                    placement,
+                    arrowProps
+                  }) => {
+                    const newTop = typeof top === 'string' && top ? parseInt(top) : top
+                    const topVal = (!isNaN(+newTop) ? +newTop : 0) + topOffset
+                    return (
+                      <Component
+                        className={dropDownMenuClasses}
+                        ref={ref}
+                        style={{
+                          opacity,
+                          top: 0,
+                          left: 0,
+                          position,
+                          padding: '1em',
+                          transform: `translate3d(${left}, ${topVal}px, 0) scale(${scale})`,
+                          transformOrigin: 'top center'
+                        }}
+                        data-placement={placement}
+                      >
+                        {children}
+                      </Component>
+                    )
+                  }}
+                </Popper>
+              )
             : Null
         }
       </Transition>

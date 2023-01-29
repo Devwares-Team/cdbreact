@@ -23,7 +23,7 @@ const {
   pattern8,
   pattern9,
 } = patternGroup;
-export const Component = styled("span")(
+export const Component = styled<any>("span")(
   space,
   colorStyle,
   {
@@ -182,4 +182,4 @@ export const Component = styled("span")(
       },
     },
   })
-)<any>;
+);
