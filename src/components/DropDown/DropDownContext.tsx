@@ -2,7 +2,9 @@ import React, { useState, createContext } from "react";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
-export const DropDownContext = createContext();
+export const DropDownContext = createContext({
+  isOpen: null
+});
 
 export const DropDownProvider = (props) => {
   const [isOpen, setIsOpen] = useState(false);

@@ -59,7 +59,7 @@ const ListGroupItem = (props: Props) => {
       data-test="list-group-item"
       {...attributes}
       className={classes}
-      colors={color}
+      // colors={color}
     >
       {children}
     </Component>

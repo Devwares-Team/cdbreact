@@ -14,7 +14,7 @@ interface Props {
 
 const SidebarHeader = forwardRef<HTMLDivElement, Props>(
   ({ children, prefix, className, ...rest }, ref) => {
-    const sidebarHeaderRef = ref ? ref : React.createRef();
+    const sidebarHeaderRef = ref ? ref : React.createRef<HTMLDivElement>();
 
     const { toggled, handleToggleSidebar } = useContext<SidebarContextType>(SidebarContext);
 

@@ -23,7 +23,7 @@ interface Props {
   tag: [Function, string],
   onClick: Function,
   isOpen: Function,
-  circle: [string, Function]
+  circle: boolean
 }
 
 const DropdownToggle = (props: Props) => {
@@ -133,7 +133,7 @@ DropdownToggle.propTypes = {
     "warning",
     "info",
   ]),
-
+  circle: PropTypes.bool,
   dropleft: PropTypes.bool,
   dropright: PropTypes.bool,
   dropup: PropTypes.bool,

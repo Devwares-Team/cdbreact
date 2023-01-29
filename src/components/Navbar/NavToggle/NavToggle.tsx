@@ -12,7 +12,7 @@ interface Props{
     left: boolean,
     right: boolean,
     tag: [Function, string],
-    type: string
+    type: "reset" | "submit" | "button"
 }
 
 const NavToggle = (props: Props) => {
@@ -48,7 +48,7 @@ NavToggle.propTypes = {
     left: PropTypes.bool,
     right: PropTypes.bool,
     tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-    type: PropTypes.string
+    type: PropTypes.oneOf(["reset" , "submit" , "button"])
 };
 
 NavToggle.defaultProps = {

@@ -1,7 +1,19 @@
 import styled, { css } from "styled-components";
 import { colorStyle, space, variant } from "styled-system";
 
-export const Component = styled.button`
+
+// interface ComponentProps {
+//   circle: boolean
+// }
+
+// interface CaretProps  {
+//   dropup: boolean
+//   dropleft: boolean
+//   dropright: boolean
+//   dropdown: boolean
+// }
+
+export const Component = styled.button<any>`
   padding: 0.8rem 2rem;
   border: none;
   ${colorStyle}
@@ -32,7 +44,7 @@ export const Component = styled.button`
     },
   })}
 `;
-export const Caret = styled.span`
+export const Caret = styled.span<any>`
   .pro-arrow-wrapper {
     position: relative;
     min-width: 10px;

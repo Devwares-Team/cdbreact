@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const Component = styled("div")`
+
+interface Props {
+  popperStyle? : any
+}
+
+export const Component = styled("div")<Props>`
   display: flex;
   flex-direction: column;
   min-height: 20px;

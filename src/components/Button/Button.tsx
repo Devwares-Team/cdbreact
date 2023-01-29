@@ -14,7 +14,7 @@ interface Props {
   disabled: boolean,
   download: string,
   flat: boolean,
-  innerRef: [Function, string],
+  innerRef: Function| string ,
   onClick: Function,
   role: string,
   size: string,
@@ -70,6 +70,10 @@ const Button = (props: Props) => {
     tag = 'a'
   }
 
+  if (typeof innerRef === "string") {
+    
+  }
+
   return (
     <Component
       data-test='button'
@@ -112,7 +116,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   download: PropTypes.string,
   flat: PropTypes.bool,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.any,
   onClick: PropTypes.func,
   role: PropTypes.string,
   size: PropTypes.string,

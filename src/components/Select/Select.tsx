@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes, { string } from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Component } from "./Select.style";
 import { ThemeProvider } from "styled-components";
@@ -28,7 +28,7 @@ const Select = (props: Props) => {
       <Component data-test="select" {...attributes} className={selectClasses}>
         <option>{selected}</option>
         {options &&
-          options.map((optionType, index) => {
+          options.map((optionType) => {
             return (
               <option key={optionType.value} className={optionClasses}>
                 {optionType.text}

@@ -1,9 +1,18 @@
 import styled, { css } from "styled-components";
-import * as tinycolor from "tinycolor2";
 
-export const Component = styled.div`
+interface Props {
+  tooltipBackground: string
+  direction: string
+  status: string
+  size: string
+  background: string
+  active: any
+  icon: any
+}
+
+export const Component = styled.div<Props>`
   display: flex;
-  ${({ direction }) =>
+  ${({ direction}) =>
     direction === "horizontal" &&
     css`
       flex-direction: column;

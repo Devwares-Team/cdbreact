@@ -17,7 +17,7 @@ interface Props {
   children: any
 }
 
-export const StepperContext = createContext({})
+export const StepperContext = createContext<any>({})
 
 const Stepper = (props: Props) => {
   const {

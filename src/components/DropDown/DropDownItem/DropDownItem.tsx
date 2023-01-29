@@ -7,7 +7,7 @@ import { DropDownContext } from "../DropDownContext";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
-interface Props {
+export interface Props {
   active: boolean,
   children: React.ReactNode,
   className: any,
@@ -19,9 +19,7 @@ interface Props {
   toggle: boolean,
   href: any,
   tagType: any,
-  Component: any;
   type: any
-
 }
 
 const DropDownItem = (props: Props) => {
@@ -30,7 +28,6 @@ const DropDownItem = (props: Props) => {
   const {
     disabled,
     className,
-    Component,
     header,
     divider,
     onClick,
@@ -41,7 +38,7 @@ const DropDownItem = (props: Props) => {
     active,
     tag,
     ...attrs
-  } = omit(props, ["toggle"]);
+  } = omit<Props>(props, ["toggle"]);
 
   const dropDownItemClasses = classNames(
     {
@@ -85,7 +82,7 @@ const DropDownItem = (props: Props) => {
         {...attrs}
         type={tagType}
 
-        tabIndex={tabIndex}
+        tabIndex={parseInt(tabIndex)}
         className={dropDownItemClasses}
         onClick={toggleDropDown}
         href={href}

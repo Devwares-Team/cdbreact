@@ -1,9 +1,17 @@
-import React, { useContext, useRef, useState, useEffect } from "react";
+import React, { useContext, useRef } from "react";
 import { StepperContext } from "./Stepper";
 import styled, { css } from "styled-components";
-import tinycolor from "tinycolor2";
 
-const Component = styled.div`
+
+interface Props {
+  direction: string
+  size: string
+  background: string
+  mainColor: string
+  status: any
+}
+
+const Component = styled.div<Props>`
   display: flex;
   ${({ direction, size }) =>
     direction === "vertical" &&
@@ -48,7 +56,7 @@ const Component = styled.div`
         height: 6px;
       }
     `}
-  ${({ status, background }) =>
+  ${({ status }) =>
     status === "prev" &&
     css`
       span:nth-child(1) {
@@ -83,7 +91,7 @@ const Component = styled.div`
 const StepperDivider = ({ status }) => {
   const containerRef = useRef();
 
-  const { direction, mainColor, width, height, stepSize } =
+  const { direction, mainColor, stepSize } =
     useContext(StepperContext);
 
   return (

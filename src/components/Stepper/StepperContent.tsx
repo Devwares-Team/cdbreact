@@ -2,7 +2,11 @@ import React, { useContext } from 'react'
 import styled, { css } from 'styled-components'
 import { StepperContext } from './Stepper'
 
-const Component = styled.div`
+interface Props {
+  direction: string
+}
+
+const Component = styled.div<Props>`
   display: flex;
   ${({ direction }) =>
     direction === 'vertical' &&

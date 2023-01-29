@@ -1,6 +1,11 @@
 import styled, { css } from "styled-components";
 
-export const Component = styled.div`
+interface Props {
+direction: string
+background: string
+}
+
+export const Component = styled.div<Props>`
   display: flex;
   position: relative;
   width: 100%;

@@ -182,4 +182,4 @@ export const Component = styled("span")(
       },
     },
   })
-);
+)<any>;

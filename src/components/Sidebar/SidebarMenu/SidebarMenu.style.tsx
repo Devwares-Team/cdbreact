@@ -5,7 +5,12 @@ export const MenuNav = styled.nav`
     padding-bottom: 10px;
 `;
 
-export const MenuUl = styled.ul`
+interface Props {
+    textColor: string
+    backgroundColor: string
+}
+
+export const MenuUl = styled.ul<Props>`
     list-style-type: none;
     padding: 0;
     margin: 0;

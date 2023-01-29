@@ -1,6 +1,11 @@
 import styled, { css } from "styled-components";
 
-export const Component = styled.div`
+interface Props {
+  autoWidth: boolean
+  scrollY: boolean
+}
+
+export const Component = styled.div<any>`
   table-layout: ${(props) => (props.autoWidth ? "auto" : null)};
   ${(props) =>
     props.scrollY

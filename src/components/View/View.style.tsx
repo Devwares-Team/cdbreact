@@ -1,6 +1,13 @@
 import styled, { css } from "styled-components";
 
-export const Component = styled.div`
+
+interface Props {
+  zoom: boolean
+  rounded: boolean
+  hover: boolean
+}
+
+export const Component = styled.div<Props>`
   position: relative;
   overflow: hidden;
   cursor: default;

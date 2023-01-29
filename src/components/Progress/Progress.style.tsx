@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { colorStyle } from "styled-system";
 
-export const Component = styled.div`
+interface Props {
+  colors: string
+}
+
+export const Component = styled.div<Props>`
   width: 100%;
   background: ${(props) =>
     props.colors === "primary"
@@ -23,7 +27,7 @@ export const Component = styled.div`
     border-radius: 20px;
   }
 `;
-export const Container = styled.div`
+export const Container = styled.div<Props>`
   display: block;
   width: 100%;
   .progress-text {

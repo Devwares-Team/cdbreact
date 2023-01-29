@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Component = styled.div``
 
-export const Container = styled.div`
+export const Container = styled.div<any>`
   .animated {
     animation-duration: 1s;
     animation-fill-mode: both;

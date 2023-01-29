@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
-import Popper from 'popper.js'
+// import Popper from 'popper.js'
 import PropTypes from 'prop-types'
 import { Tag } from './Popper.style'
 import { ThemeProvider } from 'styled-components'

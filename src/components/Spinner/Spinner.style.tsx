@@ -16,13 +16,24 @@ transform: rotate(135deg)}
  100% {   stroke-dashoffset: 187;
 transform: rotate(450deg)}`;
 
-export const Component = styled.svg`
+export const Component = styled.svg<any>`
   stroke-width: 5;
   animation-name: ${rotator};
   animation-duration: 1.4s;
   animation-iteration-count: infinite;
 `;
-export const Circle = styled.circle`
+
+interface Props {
+  warning: boolean
+  success: boolean
+  secondary: boolean
+  dark: boolean
+  danger: boolean
+  info: boolean
+  multicolor: boolean
+}
+
+export const Circle = styled.circle<Props>`
   stroke: ${(props) =>
     props.warning
       ? "#FFE975"

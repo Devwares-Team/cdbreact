@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { color, variant, space } from "styled-system";
 
-export const Component = styled.span`
+
+export const Component = styled.span<any>`
   display: flex;
   align-items: center;
   ${space}

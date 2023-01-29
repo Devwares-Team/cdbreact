@@ -21,7 +21,7 @@ interface Props {
   popperArrow: number
 }
 
-const SidebarMenuItem = forwardRef<HTMLElement, Props>(
+const SidebarMenuItem = forwardRef<HTMLLIElement, Props>(
   (
     {
       children,
@@ -39,7 +39,7 @@ const SidebarMenuItem = forwardRef<HTMLElement, Props>(
     },
     ref
   ) => {
-    const menuItemRef = ref ? ref : React.createRef<HTMLElement>()
+    const menuItemRef = ref ? ref : React.createRef<HTMLLIElement>()
     const { toggled } = useContext(SidebarContext)
 
     return (

@@ -44,7 +44,7 @@ const SidebarContent = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   }, [handleToggleSidebar, width, finalbreakpoint])
 
-  const sidebarContentRef = ref ? ref : React.createRef();
+  const sidebarContentRef = ref ? ref : React.createRef<HTMLDivElement>();
 
 
 
