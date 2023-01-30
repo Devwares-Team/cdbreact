@@ -136,7 +136,7 @@ const Modal = (props: Props) => {
 
   // Equivalent of callback after setState in Class Components
   useEffect(() => {
-    if (isModalOpen === isOpen) {
+    if (mounted.current && isModalOpen === isOpen) {
       if (isModalOpen) {
         document.body.classList.add(overflowStatement)
       } else {

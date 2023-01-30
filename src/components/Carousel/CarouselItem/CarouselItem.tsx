@@ -8,7 +8,7 @@ interface Props {
   active: boolean,
   children: React.ReactNode,
   className: string,
-  itemId: any,
+  itemId: string | number,
   Tag: any,
   slide: [string, boolean],
   activeItem: any
@@ -56,18 +56,18 @@ const CarouselItem = (props: Props) => {
 
   setContext({ slide, activeItem })
 
-  itemId.value = parseInt(itemId, 10);
+ const _itemId = typeof itemId === "string" ? parseInt(itemId, 10) : itemId;
 
   const classes = classNames(
     "carousel-item",
     {
       "active carousel-slide-item": slide,
-      active: !slide && itemId === activeItem,
+      active: !slide && _itemId === activeItem,
     },
     className
   );
 
-  const slideIndex = activeItem - itemId;
+  const slideIndex = activeItem - _itemId;
 
   if (slide) {
     if (slideIndex < 0) {

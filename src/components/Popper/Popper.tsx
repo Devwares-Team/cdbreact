@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
-// import Popper from 'popper.js'
+ import Popper from 'popper.js'
 import PropTypes from 'prop-types'
 import { Tag } from './Popper.style'
 import { ThemeProvider } from 'styled-components'
@@ -71,25 +71,31 @@ const Popover = (props) => {
 
   const createPopper = () => {
     const { placement, modifiers } = props;
-    const { popperJS } = state;
+
     if (referenceElm.current && popoverWrapperRef.current) {
-      setState({
-        ...state,
+      setState(prevState => ({
+        ...prevState,
         popperJS: new Popper(
           referenceElm.current,
           popoverWrapperRef.current,
           {
             placement,
             ...modifiers,
-          },
-          () =>
-            setTimeout(() => {
-              popperJS.scheduleUpdate();
-            }, 10)
+          }
         ),
-      });
+      }));
     }
   };
+
+  useEffect(()=> {
+    const {popperJS} = state;
+
+    if (popperJS !== null) {
+      setTimeout(() => {
+        popperJS.scheduleUpdate();
+      }, 10)
+    }
+  }, [])
 
   const doToggle = (toggler) => {
     setState({ ...state, showPopper: toggler && true });
@@ -123,7 +129,7 @@ const Popover = (props) => {
 
 
   const { visible, showPopper } = state;
-  const Popper = children[1];
+ const _Popper = children[1]
   const Wrapper = children[0];
   const classes = classNames(
     visible && "show",
@@ -188,14 +194,14 @@ const Popover = (props) => {
             {...attributes}
             as={(tag as unknown) as undefined}
           >
-            <Popper.type
+            <_Popper.type
               className={classNames(
                 popperClasses,
-                Popper.props.className
+                _Popper.props.className
               )}
             >
-              {Popper.props.children}
-            </Popper.type>
+              {_Popper.props.children}
+            </_Popper.type>
             <span
               x-arrow=""
               className={classNames("popover_arrow")}
