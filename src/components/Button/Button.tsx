@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Component } from './Button.style'
@@ -14,7 +14,7 @@ interface Props {
   disabled: boolean,
   download: string,
   flat: boolean,
-  innerRef: Function| string ,
+  innerRef: React.MutableRefObject<HTMLDivElement | undefined> ,
   onClick: Function,
   role: string,
   size: string,
@@ -53,6 +53,8 @@ const Button = (props: Props) => {
 
     ...attributes
   } = props
+
+  const _ref = useRef<HTMLDivElement>()
 
   const buttonClasses = classNames(
     'Ripple-parent',
@@ -102,7 +104,8 @@ Button.defaultProps = {
   color: 'primary',
   tag: 'button',
   size: 'medium',
-  circle: false
+  circle: false,
+  innerRef: undefined
 }
 
 Button.propTypes = {

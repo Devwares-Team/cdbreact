@@ -166,7 +166,7 @@ export function mapToCssModules(className: string, cssModule: any) {
 // Returns a new object with the key/value pairs from `obj` that are not in the array `omitKeys`.
 
 export function omit<T>(obj: any, omitKeys: any[]) {
-  const result = {};
+  const result: any = {};
   Object.keys(obj).forEach((key) => {
     if (omitKeys.indexOf(key) === -1) {
       result[key] = obj[key];
@@ -185,7 +185,7 @@ export const keyCodes = {
 
 export const returnAttributes = (attributes: any) => {
   const newAttributesObject = Object.keys(attributes).reduce(
-    (previousValue, currentElement) => {
+    (previousValue: any, currentElement) => {
       if (attributes[currentElement]) {
         previousValue[currentElement] = attributes[currentElement];
       }
@@ -260,7 +260,7 @@ export const makeRandomID = (id = "1") => {
     .join("");
 };
 
-const themeColors = {
+const themeColors: any= {
   danger: "rgba(255, 53, 71)",
   warning: "rgba(255, 187, 51)",
   success: "rgba(0, 200, 81)",
@@ -271,7 +271,7 @@ const themeColors = {
   dark: "rgba(33, 33, 33)",
 };
 
-const themeColorsOpacity = {
+const themeColorsOpacity : any = {
   danger: "rgba(255, 53, 71, .2)",
   warning: "rgba(255, 187, 51, .2)",
   success: "rgba(0, 200, 81, .2)",

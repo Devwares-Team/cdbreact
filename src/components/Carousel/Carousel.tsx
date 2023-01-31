@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState, useRef } from 'react'
+import React, { Fragment, useEffect, useState, useRef, createContext } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import CarouselControl from './CarouselControl'
@@ -9,22 +9,32 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from './../../theme'
 
 interface Props {
-
-  length: number,
-  activeItem: number,
-  children: React.ReactNode,
-  className: string,
-  interval: [number, boolean],
-  mobileGesture: boolean,
-  multiItem: boolean,
-  onHoverStop: boolean,
-  showControls: boolean,
-  showIndicators: boolean,
-  slide: boolean,
-  tag:  string,
-  testimonial: boolean,
-  thumbnails: boolean,
+  length: number
+  activeItem: number
+  children: React.ReactNode
+  className: string
+  interval: [number, boolean]
+  mobileGesture: boolean
+  multiItem: boolean
+  onHoverStop: boolean
+  showControls: boolean
+  showIndicators: boolean
+  slide: boolean
+  tag: string
+  testimonial: boolean
+  thumbnails: boolean
 }
+
+export type CarouselContextType ={
+  activeItem: any,
+  length: any,
+  slide: any
+}
+export const CarouselContext = createContext<CarouselContextType>({
+  activeItem: null,
+  length: null,
+  slide: null
+})
 
 const Carousel = (props: Props) => {
   const {
@@ -46,7 +56,7 @@ const Carousel = (props: Props) => {
   } = props
 
   type StateType = {
-    activeItem: number,
+    activeItem: number
     initialLength: number
     srcArray: string[]
     swipeAvailable: boolean
@@ -66,12 +76,35 @@ const Carousel = (props: Props) => {
 
   const carouselRef = useRef<HTMLDivElement>(null)
 
+  const isMounted = useRef<boolean>(false)
   useEffect(() => {
+    if (!isMounted.current) {
+      // component will mount
+      componentDidMountCallback()
+      isMounted.current = true
+    }
+    // component did update
+    else {
+      componentDidUpdateCallback()
+    }
+
+    return () => {
+      // componentWillUnmount
+      const { interval } = props
+      if (typeof interval === 'boolean' && interval === false) {
+        return
+      }
+      clearCycleIntervalHandler()
+    }
+  }, [state.initialLength])
+
+  function componentDidMountCallback() {
     const { interval, thumbnails, length } = props
-    if (typeof interval === "boolean" && interval === false) {
+    if (typeof interval === 'boolean' && interval === false) {
       return
     }
-    typeof interval === "number" && setCycleInterval(setInterval(next, interval))
+    typeof interval === 'number' &&
+      setCycleInterval(setInterval(next, interval))
 
     // get images src atr
     if (thumbnails) {
@@ -79,32 +112,24 @@ const Carousel = (props: Props) => {
         '.carousel-item img'
       )
 
-      const srcArray = Array.prototype.map.call(
+      const srcArray: any[] = Array.prototype.map.call(
         CarouselItemsArray,
         (item: { src: any }) => item.src
       )
-      setState({ ...state, srcArray })
+      setState((prevState) => ({ ...prevState, srcArray }))
     }
 
-    setState({ ...state, initialLength: length })
+    setState((prevState) => ({ ...prevState, initialLength: length }))
+  }
 
-    return () => {
-      const { interval } = props
-      if (typeof interval === "boolean" && interval === false) {
-        return
-      }
-      clearCycleIntervalHandler()
-    }
-  }, [])
-
-  useEffect(() => {
+  function componentDidUpdateCallback() {
     const { length } = props
     const initialLength = length
 
     if (state.initialLength !== length) {
-      setState({ ...state, initialLength })
+      setState({ ...state, initialLength }) // Major change here
     }
-  }, [state])
+  }
 
   const clearCycleIntervalHandler = () => clearInterval(cycleInterval)
 
@@ -114,7 +139,7 @@ const Carousel = (props: Props) => {
   const restartInterval = () => {
     const { interval } = props
 
-    if (typeof interval === "number") {
+    if (typeof interval === 'number') {
       clearCycleIntervalHandler()
       setCycleInterval(setInterval(next, interval))
     }
@@ -190,16 +215,6 @@ const Carousel = (props: Props) => {
     })
   }
 
-  // const getChildContext = () => {
-  //   const { activeItem, initialLength } = state
-  //   const { slide } = props
-  //   return {
-  //     activeItem,
-  //     length: initialLength,
-  //     slide
-  //   }
-  // }
-
   const { initialLength, srcArray, swipeAvailable } = state
   const ariaLabel = 'carousel'
 
@@ -216,7 +231,7 @@ const Carousel = (props: Props) => {
     const { activeItem } = state
     CarouselIndicatorsArray.push(
       <CarouselIndicator
-        img={thumbnails ? srcArray[i - 1] : ""}
+        img={thumbnails ? srcArray[i - 1] : ''}
         key={i}
         active={activeItem === i}
         onClick={(_e) => goToIndex(i)}
@@ -229,17 +244,22 @@ const Carousel = (props: Props) => {
 
   return (
     <ThemeProvider theme={theme}>
+      <CarouselContext.Provider value={{
+        activeItem: state.activeItem,
+        length: state.initialLength,
+        slide: props.slide
+      }}>
       <Tag
         data-test='carousel'
-       ref={carouselRef}
+        ref={carouselRef}
         {...attributes}
         className={classes}
         aria-label={ariaLabel}
         onTouchStart={startTouch}
         onTouchMove={swipeAvailable ? moveTouch : undefined}
-         onTouchEnd={swipeAvailableHandler}
-         onMouseEnter={onHoverStop ? clearCycleIntervalHandler : undefined}
-         onMouseLeave={onHoverStop ? restartInterval : undefined}
+        onTouchEnd={swipeAvailableHandler}
+        onMouseEnter={onHoverStop ? clearCycleIntervalHandler : undefined}
+        onMouseLeave={onHoverStop ? restartInterval : undefined}
         as={(tag as unknown) as undefined}
       >
         {showControls && multiItem && (
@@ -251,7 +271,8 @@ const Carousel = (props: Props) => {
               className='btn-floating'
               direction='prev'
               // role='button'
-              onClick={prev}         />
+              onClick={prev}
+            />
             <CarouselControl
               testimonial={isTestimonial}
               multiItem={isMultiItem}
@@ -278,13 +299,15 @@ const Carousel = (props: Props) => {
               multiItem={isMultiItem}
               direction='next'
               // role='button'
-              onClick={next} />
+              onClick={next}
+            />
           </Fragment>
         )}
         {showIndicators && (
           <CarouselIndicators>{CarouselIndicatorsArray}</CarouselIndicators>
         )}
       </Tag>
+      </CarouselContext.Provider>
     </ThemeProvider>
   )
 }
@@ -303,8 +326,7 @@ Carousel.propTypes = {
   slide: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   testimonial: PropTypes.bool,
-  thumbnails: PropTypes.bool,
-
+  thumbnails: PropTypes.bool
 }
 
 Carousel.defaultProps = {
@@ -316,11 +338,6 @@ Carousel.defaultProps = {
   tag: 'div'
 }
 
-Carousel.childContextTypes = {
-  activeItem: PropTypes.any,
-  length: PropTypes.any,
-  slide: PropTypes.any
-}
 
 export default Carousel
 export { Carousel as CDBCarousel }

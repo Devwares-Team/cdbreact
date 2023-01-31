@@ -1,35 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
+import { CarouselContext } from "../Carousel";
 
 interface Props {
   active: boolean,
   children: React.ReactNode,
   className: string,
   itemId: string | number,
-  Tag: any,
-  slide: [string, boolean],
-  activeItem: any
-
+  tag: any,
 }
 
 const CarouselItem = (props: Props) => {
-
-
   const {
-    activeItem,
-    slide,
     active,
     children,
     className,
     itemId,
-    Tag,
+    tag: Tag,
     ...attributes
   } = props;
   const [style, setStyle] = useState({})
-  const [context, setContext] = useState({})
 
   const moveForward = () => {
     setStyle({
@@ -51,10 +44,8 @@ const CarouselItem = (props: Props) => {
     })
   };
 
-
-
-
-  setContext({ slide, activeItem })
+  
+  const { slide, activeItem } = useContext(CarouselContext) //if it doesn't work search for react.component.context in FC
 
  const _itemId = typeof itemId === "string" ? parseInt(itemId, 10) : itemId;
 
@@ -67,19 +58,23 @@ const CarouselItem = (props: Props) => {
     className
   );
 
-  const slideIndex = activeItem - _itemId;
 
-  if (slide) {
-    if (slideIndex < 0) {
-      setStyle(moveForward);
-    } else if (slideIndex > 0) {
-      setStyle(moveBackwards);
+
+  useEffect(() => {
+    const slideIndex = activeItem - _itemId;
+
+    if (slide) {
+      if (slideIndex < 0) {
+        moveForward()
+      } else if (slideIndex > 0) {
+        moveBackwards()
+      } else {
+        makeVisible();
+      }
     } else {
-      setStyle(makeVisible);
+      makeVisible();
     }
-  } else {
-    setStyle(makeVisible);
-  }
+  }, [activeItem])
 
   return (
     <ThemeProvider theme={theme}>
@@ -108,11 +103,6 @@ CarouselItem.defaultProps = {
   tag: "div",
 };
 
-CarouselItem.contextTypes = {
-  activeItem: PropTypes.any,
-  length: PropTypes.any,
-  slide: PropTypes.any,
-};
 
 export default CarouselItem;
 export { CarouselItem as CDBCarouselItem };
