@@ -7,12 +7,12 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props{
-    active: boolean,
-    children: React.ReactNode,
-    className: string,
-    disabled: boolean,
-    link: boolean,
-    to: string
+    active?: boolean,
+    children?: React.ReactNode,
+    className?: string,
+    disabled?: boolean,
+    link?: boolean,
+    to?: string
 }
 
 const NavLink = (props: Props) => {

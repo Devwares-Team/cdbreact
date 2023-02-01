@@ -6,11 +6,11 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props {
-  children: React.ReactNode,
-  disabled: boolean,
-  className: string,
-  tag: [Function, string],
-  onClick: Function
+  children?: React.ReactNode,
+  disabled?: boolean,
+  className?: string,
+  tag?: [Function, string],
+  onClick?: Function
 }
 
 const PageLink = (props: Props) => {

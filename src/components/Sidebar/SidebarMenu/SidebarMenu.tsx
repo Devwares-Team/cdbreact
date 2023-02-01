@@ -9,9 +9,9 @@ import { theme } from "../../../theme";
 
 
 interface Props {
-  children: React.ReactNode
-  className: string
-  popperArrow: boolean
+  children?: React.ReactNode
+  className?: string
+  popperArrow?: boolean
 }
 
 const SidebarMenu = forwardRef<HTMLElement, Props>(
@@ -45,9 +45,9 @@ const SidebarMenu = forwardRef<HTMLElement, Props>(
 
 
 SidebarMenu.propTypes = {
-    className: PropTypes.string.isRequired,
+    className: PropTypes.string,
     children: PropTypes.any, // PropTypes.node,
-    popperArrow: PropTypes.bool.isRequired
+    popperArrow: PropTypes.bool
 }
 
 export default SidebarMenu;

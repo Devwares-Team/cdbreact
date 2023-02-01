@@ -6,18 +6,18 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  barClassName: string,
-  children: React.ReactNode,
-  className: string,
-  colors: string,
-  height: any,
-  max: number,
-  min: number,
-  value: number,
-  wrapperStyle: object,
-  tag: any,
-  text: string
-  color: any;
+  barClassName?: string,
+  children?: React.ReactNode,
+  className?: string,
+  colors?: string,
+  height?: any,
+  max?: number,
+  min?: number,
+  value?: number,
+  wrapperStyle?: object,
+  tag?: any,
+  text?: string
+  color?: any;
 }
 
 const Progress = (props: Props) => {

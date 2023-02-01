@@ -10,7 +10,7 @@ interface Props {
   info: boolean,
   noRecordsFoundLabel: string,
   pages: any[],
-  label: string[]
+  label?: string[]
 }
 
 const DataTableInfo = (props: Props) => {

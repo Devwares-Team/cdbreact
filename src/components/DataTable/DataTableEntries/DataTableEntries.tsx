@@ -11,9 +11,9 @@ interface Props {
   handleEntriesChange: any,
   label: [number, object, string],
   paging: boolean,
-  barReverse: boolean,
-  onChange: any,
-  proSelect: boolean,
+  barReverse?: boolean,
+  onChange?: any,
+  proSelect?: boolean,
 }
 
 

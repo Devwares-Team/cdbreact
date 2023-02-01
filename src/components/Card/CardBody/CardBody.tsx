@@ -7,9 +7,9 @@ import { theme } from "../../../theme";
 
 
 interface Props{
-    cascade: boolean,
-    className: string,
-    tag: [Function, string]
+    cascade?: boolean,
+    className?: string,
+    tag?: [Function, string]
 }
 
 const CardBody = (props: Props) => {

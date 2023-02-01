@@ -10,12 +10,12 @@ import { theme } from "../../theme";
 interface Props { 
   className?: string,
   children?: React.ReactNode
-  dropleft: boolean,
-  dropright: boolean,
-  dropup: boolean,
+  dropleft?: boolean,
+  dropright?: boolean,
+  dropup?: boolean,
   isOpen?: boolean,
   toogle?: () => {},
-  tag: string,
+  tag?: string,
 }
 
 

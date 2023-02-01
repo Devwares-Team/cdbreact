@@ -6,17 +6,17 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  className: string,
-  tag: string,
-  size: string,
-  success: boolean,
-  secondary: boolean,
-  dark: boolean,
-  danger: boolean,
-  info: boolean,
-  warning: boolean,
-  color: any,
-  multicolor: any
+  className?: string,
+  tag?: string,
+  size?: string,
+  success?: boolean,
+  secondary?: boolean,
+  dark?: boolean,
+  danger?: boolean,
+  info?: boolean,
+  warning?: boolean,
+  color?: any,
+  multicolor?: any
 }
 
 const Spinner = (props: Props) => {

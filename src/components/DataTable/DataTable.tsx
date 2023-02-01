@@ -11,60 +11,60 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from '../../theme'
 
 interface Props {
-  autoWidth: boolean
-  barReverse: boolean
-  bordered: boolean
-  borderless: boolean
-  btn: boolean
-  children: React.ReactNode
-  className: string
-  dark: boolean
-  data:
+  autoWidth?: boolean
+  barReverse?: boolean
+  bordered?: boolean
+  borderless?: boolean
+  btn?: boolean
+  children?: React.ReactNode
+  className?: string
+  dark?: boolean
+  data?:
   | string
   | {
     columns: any[]
     rows: any[]
   }
-  disableRetreatAfterSorting: boolean
-  displayEntries: boolean
-  entries: number
-  entriesLabel: [number, object, string]
-  entriesOptions: number[]
-  exportToCSV: boolean
-  filter: string
-  fixed: boolean
-  hover: boolean
-  info: boolean
-  infoLabel: string[]
-  materialSearch: boolean
-  maxHeight: string
-  noBottomColumns: boolean
-  noRecordsFoundLabel: string
-  onPageChange: Function
-  onSearch: Function
-  onSort: Function
-  order: string[]
-  pagesAmount: number
-  paginationLabel: string
-  paging: boolean
-  proSelect: boolean
-  responsive: boolean
-  responsiveLg: boolean
-  responsiveMd: boolean
-  responsiveSm: boolean
-  responsiveXl: boolean
-  scrollX: boolean
-  scrollY: boolean
-  searching: boolean
-  searchLabel: string
-  small: boolean
-  sortable: boolean
-  sortRows: string
-  striped: boolean
-  tbodyColor: string
-  tbodyTextWhite: boolean
-  theadColor: string
-  theadTextWhite: boolean
+  disableRetreatAfterSorting?: boolean
+  displayEntries?: boolean
+  entries?: number
+  entriesLabel?: [number, object, string]
+  entriesOptions?: number[]
+  exportToCSV?: boolean
+  filter?: string
+  fixed?: boolean
+  hover?: boolean
+  info?: boolean
+  infoLabel?: string[]
+  materialSearch?: boolean
+  maxHeight?: string
+  noBottomColumns?: boolean
+  noRecordsFoundLabel?: string
+  onPageChange?: Function
+  onSearch?: Function
+  onSort?: Function
+  order?: string[]
+  pagesAmount?: number
+  paginationLabel?: string
+  paging?: boolean
+  proSelect?: boolean
+  responsive?: boolean
+  responsiveLg?: boolean
+  responsiveMd?: boolean
+  responsiveSm?: boolean
+  responsiveXl?: boolean
+  scrollX?: boolean
+  scrollY?: boolean
+  searching?: boolean
+  searchLabel?: string
+  small?: boolean
+  sortable?: boolean
+  sortRows?: string
+  striped?: boolean
+  tbodyColor?: string
+  tbodyTextWhite?: boolean
+  theadColor?: string
+  theadTextWhite?: boolean
   rows?: any
 }
 

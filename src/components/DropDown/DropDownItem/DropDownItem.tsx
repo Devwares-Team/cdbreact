@@ -8,18 +8,18 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 export interface Props {
-  active: boolean,
-  children: React.ReactNode,
-  className: any,
-  disabled: boolean,
-  divider: boolean,
-  header: boolean,
-  onClick: Function,
-  tag: [string, Function],
-  toggle: boolean,
-  href: any,
-  tagType: any,
-  type: any
+  active?: boolean,
+  children?: React.ReactNode,
+  className?: any,
+  disabled?: boolean,
+  divider?: boolean,
+  header?: boolean,
+  onClick?: Function,
+  tag?: [string, Function],
+  toggle?: boolean,
+  href?: any,
+  tagType?: any,
+  type?: any
 }
 
 const DropDownItem = (props: Props) => {

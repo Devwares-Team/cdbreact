@@ -6,10 +6,10 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  options: [any],
-  selected: string,
-  className; string,
-  optionClassName: any
+  options?: [any],
+  selected?: string,
+  className?: string,
+  optionClassName?: any
 }
 
 const Select = (props: Props) => {

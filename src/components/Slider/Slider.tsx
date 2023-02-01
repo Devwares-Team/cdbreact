@@ -6,15 +6,15 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  tooltip: Boolean,
-  tooltipPlacement: string,
-  tooltipLabel: Function,
-  tooltipStyle: object,
-  tooltipProps: object,
-  className: string,
-  bsPrefix: string
-  value : any,
-  setValue: any
+  tooltip?: Boolean,
+  tooltipPlacement?: string,
+  tooltipLabel?: Function,
+  tooltipStyle?: object,
+  tooltipProps?: object,
+  className?: string,
+  bsPrefix?: string
+  value? : any,
+  setValue?: any
 }
 
 const Slider = (props: Props) => {

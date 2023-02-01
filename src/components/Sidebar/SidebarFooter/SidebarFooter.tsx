@@ -5,8 +5,8 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props {
-  children: React.ReactNode,
-  className: string
+  children?: React.ReactNode,
+  className?: string
 }
 
 const SidebarFooter = forwardRef<HTMLDivElement, Props>(({ children, className, ...rest }: Props, ref) => {
@@ -26,7 +26,7 @@ const SidebarFooter = forwardRef<HTMLDivElement, Props>(({ children, className, 
 
 
 SidebarFooter.propTypes = {
-    className: PropTypes.string.isRequired,
+    className: PropTypes.string,
     children: PropTypes.any, // PropTypes.node.isRequired
 }
 

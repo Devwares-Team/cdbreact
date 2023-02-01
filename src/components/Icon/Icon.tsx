@@ -7,28 +7,28 @@ import { theme } from "../../theme";
 
 interface Props{
   icon: string,
-  border: boolean,
-  brand: boolean,
-  className: string,
-  fab: boolean,
-  fal: boolean,
-  far: boolean,
-  fixed: boolean,
-  flip: string,
-  inverse: boolean,
-  light: boolean,
-  list: boolean,
-  pull: string,
-  pulse:boolean,
-  regular:boolean,
-  rotate: boolean,
-  size: string,
-  spin: boolean,
-  stack: string
-  duotone : any,
-  fas : any,
-  solid: any,
-  fad : any
+  border?: boolean,
+  brand?: boolean,
+  className?: string,
+  fab?: boolean,
+  fal?: boolean,
+  far?: boolean,
+  fixed?: boolean,
+  flip?: string,
+  inverse?: boolean,
+  light?: boolean,
+  list?: boolean,
+  pull?: string,
+  pulse?:boolean,
+  regular?:boolean,
+  rotate?: boolean,
+  size?: string,
+  spin?: boolean,
+  stack?: string
+  duotone? : any,
+  fas? : any,
+  solid?: any,
+  fad? : any
 }
 
 const Icon = (props: Props) => {

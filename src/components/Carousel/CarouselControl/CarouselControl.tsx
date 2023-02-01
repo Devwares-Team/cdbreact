@@ -6,14 +6,14 @@ import { theme } from "../../../theme";
 
 
 interface Props{
-  className: string,
-  direction: string,
-  iconLeft: boolean,
-  iconRight: boolean,
-  multiItem: boolean,
-  onClick: any,
-  tag: any,
-  testimonial: boolean,
+  className?: string,
+  direction?: string,
+  iconLeft?: boolean,
+  iconRight?: boolean,
+  multiItem?: boolean,
+  onClick?: any,
+  tag?: any,
+  testimonial?: boolean,
 }
 
 const Control = (props: Props) => {

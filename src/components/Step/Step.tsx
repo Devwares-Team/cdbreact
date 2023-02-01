@@ -10,17 +10,16 @@ import { theme } from "../../theme";
 import { useEffect } from "react";
 
 interface Props {
-  name: string,
-  icon: string,
-  far: boolean,
-  fab: boolean,
-  fas: boolean,
-  id: number,
-  component: React.ReactNode,
-  children: React.ReactNode,
-  handleClick: Function,
-
-  active: any
+  name?: string,
+  icon?: string,
+  far?: boolean,
+  fab?: boolean,
+  fas?: boolean,
+  id?: number,
+  component?: React.ReactNode,
+  children?: React.ReactNode,
+  handleClick?: Function,
+  active?: any
 }
 
 export const Step = (props: Props) => {

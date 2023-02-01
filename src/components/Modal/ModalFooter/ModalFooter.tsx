@@ -5,13 +5,13 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props {
-  children: React.ReactNode,
-  className: string,
-  center: any,
-  start: any,
-  end: any,
-  around: any,
-  between: any
+  children?: React.ReactNode,
+  className?: string,
+  center?: any,
+  start?: any,
+  end?: any,
+  around?: any,
+  between?: any
 }
 
 const ModalFooter = (props: Props) => {

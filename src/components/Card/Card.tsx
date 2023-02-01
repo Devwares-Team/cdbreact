@@ -6,10 +6,10 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  className: string,
-  color: string,
-  tag: string,
-  border: boolean,
+  className?: string,
+  color?: string,
+  tag?: string,
+  border?: boolean,
 }
 
 const Card = (props: Props) => {

@@ -7,9 +7,9 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props {
-  children: React.ReactNode
-  prefix: React.ReactNode
-  className: string
+  children?: React.ReactNode
+  prefix?: React.ReactNode
+  className?: string
 }
 
 const SidebarHeader = forwardRef<HTMLDivElement, Props>(
@@ -45,7 +45,7 @@ const SidebarHeader = forwardRef<HTMLDivElement, Props>(
 
 
 SidebarHeader.propTypes = {
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   children: PropTypes.any, // PropTypes.node,
   prefix: PropTypes.any, // PropTypes.node
 };

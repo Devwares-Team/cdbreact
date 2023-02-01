@@ -9,20 +9,20 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from '../../../theme'
 
 interface Props {
-  className: string
-  colors: string
-  onClose: Function
-  onClosed: Function
-  tag: string
-  dropleft: boolean
-  dropright: boolean
-  dropup: boolean
-  dropdown: boolean
-  color: any
-  children: any
-  right: any
-  placement: any
-  top: any
+  className?: string
+  colors?: string
+  onClose?: Function
+  onClosed?: Function
+  tag?: string
+  dropleft?: boolean
+  dropright?: boolean
+  dropup?: boolean
+  dropdown?: boolean
+  color?: any
+  children?: any
+  right?: any
+  placement?: any
+  top?: any
 }
 
 const Null = () => null

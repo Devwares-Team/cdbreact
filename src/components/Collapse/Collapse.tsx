@@ -5,9 +5,9 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from '../../theme'
 
 interface Props {
-  children: React.ReactNode
+  children?: React.ReactNode
   className?: string
-  delay: {
+  delay?: {
     show: number,
     hide: number
   }

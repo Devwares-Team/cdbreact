@@ -1,20 +1,28 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { Component } from "./Pagination.style";
-import { ThemeProvider } from "styled-components";
-import { theme } from "../../theme";
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { Component } from './Pagination.style'
+import { ThemeProvider } from 'styled-components'
+import { theme } from '../../theme'
 
 interface Props {
-  children?: React.ReactNode,
-  circle: boolean,
-  className: string,
-  colors: string
-  size: string,
-  tag: [Function, string],
-  sm: boolean,
-  color: any,
-  shape: any
+  children?: React.ReactNode
+  circle?: boolean
+  className?: string
+  colors?:
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'danger'
+    | 'warning'
+    | 'info'
+    | 'white'
+    | 'dark'
+  size?: string
+  tag?: [Function, string]
+  sm?: boolean
+  color?: any
+  shape?: any
 }
 
 const Pagination = (props: Props) => {
@@ -29,14 +37,14 @@ const Pagination = (props: Props) => {
     sm,
     circle,
     ...attributes
-  } = props;
+  } = props
 
-  const paginationClasses = classNames("pagination", className);
+  const paginationClasses = classNames('pagination', className)
   let paginationComponent = (
     <ThemeProvider theme={theme}>
       <Component
         as={(tag as unknown) as undefined}
-        data-test="pagination"
+        data-test='pagination'
         colors={color}
         circle={circle}
         shape={shape}
@@ -48,39 +56,39 @@ const Pagination = (props: Props) => {
         {children}
       </Component>
     </ThemeProvider>
-  );
-  return paginationComponent;
-};
+  )
+  return paginationComponent
+}
 
 Pagination.propTypes = {
   children: PropTypes.node,
   circle: PropTypes.bool,
   className: PropTypes.string,
   colors: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "success",
-    "danger",
-    "warning",
-    "info",
-    "white",
-    "dark",
+    'primary',
+    'secondary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'white',
+    'dark'
   ]),
   size: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  sm: PropTypes.bool,
-};
+  sm: PropTypes.bool
+}
 
 Pagination.defaultProps = {
   circle: false,
-  className: "",
-  color: "dark",
-  colors: "dark",
-  tag: "ul",
-  shape: "",
-  size: "lg",
+  className: '',
+  color: 'dark',
+  colors: 'dark',
+  tag: 'ul',
+  shape: '',
+  size: 'lg',
   sm: false
-};
+}
 
-export default Pagination;
-export { Pagination as CDBPagination };
+export default Pagination
+export { Pagination as CDBPagination }

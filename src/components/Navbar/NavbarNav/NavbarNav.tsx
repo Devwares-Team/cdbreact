@@ -7,11 +7,11 @@ import { theme } from "../../../theme";
 
 
 interface Props{
-    children: React.ReactNode,
-    className: string,
-    left: boolean,
-    right: boolean,
-    tag: [string, Function]
+    children?: React.ReactNode,
+    className?: string,
+    left?: boolean,
+    right?: boolean,
+    tag?: [string, Function]
 }
 
 const NavbarNav = (props: Props) => {

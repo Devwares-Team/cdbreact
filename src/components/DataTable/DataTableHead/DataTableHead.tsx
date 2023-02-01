@@ -8,13 +8,13 @@ import { theme } from "../../../theme";
 
 interface Props {
   sorted: boolean,
-  color: string,
-  columns: any,
-  handleSort: Function,
-  scrollX: boolean,
-  scrollY: boolean,
-  sortable: boolean,
-  textWhite: boolean,
+  color?: string,
+  columns?: any,
+  handleSort?: Function,
+  scrollX?: boolean,
+  scrollY?: boolean,
+  sortable?: boolean,
+  textWhite?: boolean,
 }
 
 const DataTableHead = (props: Props) => {

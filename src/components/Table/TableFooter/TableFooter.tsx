@@ -5,10 +5,10 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props{
-  children: React.ReactNode,
-  color: string,
-  columns: any,
-  textWhite: boolean,
+  children?: React.ReactNode,
+  color?: string,
+  columns?: any,
+  textWhite?: boolean,
 }
 
 const TableFooter = (props: Props) => {

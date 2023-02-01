@@ -6,9 +6,9 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  children: React.ReactNode,
-  className: string,
-  fluid: boolean,
+  children?: React.ReactNode,
+  className?: string,
+  fluid?: boolean,
 }
 
 const Jumbotron = (props: Props) => {

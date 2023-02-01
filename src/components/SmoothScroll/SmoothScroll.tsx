@@ -6,14 +6,14 @@ import { theme } from "../../theme";
 import { Link } from "react-scroll";
 
 interface Props{
-  className: string,
-  to: string,
-  smooth: boolean,
-  spy: boolean,
-  offset: number,
-  duration: number,
-  activeClass: string,
-  children: React.ReactNode
+  className?: string,
+  to?: string,
+  smooth?: boolean,
+  spy?: boolean,
+  offset?: number,
+  duration?: number,
+  activeClass?: string,
+  children?: React.ReactNode
 }
 
 const SmoothScroll = (props : Props) => {

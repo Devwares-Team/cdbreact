@@ -6,13 +6,13 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  active: boolean,
-  children: React.ReactNode,
-  className: string,
-  disabled: boolean,
-  to: string,
-  onMouseUp: Function,
-  onTouchStart: Function,
+  active?: boolean,
+  children?: React.ReactNode,
+  className?: string,
+  disabled?: boolean,
+  to?: string,
+  onMouseUp?: Function,
+  onTouchStart?: Function,
 }
 
 const Link = (props: Props) => {

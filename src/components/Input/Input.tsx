@@ -10,27 +10,27 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from '../../theme'
 
 interface Props {
-  background: string
-  className: string
-  color: string
-  disabled: boolean
-  focused: boolean
-  fontSize: number
-  getValue: Function
-  placeholder: string
-  id: string
-  indeterminate: boolean
-  inputClassName: string
-  labelClassName: string
-  onBlur: Function
-  onChange: Function
-  onFocus: Function
-  onInput: Function
-  size: string
-  type: string
-  value: string
-  valueDefault: string
-  icon: React.ReactNode
+  background?: string
+  className?: string
+  color?: string
+  disabled?: boolean
+  focused?: boolean
+  fontSize?: number
+  getValue?: Function
+  placeholder?: string
+  id?: string
+  indeterminate?: boolean
+  inputClassName?: string
+  labelClassName?: string
+  onBlur?: Function
+  onChange?: Function
+  onFocus?: Function
+  onInput?: Function
+  size?: string
+  type?: string
+  value?: string
+  valueDefault?: string
+  icon?: React.ReactNode
 }
 
 const Input = (props: Props) => {

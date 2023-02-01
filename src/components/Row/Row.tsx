@@ -6,17 +6,17 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  around: boolean,
-  between: boolean,
-  bottom: boolean,
-  center: boolean,
-  className: string,
-  end: boolean,
-  middle: boolean,
-  start: boolean,
-  tag: [string, Function],
-  top: boolean,
-  children : React.ReactNode
+  around?: boolean,
+  between?: boolean,
+  bottom?: boolean,
+  center?: boolean,
+  className?: string,
+  end?: boolean,
+  middle?: boolean,
+  start?: boolean,
+  tag?: [string, Function],
+  top?: boolean,
+  children? : React.ReactNode
 }
 
 const Row = (props: Props) => {

@@ -6,11 +6,11 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  className: string,
-  fluid: boolean,
-  size: string,
-  tag: [Function, string],
-  children: React.ReactNode
+  className?: string,
+  fluid?: boolean,
+  size?: string,
+  tag?: [Function, string],
+  children?: React.ReactNode
 }
 
 const Container = (props : Props) => {

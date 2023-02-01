@@ -8,17 +8,17 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from '../../../theme'
 
 interface Props {
-  children: React.ReactNode
-  className: string
-  icon: string
-  iconSize: string
-  iconType: string
-  iconClassName: string
-  textFontSize: string
-  active: boolean
-  suffix: React.ReactNode
-  firstChild: number
-  popperArrow: number
+  children?: React.ReactNode
+  className?: string
+  icon?: string
+  iconSize?: string
+  iconType?: string
+  iconClassName?: string
+  textFontSize?: string
+  active?: boolean
+  suffix?: React.ReactNode
+  firstChild?: number
+  popperArrow?: number
 }
 
 const SidebarMenuItem = forwardRef<HTMLLIElement, Props>(
@@ -78,16 +78,16 @@ const SidebarMenuItem = forwardRef<HTMLLIElement, Props>(
 
 SidebarMenuItem.propTypes = {
   children: PropTypes.any, // PropTypes.node,
-  className: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  iconSize: PropTypes.string.isRequired,
-  iconClassName: PropTypes.string.isRequired,
-  iconType: PropTypes.string.isRequired,
-  active: PropTypes.bool.isRequired,
-  suffix: PropTypes.any, // PropTypes.node.isRequired,
-  firstChild: PropTypes.number.isRequired,
-  popperArrow: PropTypes.number.isRequired,
-  textFontSize: PropTypes.string.isRequired
+  className: PropTypes.string,
+  icon: PropTypes.string,
+  iconSize: PropTypes.string,
+  iconClassName: PropTypes.string,
+  iconType: PropTypes.string,
+  active: PropTypes.bool,
+  suffix: PropTypes.any, // PropTypes.node,
+  firstChild: PropTypes.number,
+  popperArrow: PropTypes.number,
+  textFontSize: PropTypes.string
 }
 
 SidebarMenuItem.defaultProps = {

@@ -6,12 +6,12 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props {
-  children: React.ReactNode,
-  className: string,
-  closeAriaLabel: string,
-  tag: any,
-  toggle: Function,
-  titleClass: any,
+  children?: React.ReactNode,
+  className?: string,
+  closeAriaLabel?: string,
+  tag?: any,
+  toggle?: Function,
+  titleClass?: any,
 
 
 }

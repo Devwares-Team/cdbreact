@@ -30,10 +30,10 @@ interface Props {
   tbodyTextWhite: boolean,
   theadColor: string,
   theadTextWhite: boolean,
-  children: React.ReactNode,
-  columns: any[],
-  noBottomColumns: boolean,
-  rows: any[],
+  children?: React.ReactNode,
+  columns?: any[],
+  noBottomColumns?: boolean,
+  rows?: any[],
 }
 
 const DataTableTable = (props: Props) => {

@@ -8,22 +8,21 @@ import { theme } from "../../theme";
 
 interface Props {
   src: string,
-  allowFullScreen: boolean,
-  className: string,
-  height: any,
-  id: string,
-  name: string,
-  onLoad: Function,
-  onMouseOut: Function,
-  onMouseOver: Function,
-  ratio: any,
-  sandbox: string,
-  iframe: any,
-  styles: object,
-  title: string,
-  width: any,
-  style: any,
-  iframeAttributes: any
+  allowFullScreen?: boolean,
+  className?: string,
+  height?: any,
+  id?: string,
+  name?: string,
+  onLoad?: Function,
+  onMouseOut?: Function,
+  onMouseOver?: Function,
+  ratio?: any,
+  sandbox?: string,
+  iframe?: any,
+  styles?: object,
+  title?: string,
+  width?: any,
+  style?: any,
 }
 
 const Iframe = (props: Props) => {
@@ -117,8 +116,8 @@ const Iframe = (props: Props) => {
     <ThemeProvider theme={theme}>
       <Component data-test="iframe" className={wrapperClasses} {...attributes}>
         <iframe
-          {...iframeAttributes}
           {...props}
+          {...iframeAttributes}
           title={title}
           className={classes}
           ratio={ratio}

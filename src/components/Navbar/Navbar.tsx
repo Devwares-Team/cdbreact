@@ -6,18 +6,18 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-    className: string,
-    color: string,
-    dark: boolean,
-    double: boolean,
-    expand: boolean| string,
-    fixed: string,
-    light: boolean,
-    scrolling: boolean,
-    scrollingNavbarOffset: number,
-    sticky: string,
-    tag: [Function, string],
-    transparent: boolean
+    className?: string,
+    color?: string,
+    dark?: boolean,
+    double?: boolean,
+    expand?: boolean| string,
+    fixed?: string,
+    light?: boolean,
+    scrolling?: boolean,
+    scrollingNavbarOffset?: number,
+    sticky?: string,
+    tag?: [Function, string],
+    transparent?: boolean
 }
 
 const Navbar = (props: Props) => {

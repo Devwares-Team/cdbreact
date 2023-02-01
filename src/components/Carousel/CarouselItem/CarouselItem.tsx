@@ -6,11 +6,11 @@ import { theme } from "../../../theme";
 import { CarouselContext } from "../Carousel";
 
 interface Props {
-  active: boolean,
-  children: React.ReactNode,
-  className: string,
-  itemId: string | number,
-  tag: any,
+  active?: boolean,
+  children?: React.ReactNode,
+  className?: string,
+  itemId?: string | number,
+  tag?: any,
 }
 
 const CarouselItem = (props: Props) => {

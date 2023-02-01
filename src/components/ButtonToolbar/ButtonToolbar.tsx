@@ -6,9 +6,9 @@ import { theme } from "../../theme";
 
 
 interface Props{
-  children: React.ReactNode,
-  className: string,
-  role: string
+  children?: React.ReactNode,
+  className?: string,
+  role?: string
 }
 
 const ButtonToolbar = (props : Props) => {

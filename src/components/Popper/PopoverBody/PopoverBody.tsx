@@ -5,10 +5,9 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props{
-  tag: any
-  children: React.ReactNode,
-  className: string,
-  Tag: any
+  tag?: any
+  children?: React.ReactNode,
+  className?: string,
 }
 
 const PopoverBody = (props: Props) => {

@@ -8,22 +8,22 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props {
-  className: string,
-  color: string
-  disabled: [Function, any]
-  dropleft: boolean,
-  dropright: boolean,
-  dropup: boolean,
-  dropdown: boolean,
-  position: string,
-  children: React.ReactNode,
-  caret: boolean,
-  size: string,
-  nav: boolean,
-  tag: [Function, string],
-  onClick: Function,
-  isOpen: Function,
-  circle: boolean
+  className?: string,
+  color?: string
+  disabled?: [Function, any]
+  dropleft?: boolean,
+  dropright?: boolean,
+  dropup?: boolean,
+  dropdown?: boolean,
+  position?: string,
+  children?: React.ReactNode,
+  caret?: boolean,
+  size?: string,
+  nav?: boolean,
+  tag?: [Function, string],
+  onClick?: Function,
+  isOpen?: Function,
+  circle?: boolean
 }
 
 const DropdownToggle = (props: Props) => {

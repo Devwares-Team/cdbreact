@@ -5,11 +5,11 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props{
-  children: React.ReactNode,
-  color: string,
-  rows: any,
-  columns: any
-  textWhite: boolean,
+  children?: React.ReactNode,
+  color?: string,
+  rows?: any,
+  columns?: any
+  textWhite?: boolean,
 }
 
 const TableBody = (props:Props) => {

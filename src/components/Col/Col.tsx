@@ -6,18 +6,18 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  bottom: boolean,
-  className: string,
-  lg: string,
-  md: string,
-  middle: boolean,
-  size: string,
-  sm: string,
-  tag: [Function, string],
-  top: boolean,
-  xl: string,
-  xs: string,
-  children : React.ReactNode
+  bottom?: boolean,
+  className?: string,
+  lg?: string,
+  md?: string,
+  middle?: boolean,
+  size?: string,
+  sm?: string,
+  tag?: [Function, string],
+  top?: boolean,
+  xl?: string,
+  xs?: string,
+  children? : React.ReactNode
 }
 
 const Col = (props: Props) => {

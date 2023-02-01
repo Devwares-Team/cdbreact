@@ -7,24 +7,24 @@ import { theme } from '../../theme'
 import PropTypes from 'prop-types'
 
 interface Props {
-  containerClassName: string
-  type: string,
-  CDBBtn: any,
-  CDBPopoverBody: any,
-  data: any
-  CDBPopoverHeader: any,
-  feedback: boolean
-  fillClassName: string
-  fillColors: [boolean, string]
-  getValue: Function
-  iconClassName: string
-  iconFaces: boolean
-  iconRegular: boolean
-  iconSize: string
-  submitHandler: Function
-  tag: any
-  tooltip: any
-  choosed: any
+  containerClassName?: string
+  type?: string,
+  CDBBtn?: any,
+  CDBPopoverBody?: any,
+  data?: any
+  CDBPopoverHeader?: any,
+  feedback?: boolean
+  fillClassName?: string
+  fillColors?: [boolean, string]
+  getValue?: Function
+  iconClassName?: string
+  iconFaces?: boolean
+  iconRegular?: boolean
+  iconSize?: string
+  submitHandler?: Function
+  tag?: any
+  tooltip?: any
+  choosed?: any
 }
 
 const Rating = (props: Props) => {

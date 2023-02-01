@@ -7,16 +7,16 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props{
-  active: boolean,
-  children: React.ReactNode,
-  className: string,
-  color: string
-  disabled: boolean,
-  hover: boolean,
-  info: any,
-  to: string,
-  href: any;
-  tag: [Function, string],
+  active?: boolean,
+  children?: React.ReactNode,
+  className?: string,
+  color?: string
+  disabled?: boolean,
+  hover?: boolean,
+  info?: any,
+  to?: string,
+  href?: any;
+  tag?: [Function, string],
 }
 
 const ListGroupItem = (props: Props) => {

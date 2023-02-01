@@ -6,8 +6,8 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props{
-    className: string,
-    href: string
+    className?: string,
+    href?: string
 }
 
 const NavBrand = (props: Props) => {

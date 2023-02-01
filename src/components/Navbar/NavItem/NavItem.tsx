@@ -6,11 +6,11 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props{
-    active: boolean,
-    children: React.ReactNode,
-    className: string,
-    tag: [Function, string]
-    text: any
+    active?: boolean,
+    children?: React.ReactNode,
+    className?: string,
+    tag?: [Function, string]
+    text?: any
 }
 
 const NavItem = (props: Props) => {

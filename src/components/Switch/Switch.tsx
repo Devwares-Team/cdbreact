@@ -6,9 +6,9 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from '../../theme'
 
 interface Props{
-  checked: boolean,
-  tag: string,
-  className: string
+  checked?: boolean,
+  tag?: string,
+  className?: string
 }
 
 const Switch = (props: Props) => {

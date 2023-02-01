@@ -6,6 +6,21 @@ import { Tag } from './Popper.style'
 import { ThemeProvider } from 'styled-components'
 import { theme } from '../../theme'
 
+interface Props {
+  children: React.ReactNode,
+  clickable: boolean,
+  domElement: boolean,
+  email: boolean,
+  id: string,
+  isVisible: boolean,
+  material: boolean,
+  modifiers: object,
+  placement: string,
+  popover: boolean,
+  sm: boolean,
+  style: any,
+  tag: string,
+}
 const Popover = (props) => {
   const {
     children,

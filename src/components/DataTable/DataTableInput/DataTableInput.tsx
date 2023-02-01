@@ -6,11 +6,11 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props {
-  barReverse: boolean,
-  label: string,
-  materialSearch: boolean,
-  onChange: Function,
-  value: string,
+  barReverse?: boolean,
+  label?: string,
+  materialSearch?: boolean,
+  onChange?: Function,
+  value?: string,
 
 }
 

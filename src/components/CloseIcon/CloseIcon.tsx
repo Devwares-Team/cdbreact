@@ -5,9 +5,9 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  ariaLabel: string,
-  className: string,
-  onClick: Function,
+  ariaLabel?: string,
+  className?: string,
+  onClick?: Function,
 }
 
 export const CloseIcon = (props: Props) => {

@@ -6,11 +6,11 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  children: React.ReactNode,
-  className: string,
-  overlay: string,
-  pattern: [string, number],
-  tag: string,
+  children?: React.ReactNode,
+  className?: string,
+  overlay?: string,
+  pattern?: [string, number],
+  tag?: string,
 }
 
 const Mask = (props: Props) => {

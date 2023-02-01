@@ -30,12 +30,12 @@ interface Props {
   theadColor: string
   theadTextWhite: boolean
   translateScrollHead: number
-  children: React.ReactNode
-  columns: any
-  maxHeight: string
-  rows: any
-  scrollX: boolean
-  scrollY: boolean
+  children?: React.ReactNode
+  columns?: any
+  maxHeight?: string
+  rows?: any
+  scrollX?: boolean
+  scrollY?: boolean
 }
 
 const DataTableTableScroll = (props: Props) => {

@@ -1,23 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { ThemeProvider } from "styled-components";
-import { theme } from "../../../theme";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { ThemeProvider } from 'styled-components'
+import { theme } from '../../../theme'
 
-interface Props{
-  entries: any,
-
-  onChange: any,
-  value: number
- 
-  label : any
-
+interface Props {
+  entries?: any
+  onChange?: any
+  value?: number
+  label?: any
 }
 
-const DataTableSelect = (props: Props ) => {
-  let {value, onChange, entries, label,}=props
-  const getValue = e => {
-    const value = parseInt(e.target.value, 10);
-    onChange(value);
+const DataTableSelect = (props: Props) => {
+  let { value, onChange, entries, label } = props
+  const getValue = (e) => {
+    const value = parseInt(e.target.value, 10)
+    onChange(value)
   }
 
   return (
@@ -31,7 +28,7 @@ const DataTableSelect = (props: Props ) => {
             className='custom-select custom-select-sm form-control form-control-sm'
             style={{ marginLeft: '.5rem' }}
           >
-            {entries.map(entry => (
+            {entries.map((entry) => (
               <option key={entry} value={entry}>
                 {entry}
               </option>
@@ -40,15 +37,19 @@ const DataTableSelect = (props: Props ) => {
         </label>
       </div>
     </ThemeProvider>
-  );
-};
+  )
+}
 
 DataTableSelect.propTypes = {
   entries: PropTypes.arrayOf(PropTypes.number).isRequired,
-  label: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]).isRequired,
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object
+  ]).isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.number.isRequired
-};
+}
 
-export default DataTableSelect;
-export { DataTableSelect as MDBDataTableSelect };
+export default DataTableSelect
+export { DataTableSelect as MDBDataTableSelect }

@@ -14,8 +14,8 @@ interface Props {
   label: string,
   pages: any,
   pagesAmount: number
-  className: string,
-  children: React.ReactNode,
+  className?: string,
+  children?: React.ReactNode,
 }
 
 const DataTablePagination = (props: Props) => {
@@ -129,7 +129,9 @@ DataTablePagination.propTypes = {
   changeActivePage: PropTypes.func.isRequired,
   label: PropTypes.arrayOf(PropTypes.string).isRequired,
   pages: PropTypes.array.isRequired,
-  pagesAmount: PropTypes.number.isRequired
+  pagesAmount: PropTypes.number.isRequired,
+  className : PropTypes.string,
+  children: PropTypes.node
 };
 
 DataTablePagination.defaultProps = {

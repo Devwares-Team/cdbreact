@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colorStyle } from "styled-system";
 
 interface Props {
-  colors: string
+  colors?: string
 }
 
 export const Component = styled.div<Props>`

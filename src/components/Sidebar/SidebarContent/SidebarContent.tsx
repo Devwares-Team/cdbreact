@@ -8,8 +8,8 @@ import { theme } from "../../../theme";
 
 
 interface Props  {
-  children: React.ReactNode,
-    className: string,
+  children?: React.ReactNode,
+    className?: string,
   
 }
 
@@ -62,7 +62,7 @@ const SidebarContent = forwardRef<HTMLDivElement, Props>((props, ref) => {
 });
 
 SidebarContent.propTypes = {
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   children: PropTypes.any, // PropTypes.node
 }
 

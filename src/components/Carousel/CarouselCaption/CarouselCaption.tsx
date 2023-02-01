@@ -6,10 +6,10 @@ import { theme } from "../../../theme";
 
 
 interface Props{
-  children: React.ReactNode,
-  className: string,
-  tag: [Function, string],
-  as:any
+  children?: React.ReactNode,
+  className?: string,
+  tag?: [Function, string],
+  as?:any
  
 }
 

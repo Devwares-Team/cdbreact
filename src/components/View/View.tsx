@@ -6,14 +6,14 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  children: React.ReactNode,
-  className: string,
-  fixed: boolean,
-  hover: boolean,
-  rounded: boolean,
-  src: string,
-  tag: string,
-  waves: any,
+  children?: React.ReactNode,
+  className?: string,
+  fixed?: boolean,
+  hover?: boolean,
+  rounded?: boolean,
+  src?: string,
+  tag?: string,
+  waves?: any,
 }
 
 const View = (props: Props) => {

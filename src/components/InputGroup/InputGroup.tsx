@@ -7,36 +7,36 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from '../../theme'
 
 interface Props{
-  append: [React.ReactNode, string],
-  appendClassNames: string,
-  ariaLabel: string,
-  background: boolean,
-  children: React.ReactNode,
-  className: string,
-  containerClassName: string,
-  containerId: string,
-  getValue: Function,
-  hint: string,
-  id: string,
-  inputs: React.ReactNode,
-  label: string,
-  labelClassName: string,
-  material: boolean,
-  onChange: Function,
-  onIconClick: Function,
-  prepend: any,
-  prependClassName: string,
-  size: string,
-  tag ?: [string, Function],
-  textClassName: string,
-  type: any,
-  value: string,
-  valueDefault: string
-  appendClassName: any,
-  icon: any,
+  append?: [React.ReactNode, string],
+  appendClassNames?: string,
+  ariaLabel?: string,
+  background?: boolean,
+  children?: React.ReactNode,
+  className?: string,
+  containerClassName?: string,
+  containerId?: string,
+  getValue?: Function,
+  hint?: string,
+  id?: string,
+  inputs?: React.ReactNode,
+  label?: string,
+  labelClassName?: string,
+  material?: boolean,
+  onChange?: Function,
+  onIconClick?: Function,
+  prepend?: any,
+  prependClassName?: string,
+  size?: string,
+  tag?: [string, Function],
+  textClassName?: string,
+  type?: any,
+  value?: string,
+  valueDefault?: string
+  appendClassName?: any,
+  icon?: any,
   as ?: any,
-  notag: any
-  div: any
+  notag?: any
+  div?: any
 }
 
 const InputGroup = (props: Props) => {

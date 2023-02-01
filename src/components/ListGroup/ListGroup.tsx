@@ -8,7 +8,7 @@ import { theme } from "../../theme";
 interface Props {
   children?: React.ReactNode,
   className?: string,
-  tag: Function | string,
+  tag?: Function | string,
 }
 
 const ListGroup = (props: Props) => {

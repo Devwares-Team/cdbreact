@@ -9,20 +9,20 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from './../../theme'
 
 interface Props {
-  length: number
-  activeItem: number
-  children: React.ReactNode
-  className: string
-  interval: [number, boolean]
-  mobileGesture: boolean
-  multiItem: boolean
-  onHoverStop: boolean
-  showControls: boolean
-  showIndicators: boolean
-  slide: boolean
-  tag: string
-  testimonial: boolean
-  thumbnails: boolean
+  length?: number
+  activeItem?: number
+  children?: React.ReactNode
+  className?: string
+  interval?: [number, boolean]
+  mobileGesture?: boolean
+  multiItem?: boolean
+  onHoverStop?: boolean
+  showControls?: boolean
+  showIndicators?: boolean
+  slide?: boolean
+  tag?: string
+  testimonial?: boolean
+  thumbnails?: boolean
 }
 
 export type CarouselContextType ={

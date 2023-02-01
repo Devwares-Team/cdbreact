@@ -9,11 +9,11 @@ interface Props {
   handleSearchChange: any,
   search: string,
   searching: boolean,
-  barReverse: boolean,
-  label: string,
-  materialSearch: boolean
-  wrapperSearchStyle: any,
-  wrapperSearchClasses: string,
+  barReverse?: boolean,
+  label?: string,
+  materialSearch?: boolean
+  wrapperSearchStyle?: any,
+  wrapperSearchClasses?: string,
   onChange?: any,
 
 }

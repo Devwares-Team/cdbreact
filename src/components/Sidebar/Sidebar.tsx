@@ -11,11 +11,11 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from '../../theme'
 
 export type SidebarContextType = {
-  toggled: boolean
-  handleToggleSidebar: (val: boolean) => void,
-  textColor: string,
-  backgroundColor: string,
-  breakpoint: number
+  toggled?: boolean
+  handleToggleSidebar?: (val: boolean) => void,
+  textColor?: string,
+  backgroundColor?: string,
+  breakpoint?: number
 }
 
 export const SidebarContext = createContext<SidebarContextType>({
@@ -93,12 +93,12 @@ const Sidebar = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
 
 Sidebar.propTypes = {
-    className: PropTypes.string.isRequired,
-    children: PropTypes.any, // PropTypes.node.isRequired,
-    textColor: PropTypes.string.isRequired,
-    backgroundColor: PropTypes.string.isRequired,
-    breakpoint: PropTypes.number.isRequired,
-    toggled: PropTypes.bool.isRequired
+    className: PropTypes.string,
+    children: PropTypes.any, // PropTypes.node,
+    textColor: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    breakpoint: PropTypes.number,
+    toggled: PropTypes.bool
   }
 
 Sidebar.defaultProps = {

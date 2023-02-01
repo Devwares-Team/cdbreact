@@ -5,11 +5,11 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  className: string,
-  color: string,
-  id: string,
-  isOpen : boolean,
-  onClick : any
+  className?: string,
+  color?: string,
+  id?: string,
+  isOpen? : boolean,
+  onClick? : any
 }
 
 const HamburgerToggler = (props : Props) => {

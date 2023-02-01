@@ -8,13 +8,13 @@ import { theme } from '../../theme'
 interface Props {
   direction: string,
   currentStepNumber: number,
-  steps: [any],
-  stepSize: number,
-  mainColor: string,
-  goTo: Function,
-  showTooltip: boolean,
-  showTitle: boolean
-  children: any
+  steps: any[],
+  stepSize?: number,
+  mainColor?: string,
+  goTo?: Function,
+  showTooltip?: boolean,
+  showTitle?: boolean
+  children?: any
 }
 
 export const StepperContext = createContext<any>({})

@@ -6,13 +6,13 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props{
-    children: React.ReactNode,
-    className: string,
-    image: string,
-    left: boolean,
-    right: boolean,
-    tag: [Function, string],
-    type: "reset" | "submit" | "button"
+    children?: React.ReactNode,
+    className?: string,
+    image?: string,
+    left?: boolean,
+    right?: boolean,
+    tag?: [Function, string],
+    type?: "reset" | "submit" | "button"
 }
 
 const NavToggle = (props: Props) => {

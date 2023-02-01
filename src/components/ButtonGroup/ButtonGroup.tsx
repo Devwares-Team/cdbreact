@@ -7,11 +7,11 @@ import { theme } from "../../theme";
 
 interface Props{
  
-  children: React.ReactNode,
-  className: string,
-  role: string,
-  size: string,
-  vertical: boolean,
+  children?: React.ReactNode,
+  className?: string,
+  role?: string,
+  size?: string,
+  vertical?: boolean,
   
 }
 

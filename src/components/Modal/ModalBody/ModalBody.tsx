@@ -6,8 +6,8 @@ import { theme } from "../../../theme";
 
 
 interface Props {
-  children: React.ReactNode,
-  className: string
+ children?: React.ReactNode,
+ className?: string
 }
 
 const ModalBody = (props: Props) => {

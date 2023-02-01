@@ -5,11 +5,11 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props{
-  active: boolean,
-  children: React.ReactNode,
-  className: string,
-  tag: any,
-  childrenCount: any
+  active?: boolean,
+  children?: React.ReactNode,
+  className?: string,
+  tag?: any,
+  childrenCount?: any
 }
 
 const CarouselInner = (props: Props) => {
