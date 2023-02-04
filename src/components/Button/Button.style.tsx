@@ -3,8 +3,8 @@ import { variant } from 'styled-system'
 import colors from '../../theme/colors'
 import tinycolor from 'tinycolor2'
 
-
 export const Component = styled.div<any>`
+  border: none;
   box-shadow: ${(props) =>
     props.flat
       ? 'none'
@@ -20,7 +20,7 @@ export const Component = styled.div<any>`
       background: ${colors[`${bg}`]};
       color: #fff;
       &:hover {
-        ${({ bg }:any) =>
+        ${({ bg }: any) =>
           bg &&
           css`
             transform: scale(1.02);
@@ -63,7 +63,7 @@ export const Component = styled.div<any>`
     props.outline === true &&
     css`
       background: transparent;
-      ${({ bg } :any) =>
+      ${({ bg }: any) =>
         bg &&
         css`
           border: 2px solid ${colors[`${bg}`]};
@@ -72,7 +72,7 @@ export const Component = styled.div<any>`
       border-width: 2px;
       &:hover {
         background: transparent;
-        ${({ bg }:any) =>
+        ${({ bg }: any) =>
           bg &&
           css`
             border: 2.4px solid ${colors[`${bg}`]};

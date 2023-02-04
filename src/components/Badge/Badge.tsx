@@ -6,7 +6,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props {
-  children: React.ReactNode,
+  children?: React.ReactNode,
   className ?: string,
   flat ?: boolean,
   size ?: string,
@@ -14,8 +14,8 @@ interface Props {
   color ?: string,
   tag ?: string,
   icon ?: any;
-  intensity ?: any,
-  
+  intensity ?: string | number,
+  style?:  React.CSSProperties | any
 }
 
 const Badge = (props: Props) => {
@@ -33,14 +33,14 @@ const Badge = (props: Props) => {
     ...attributes
   } = props;
   const badgeClasses = classNames(className);
-  // const color = `${color}${intensity.toString()}`;
+  const _color = `${color}${intensity.toString()}`;
   const badgeComponent = (
     <ThemeProvider theme={theme}>
       <Component
         className={badgeClasses}
         role="badge"
         as={(tag as unknown) as undefined}
-        bg={color}
+        bg={_color}
         borderType={borderType}
         size={size}
         flat={flat}
@@ -63,7 +63,7 @@ const Badge = (props: Props) => {
 Badge.defaultProps = {
   tag: "span",
   color: "primary",
-  borderType: "pill",
+  borderType: "",
   size: "medium",
   intensity: "900",
 };
@@ -76,7 +76,7 @@ Badge.propTypes = {
   borderType: PropTypes.string,
   color: PropTypes.string,
   tag: PropTypes.string,
-  intensity: PropTypes.oneOf([50, 100, 200, 300, 400, 500, 600, 700, 800, 900]),
+  intensity: PropTypes.oneOfType([PropTypes.oneOf([50, 100, 200, 300, 400, 500, 600, 700, 800, 900]), PropTypes.string])
 };
 
 export default Badge;

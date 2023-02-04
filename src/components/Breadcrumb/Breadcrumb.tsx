@@ -8,22 +8,23 @@ import { theme } from "../../theme";
 
 interface Props{
   bold ?: boolean,
-  children ?: [any, React.ReactNode],
+  children ?: React.ReactNode,
   className ?: string,
   light ?: boolean,
   uppercase ?:boolean,
-  
+  style?: React.CSSProperties,
+  color?: "primary" |"secondary" | "success" | "danger" | "warning" | "info" | "light"| "dark" | "none"
 }
 
 const Breadcrumb = (props: Props) => {
-  const { className,  light, uppercase, bold, ...attributes } = props;
+  const { className,  bold, color = "primary", ...attributes } = props;
 
   const classes = classNames("breadcrumb", className);
 
   let children;
 
   if (bold) {
-    children = Children.map(props.children, (child) => {
+    children = props.children && Children.map(props.children, (child : any) => {
       return React.cloneElement(child, {
         bold: true,
       });
@@ -35,7 +36,7 @@ const Breadcrumb = (props: Props) => {
   let breadcrumbComponent = (
     <ThemeProvider theme={theme}>
       <nav data-test="breadcrumb">
-        <Component {...attributes} className={classes}>
+        <Component {...attributes} className={classes} colors={color}>
           {children}
         </Component>
       </nav>

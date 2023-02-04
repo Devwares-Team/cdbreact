@@ -22,10 +22,11 @@ interface Props {
   tag?: string,
   target?: string,
   type?: string,
-  gradient?: [any, string, boolean],
-  outline?: [any, boolean],
-  rounded?: [any],
-  href?: string
+  gradient?: boolean | string | any,
+  outline?: boolean,
+  rounded?: boolean | any,
+  href?: string,
+  style?: React.CSSProperties
 }
 
 const Button = (props: Props) => {
@@ -50,7 +51,7 @@ const Button = (props: Props) => {
     tag,
     target,
     type,
-
+    style,
     ...attributes
   } = props
 
@@ -94,6 +95,7 @@ const Button = (props: Props) => {
       disabled={disabled}
       outline={outline}
       bg={color}
+      style={style}
     >
       {children}
     </Component>
@@ -126,7 +128,8 @@ Button.propTypes = {
   social: PropTypes.string,
   tag: PropTypes.string,
   target: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string,
+  outline: PropTypes.bool
 }
 
 export default Button

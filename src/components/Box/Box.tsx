@@ -5,35 +5,34 @@ import { Component } from "./Box.style";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
-
-interface Props{
-  alignContent ?: string,
-  alignItems ?: string,
-  alignSelf ?: string,
-  bgColor ?: string,
-  children ?: React.ReactNode,
-  className ?: string,
-  color ?: string,
-  display ?: string,
-  flex ?: string,
-  justifyContent ?: string,
-  m ?: [number, string],
-  mb?: [number, string],
-  ml?: [number, string],
-  mr?: [number, string],
-  mt?: [number, string],
-  mx?: [number, string],
-  my?: [number, string],
-  p?: [number, string],
-  pb?: [number, string],
-  pl?: [number, string],
-  pr?: [number, string],
-  pt?: [number, string],
-  px?: [number, string],
-  py?: [number, string],
-  tag: string,
-  space ?: [number, string]
-
+interface Props {
+  alignContent?: string;
+  alignItems?: string;
+  alignSelf?: string;
+  bgColor?: string;
+  children?: React.ReactNode;
+  className?: string;
+  color?: string;
+  display?: string;
+  flex?: string;
+  justifyContent?: string;
+  m?: number | string;
+  mb?: number | string;
+  ml?: number | string;
+  mr?: number | string;
+  mt?: number | string;
+  mx?: number | string;
+  my?: number | string;
+  p?: number | string;
+  pb?: number | string;
+  pl?: number | string;
+  pr?: number | string;
+  pt?: number | string;
+  px?: number | string;
+  py?: number | string;
+  tag: string;
+  space?: number | string;
+  style?: React.CSSProperties
 }
 
 const Box = (props: Props) => {
@@ -64,10 +63,14 @@ const Box = (props: Props) => {
     pl,
     px,
     py,
+    style,
     ...attributes
   } = props;
 
-  const marginOrPadding = (props, suffix) => {
+  const marginOrPadding = (
+    props: number | string | undefined,
+    suffix: string
+  ) => {
     if (props !== undefined) {
       return `${suffix}-${props}`;
     }
@@ -103,12 +106,13 @@ const Box = (props: Props) => {
   return (
     <ThemeProvider theme={theme}>
       <Component
-        as={(tag as unknown) as undefined}
+        as={tag as unknown as undefined}
         data-test="box"
         {...attributes}
         className={isEmptyClass}
         color={color}
         space={space}
+        style={style}
       >
         {children}
       </Component>
