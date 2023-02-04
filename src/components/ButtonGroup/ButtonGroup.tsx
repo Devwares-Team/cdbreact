@@ -12,7 +12,7 @@ interface Props{
   role?: string,
   size?: string,
   vertical?: boolean,
-  
+  style? : React.CSSProperties
 }
 
 
@@ -22,6 +22,7 @@ const ButtonGroup = (props : Props) => {
   vertical,
   children,
   role,
+  style,
   ...attributes
 } = props 
 
@@ -33,7 +34,7 @@ const ButtonGroup = (props : Props) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Component role="group" {...attributes} className={classes}>
+      <Component role="group" {...attributes} className={classes} style={style}>
         {children}
       </Component>
     </ThemeProvider>

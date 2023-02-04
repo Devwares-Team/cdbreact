@@ -16,7 +16,8 @@ interface Props{
   info?: any,
   to?: string,
   href?: any;
-  tag?: [Function, string],
+  tag?: Function | string,
+  style?: React.CSSProperties
 }
 
 const ListGroupItem = (props: Props) => {

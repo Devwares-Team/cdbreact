@@ -10,6 +10,8 @@ interface Props{
   color?: string,
   tag?: string,
   border?: boolean,
+  style?: React.CSSProperties
+  children?: React.ReactNode
 }
 
 const Card = (props: Props) => {
@@ -35,6 +37,7 @@ Card.propTypes = {
   color: PropTypes.string,
   tag: PropTypes.string,
   border: PropTypes.bool,
+  children: PropTypes.node
 };
 
 Card.defaultProps = {

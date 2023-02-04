@@ -9,17 +9,18 @@ import { theme } from "../../../theme";
 interface Props{
     cascade?: boolean,
     className?: string,
-    tag?: [Function, string]
+    tag?: string | Function
+    style?: React.CSSProperties
 }
 
 const CardBody = (props: Props) => {
-    const { className, tag, cascade, ...attributes } = props;
+    const { className, tag, cascade, style, ...attributes } = props;
 
     const classes = classNames('card-body', cascade && 'card-body-cascade', className);
 
     return (
 	    <ThemeProvider theme={theme}>
-	    	<Component data-test='card-body' as={(tag as unknown) as undefined} {...attributes} className={classes} />
+	    	<Component data-test='card-body' as={(tag as unknown) as undefined} style={style} {...attributes} className={classes} />
 	    </ThemeProvider>
    	);
 };

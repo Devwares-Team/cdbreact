@@ -8,9 +8,10 @@ import {
 } from './Input.style'
 import { ThemeProvider } from 'styled-components'
 import { theme } from '../../theme'
+import { CDBIcon } from '../Icon/Icon'
 
 interface Props {
-  background?: string
+  background?: boolean
   className?: string
   color?: string
   disabled?: boolean
@@ -31,6 +32,7 @@ interface Props {
   value?: string
   valueDefault?: string
   icon?: React.ReactNode
+  checked?: boolean
 }
 
 const Input = (props: Props) => {
@@ -47,7 +49,6 @@ const Input = (props: Props) => {
     indeterminate,
     inputClassName,
     labelClassName,
-
     onBlur,
     onChange,
     onFocus,
@@ -57,6 +58,7 @@ const Input = (props: Props) => {
     type,
     value,
     valueDefault,
+    checked, 
     ...attributes
   } = props
 
@@ -128,7 +130,9 @@ const Input = (props: Props) => {
     return (
       <ThemeProvider theme={theme}>
         <StyledComponent className={classes} fontSize={fontSize}>
-          {icon && <span className='icon'>{icon}</span>}
+          {icon && <span className='icon'>{
+            typeof icon === 'string' ? <CDBIcon icon={icon}/> : icon
+          }</span>}
           {type === 'textarea' ? (
             <StyledTextArea
               // fontSize={fontSize}
@@ -154,6 +158,7 @@ const Input = (props: Props) => {
               onChange={handleChange}
               onInput={handleInput}
               onFocus={handleFocus}
+              checked={checked}
               {...attributes}
               className={inputClassName}
               id={id}
@@ -161,6 +166,7 @@ const Input = (props: Props) => {
               placeholder={placeholder}
               value={innerValue}
               aria-disabled={disabled}
+              disabled={disabled}
             />
           )}
 
@@ -180,7 +186,7 @@ const Input = (props: Props) => {
 
 Input.propTypes = {
   icon: PropTypes.node,
-  background: PropTypes.string, // has background
+  background: PropTypes.bool, // has background
   className: PropTypes.string, // string: classess of input-container
   color: PropTypes.string, // color value of input
   disabled: PropTypes.bool, // bool: disabled state of input
@@ -199,20 +205,21 @@ Input.propTypes = {
   size: PropTypes.string,
   type: PropTypes.string, // string: input type
   value: PropTypes.string, // string: initial value of input
-  valueDefault: PropTypes.string
+  valueDefault: PropTypes.string,
+  checked: PropTypes.bool
 }
 
 Input.defaultProps = {
   valueDefault: '',
-  background: PropTypes.string,
+  background: false,
   className: '',
   color: 'dark',
   disabled: false,
   focused: false,
   fontSize: 14,
-  placeholder: PropTypes.string,
-  id: PropTypes.string,
-  indeterminate: PropTypes.bool,
+  placeholder: '',
+  id: Date.now().toString(),
+  indeterminate: false,
   inputClassName: '',
   labelClassName: '',
   type: 'text',
@@ -222,7 +229,7 @@ Input.defaultProps = {
   onFocus: () => {},
   onInput: () => {},
   size: '',
-  icon: null
+  icon: null,
 }
 
 export default Input
