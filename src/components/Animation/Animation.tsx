@@ -1,4 +1,4 @@
-import React, { useState, createRef, useCallback } from "react";
+import React, { useState, createRef, useCallback, CSSProperties } from "react";
 import useDeepCompareEffect from "use-deep-compare-effect";
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -7,24 +7,23 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  className: string,
+  className?: string,
   count?: number,
   delay?: string,
-  duration?: [string, number],
+  duration?: string | number,
   infinite?: boolean,
   onAnimationEnd?: Function,
   onAnimationIteration?: Function,
   onAnimationStart?: Function,
   reveal?: boolean,
-  style?: React.ReactNode,
-  tag ?: [Function, string],
+  style?: CSSProperties | any,
+  tag ?: Function | string,
   type ?: string,
   elemRef ?: Function,
   countIterations ?: any, 
   children ? : React.ReactNode,
   clientHeight ?: number,
   currentRef ?: any, 
-  
 }
 
 const Animation = (props: Props) => {

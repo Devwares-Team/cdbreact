@@ -14,6 +14,7 @@ interface Props {
   hideIcon ?: boolean,
   tag ?: string,
   data : any[],
+  style?: React.CSSProperties
 }
 
 const Accordion = (props: Props) => {

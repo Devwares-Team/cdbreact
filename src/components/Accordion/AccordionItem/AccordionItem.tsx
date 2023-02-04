@@ -11,11 +11,12 @@ interface Props {
   onClick ?: Function,
   title ?: any;
   content ?: any,
+  style?:  React.CSSProperties
 }
 
 const AccordionItem = (props: Props) => {
   const [opened, setOpened] = useState(false);
-  const { title, content } = props;
+  const { title, content, style } = props;
   const accordionItemClassName = classNames(
     "accordion",
     opened ? "accordion-item--opened" : false
@@ -29,6 +30,7 @@ const AccordionItem = (props: Props) => {
       <Component
         className={accordionItemClassName}
         onClick={handleAccordionToggle}
+        style={style}
       >
         <div className="accordion-item__line">
           <h3 className="accordion-item__title">{title}</h3>

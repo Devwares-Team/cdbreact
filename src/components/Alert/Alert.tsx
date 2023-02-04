@@ -6,25 +6,25 @@ import { theme } from "../../theme";
 import { Component, Button } from "./Alert.style";
 
 
-enum colors {
-  primary ="primary",
-  secondary = "secondary",
- success =  "success",
-  danger = "danger",
- warning = "warning",
- info =  "info",
- dark =  "dark",
-  light = "light"
-}
+type colors ="primary"|
+   "secondary"|
+   "success"|
+   "danger"|
+  "warning"|
+   "info"|
+   "dark"|
+   "light"
+
 
  interface Props{
   className ?: string,
-  color ?: colors,
+  color?:  colors,
   onClose ?: Function,
   onClosed ?: Function,
   tag ?: string,
   children ?: React.ReactNode,
-  dismiss ?: Function
+  dismiss ?: boolean
+  style?: React.CSSProperties
  }
 
 
@@ -74,6 +74,7 @@ Alert.propTypes = {
   onClose: PropTypes.func,
   onClosed: PropTypes.func,
   tag: PropTypes.string,
+  dismiss: PropTypes.bool
 };
 
 export default Alert;
