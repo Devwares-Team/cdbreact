@@ -38,8 +38,6 @@ export const Component = styled.div<Props>`
   }
   & {
     position: relative;
-    margin-top: 0.625rem;
-    margin-bottom: 0.625rem;
   }
   & {
     input:not([type='checkbox']):not([type='radio']),

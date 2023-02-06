@@ -8,18 +8,19 @@ import { theme } from "../../theme";
 interface Props{
   children?: React.ReactNode,
   className?: string,
-  role?: string
+  role?: string,
+  style?: React.CSSProperties
 }
 
 const ButtonToolbar = (props : Props) => {
 
-  let { className, children, ...attributes } = props
+  let { className, children, style, ...attributes } = props
 
     const classes = classNames('btn-toolbar', className );
 
     return (
       <ThemeProvider theme={theme}>
-        <div  {...attributes} className={classes}>
+        <div  {...attributes} className={classes} style={style}>
           {children}
         </div>
       </ThemeProvider>

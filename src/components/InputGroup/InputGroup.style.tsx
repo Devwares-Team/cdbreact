@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const Component = styled.div`
+      .input-flex-fill {
+        flex-grow: 1
+      }
       .input-background {
         background-color: #f4f4f4;
       }

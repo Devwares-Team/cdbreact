@@ -64,3 +64,7 @@ export { default as CDBTable } from './components/Table'
 export { default as CDBTableHeader } from './components/Table/TableHeader'
 export { default as CDBTableBody } from './components/Table/TableBody'
 export { default as CDBView } from './components/View'
+
+export {default as CDBIcon} from './components/Icon'
+export {default as CDBStep } from './components/Step'
+export {default as CDBStepper} from './components/Stepper'

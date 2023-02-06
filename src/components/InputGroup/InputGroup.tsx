@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from '../../theme'
 
 interface Props{
-  append?: [React.ReactNode, string],
+  append?: React.ReactNode,
   appendClassNames?: string,
   ariaLabel?: string,
   background?: boolean,
@@ -24,7 +24,7 @@ interface Props{
   material?: boolean,
   onChange?: Function,
   onIconClick?: Function,
-  prepend?: any,
+  prepend?: React.ReactNode,
   prependClassName?: string,
   size?: string,
   tag?: [string, Function],
@@ -82,7 +82,8 @@ const InputGroup = (props: Props) => {
 
   const inputClassNames = classNames(
     className,
-    background && 'input-background'
+    background && 'input-background',
+    'input-flex-fill'
   )
 
   const prependClassNames = classNames('input-group-prepend', prependClassName)

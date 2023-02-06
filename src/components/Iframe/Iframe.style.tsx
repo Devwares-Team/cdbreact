@@ -7,7 +7,6 @@ export const Component = styled.div`
   object,
   video {
     margin: 0 auto;
-    position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
