@@ -88,6 +88,85 @@ export default Alert;
 - [Widgets](https://www.devwares.com/docs/contrast/react/widgets/)
 - [Forms](https://www.devwares.com/docs/contrast/react/forms/)
 
+## Blog articles
+
+
+- [How to create Tailwind CSS Modal](https://www.devwares.com/blog/how-to-create-tailwind-css-modal)
+
+- [How to use tailwind CSS in HTML](https://www.devwares.com/blog/how-to-use-tailwind-css-in-HTML)
+
+- [Get Contrast PRO](https://www.devwares.com/product/contrast-pro)
+
+- [Why tailwind CSS is good](https://www.devwares.com/blog/why-tailwind-css-is-good)
+
+- [How to use Tailwind CSS in Nextjs](https://www.devwares.com/blog/tailwind-css-in-nextjs)
+
+- [How to create Tailwind CSS Components for your Website](https://www.devwares.com/blog/how-to-create-tailwind-css-components-for-your-website)
+
+- [How to create Tailwind CSS Animation](https://www.devwares.com/blog/create-animation-with-tailwind-css/)
+
+- [Tailwind grid-How to use tailwind CSS grid templates in your project](https://www.devwares.com/blog/how-to-add-tailwind-css-grid-to-your-project/)
+
+- [How to create a Beautiful Responsive Navigation bar Using Tailwind CSS](https://www.devwares.com/blog/how-to-create-a-beautiful-responsive-navbar-using-tailwind-css/)
+
+- [Tailwind form-How to create and style a Responsive Form using Tailwind CSS](https://www.devwares.com/blog/how-to-create-and-style-a-responsive-form-using-tailwindcss/)
+
+- [Tailwind CSS Flex: How to use Tailwind CSS Flex](https://www.devwares.com/blog/how-to-use-tailwind-css-flex/)
+
+- [How to use tailwind CSS padding, margin and border in your project](https://www.devwares.com/blog/how-to-use-tailwind-css-padding-margin-and-border-in-your-project/)
+
+- [Tailwind CSS CDN-How to use the Tailwind CSS JIT CDN](https://www.devwares.com/blog/how-to-use-the-tailwind-css-JIT-CDN/)
+
+- [How to set up your first Tailwind CSS Project](https://www.devwares.com/blog/setting-up-your-first-project-using-tailwind-css/)
+
+- [How to use Tailwind CSS in HTML](https://www.devwares.com/blog/how-to-use-tailwind-css-in-HTML/)
+
+- [Tailwind CSS table-How to Create Tailwind CSS tables](https://www.devwares.com/blog/how-to-create-tailwind-css-tables/)
+
+- [How to set up your first Tailwind CSS Project](https://www.devwares.com/blog/setting-up-your-first-project-using-tailwind-css/)
+
+- [Why is tailwind CSS better than other CSS framework](https://www.devwares.com/blog/why-tailwind-css-is-good/)
+
+- [10 tailwind CSS templates and themes](https://www.devwares.com/blog/tailwind-css-10-templates-and-themes/)
+
+- [How to add tailwind CSS colors and Fonts to your project](https://www.devwares.com/blog/how-to-add-tailwind-css-colors-and-fonts-to-your-project/)
+
+- [Differences between Tailwind CSS and SASS](https://www.devwares.com/blog/differences-between-tailwind-css-and-sass/)
+
+- [Differences Between Tailwind CSS and Bootstrap](https://www.devwares.com/blog/diffrences-between-tailwind-css-and-bootstrap/)
+
+- [10 Awesome projects built with Tailwind CSS](https://www.devwares.com/blog/awesome-10-projects-built-with-tailwind/).
+
+- [How to install Tailwind CSS in Vue.js](https://www.devwares.com/blog/how-to-install-tailwind-css-in-vuejs/).
+
+- [How to use Tailwind CSS in React](https://www.devwares.com/blog/how-to-use-tailwind-css-in-react/)
+
+- [How to install Tailwind CSS with Laravel](https://www.devwares.com/blog/how-to-install-tailwind-css-in-laravel/)
+
+- [How to create react date picker](https://www.devwares.com/blog/create-datepicker-with-contrast/)
+
+- [React bootstrap 5 form-How to create React forms](https://www.devwares.com/blog/how-to-create-and-style-a-responsive-form-using-tailwindcss/).
+
+- [How to create a beautiful React multiselect](https://www.devwares.com/blog/create-multiselect-with-contrast/).
+
+- [How to create a beautiful React Bootstrap progress bar](https://www.devwares.com/blog/create-progress-with-contrast/).
+
+- [How to create a beautiful React Bootstrap select with icons](https://www.devwares.com/blog/create-select-with-contrast/).
+
+- [How to create a beautiful Bootstrap 5 stepper](https://www.devwares.com/blog/create-stepper-with-contrast/)
+
+- [How to create a beautiful React Bootstrap table](https://www.devwares.com/blog/create-tables-with-contrast/)
+
+- [How to create beautiful React Bootstrap tabs](https://www.devwares.com/blog/create-tabs-with-contrast/)
+
+- [How to create a Beautiful Responsive Navigation bar Using Tailwind CSS](https://www.devwares.com/blog/how-to-create-a-beautiful-responsive-navbar-using-tailwind-css/)
+
+- [Tailwind Modal-How to create a React Modal using Tailwind CSS.](https://www.devwares.com/blog/how-to-create-a-react-modal-using-tailwind-css/)
+
+- [How to create a Bootstrap 5 Modal.](https://www.devwares.com/blog/how-to-create-a-bootstrap5-modal/)
+
+- [How to use Tailwind CSS Width](https://www.devwares.com/blog/Tailwind-width/)
+- [Tailwind CSS Colors 3.0](https://www.devwares.com/blog/How-to-add-color-to-Tailwind/) 
 
 # Demo
 
