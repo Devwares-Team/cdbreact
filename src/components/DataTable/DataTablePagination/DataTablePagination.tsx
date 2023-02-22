@@ -22,9 +22,12 @@ const DataTablePagination = (props: Props) => {
 
 
   const { activePage, changeActivePage, className, pages, label, ...attributes } = props;
-  const [state, setState] = useState({
+  const [state, setState] = useState<{
+    pages: any,
+    pGroups: any[]
+  }>({
     pages: props.pages,
-    pGroups: [pages]
+    pGroups: []
   })
 
   // ComponentDidMount & ComponentDidUpdateLogic
