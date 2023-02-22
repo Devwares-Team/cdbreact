@@ -11,7 +11,7 @@ interface Props {
   className?: string,
   disabled?: boolean,
   tag?: Function | string,
-  onClick?: Function
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 const PageItem = (props: Props) => {

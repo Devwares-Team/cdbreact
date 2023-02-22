@@ -10,7 +10,7 @@ interface Props {
   disabled?: boolean,
   className?: string,
   tag?: Function | string,
-  onClick?: Function
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
 const PageLink = (props: Props) => {

@@ -26,7 +26,7 @@ const DataTablePagination = (props: Props) => {
     pages: any,
     pGroups: any[]
   }>({
-    pages: props.pages,
+    pages: pages,
     pGroups: []
   })
 
@@ -40,7 +40,7 @@ const DataTablePagination = (props: Props) => {
 
     } else { // Compoennt Did Update
       const { pages } = props
-      setState((prev) => ({ ...prev, pages }))
+      Promise.resolve().then(() => setState((prev) => ({ ...prev, pages }))).then(() => groupPages()) 
     }
 
   }, [pages])
