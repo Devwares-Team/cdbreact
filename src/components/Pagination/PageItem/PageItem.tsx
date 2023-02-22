@@ -10,12 +10,12 @@ interface Props {
   children?: React.ReactNode,
   className?: string,
   disabled?: boolean,
-  tag?: [Function, string],
-  onClick?: Function
+  tag?: Function | string,
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 const PageItem = (props: Props) => {
-  const { active, className, children, onClick, disabled, tag, ...attributes } = props;
+  const { active, className, children, disabled, tag, ...attributes } = props;
 
   const pageItemClasses = classNames(
     {
