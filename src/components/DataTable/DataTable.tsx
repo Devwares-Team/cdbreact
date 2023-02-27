@@ -472,7 +472,12 @@ const DataTable = (props: Props) => {
   return (
     <ThemeProvider theme={theme}>
       <div data-test='datatable' className={tableClasses}>
-        <div className={'row'}>
+        <div style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          padding: "0 6px"        
+        }}>
           {barReverse ? (
             <React.Fragment>
               <DataTableSearch
@@ -585,7 +590,9 @@ const DataTable = (props: Props) => {
           </div>
         )}
         {paging && (
-          <div className='row'>
+          <div className='d-flex flex-wrap justify-content-between' style={{
+            padding: "0px 6px"
+          }}>
             <DataTableInfo
               activePage={activePage}
               entries={entries}
