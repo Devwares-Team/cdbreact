@@ -86,9 +86,9 @@ const DataTablePagination = (props: Props) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div data-test='datatable-pagination' className='col-sm-12 col-md-7'>
+      <div data-test='datatable-pagination' className='col-sm-12 col-md-7 d-flex justify-content-end'>
         <div className='dataTables_paginate'>
-          <Pagination >
+          <Pagination sm>
             <PageLink
               disabled={activePage <= 0}
               aria-label={label[0]}
