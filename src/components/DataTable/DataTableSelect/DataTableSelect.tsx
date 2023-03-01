@@ -4,10 +4,10 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props {
-  entries?: any;
-  onChange?: any;
-  value?: number;
-  label?: any;
+  entries?: any
+  onChange?: any
+  value?: number
+  label?: any
 }
 
 const DataTableSelect = (props: Props) => {
@@ -58,4 +58,4 @@ DataTableSelect.propTypes = {
 };
 
 export default DataTableSelect;
-export { DataTableSelect as MDBDataTableSelect };
+export { DataTableSelect as CDBDataTableSelect }
