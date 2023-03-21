@@ -97,6 +97,11 @@ export const theme : DefaultTheme = {
       borderColor: colors.secondary,
       backgroundColor: colors.secondary,
     },
+    light: {
+      color: colors.dark,
+      borderColor: colors.light,
+      backgroundColor: colors.light,
+    },
     success: {
       color: colors.white,
       borderColor: colors.success,
@@ -112,6 +117,21 @@ export const theme : DefaultTheme = {
       borderColor: colors.warning,
       backgroundColor: colors.warning,
     },
+    dark: {
+      color: colors.white,
+      borderColor: colors.dark,
+      backgroundColor: colors.dark,
+    },
+    white: {
+      color: colors.dark,
+      borderColor: colors.white,
+      backgroundColor: colors.white,
+    },
+    info: {
+      color: colors.white,
+      borderColor: colors.info,
+      backgroundColor: colors.info,
+    }
   },
   lightStyle: {
     primary: {
@@ -149,5 +169,15 @@ export const theme : DefaultTheme = {
       borderColor: colors.dark,
       backgroundColor: "#F9F9F9",
     },
+    light: {
+      color: colors.dark,
+      borderColor: colors.light,
+      backgroundColor: colors.light,
+    },
+    info: {
+      color: colors.white,
+      borderColor: colors.info,
+      backgroundColor: colors.info,
+    }
   },
 };

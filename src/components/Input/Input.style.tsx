@@ -552,5 +552,9 @@ export const Component = styled.div<Props>`
     padding-right: 2.5rem !important;
   }
 `
-export const StyledTextArea = styled.textarea``
-export const StyledInput = styled.input``
+export const StyledTextArea= styled.textarea<{
+ fontSize: number
+}>``
+export const StyledInput = styled.input<{
+  fontSize: number
+}>``

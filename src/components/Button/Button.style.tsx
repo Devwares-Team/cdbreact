@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { variant } from 'styled-system'
+import { variant, colorStyle  } from 'styled-system'
 import colors from '../../theme/colors'
 import tinycolor from 'tinycolor2'
 
@@ -28,6 +28,8 @@ export const Component = styled.div<any>`
           `};
     `}}
 
+    ${colorStyle}
+    
   ${variant({
     prop: 'size',
     variants: {

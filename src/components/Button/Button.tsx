@@ -2,6 +2,8 @@ import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Component } from './Button.style'
+import { ThemeProvider } from 'styled-components'
+import { theme } from '../../theme'
 
 interface Props {
   action?: boolean,
@@ -78,7 +80,8 @@ const Button = (props: Props) => {
   }
 
   return (
-    <Component
+    <ThemeProvider theme={theme}>
+      <Component
       data-test='button'
       type={tag === 'button' && !type ? 'button' : type}
       as={(tag as unknown) as undefined}
@@ -99,6 +102,7 @@ const Button = (props: Props) => {
     >
       {children}
     </Component>
+    </ThemeProvider>
   )
 }
 
