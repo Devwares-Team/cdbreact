@@ -33,6 +33,10 @@ declare module 'styled-components' {
         success: BasePallete
         danger: BasePallete
         warning: BasePallete
+        light: BasePallete,
+        dark: BasePallete,
+        white: BasePallete,
+        info: BasePallete,
     }
     lightStyle:{
         primary : BasePallete,
@@ -42,6 +46,8 @@ declare module 'styled-components' {
         warning: BasePallete, 
         dark : BasePallete,
         white: BasePallete, 
+        light: BasePallete,
+        info: BasePallete,
     }
   }
 }

@@ -11,6 +11,7 @@ interface Props{
     className?: string,
     tag?: string | Function
     style?: React.CSSProperties
+    children?: React.ReactNode
 }
 
 const CardBody = (props: Props) => {

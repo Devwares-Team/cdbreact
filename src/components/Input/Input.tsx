@@ -33,6 +33,8 @@ interface Props {
   valueDefault?: string
   icon?: React.ReactNode
   checked?: boolean
+  label?: string,
+  material?: boolean,
 }
 
 const Input = (props: Props) => {
@@ -58,7 +60,9 @@ const Input = (props: Props) => {
     type,
     value,
     valueDefault,
-    checked, 
+    checked,
+    label,
+    material,
     ...attributes
   } = props
 
@@ -119,7 +123,8 @@ const Input = (props: Props) => {
       size === 'lg' && 'size-lg',
       size === 'sm' && 'size-sm',
       type === 'checkbox' && 'checkbox',
-      type === 'radio' && 'radio'
+      type === 'radio' && 'radio',
+      material && "mb-0"
     )
     const labelClassNames = classNames(
       isNotEmpty || placeholder ? 'active' : false,
@@ -127,15 +132,29 @@ const Input = (props: Props) => {
       labelClassName
     )
 
+    const inputClassNames= classNames(
+      material && "pt-0  border-top-0 border-end-0 border-start-0 ",
+      inputClassName
+    )
+
     return (
       <ThemeProvider theme={theme}>
+               {
+          !material && label && type !== 'checkbox' && type !== 'radio'&& 
+          <label
+          className={labelClassNames }
+          htmlFor={id}
+          id={id}
+          aria-labelledby={id}
+        > {label}</label>
+        }
         <StyledComponent className={classes} fontSize={fontSize}>
           {icon && <span className='icon'>{
             typeof icon === 'string' ? <CDBIcon icon={icon}/> : icon
           }</span>}
           {type === 'textarea' ? (
             <StyledTextArea
-              // fontSize={fontSize}
+             fontSize={fontSize}
               ref={inputRef as React.MutableRefObject<HTMLTextAreaElement>}
               onBlur={handleBlur}
               onChange={handleChange}
@@ -144,7 +163,7 @@ const Input = (props: Props) => {
               // type={type}
               placeholder={placeholder}
               {...attributes}
-              className={inputClassName}
+              className={inputClassNames}
               id={id}
               value={innerValue}
               aria-disabled={disabled}
@@ -152,7 +171,7 @@ const Input = (props: Props) => {
             />
           ) : (
             <StyledInput
-              // fontSize={fontSize}
+              fontSize={fontSize}
               ref={inputRef as React.MutableRefObject<HTMLInputElement>}
               onBlur={handleBlur}
               onChange={handleChange}
@@ -160,7 +179,7 @@ const Input = (props: Props) => {
               onFocus={handleFocus}
               checked={checked}
               {...attributes}
-              className={inputClassName}
+              className={inputClassNames}
               id={id}
               type={type}
               placeholder={placeholder}
@@ -179,6 +198,16 @@ const Input = (props: Props) => {
             />
           )}
         </StyledComponent>
+
+        {
+          material && label && type !== 'checkbox' && type !== 'radio'&& 
+          <label
+          className={labelClassNames }
+          htmlFor={id}
+          id={id}
+          aria-labelledby={id}
+        > {label}</label>
+        }
       </ThemeProvider>
     )
   }
