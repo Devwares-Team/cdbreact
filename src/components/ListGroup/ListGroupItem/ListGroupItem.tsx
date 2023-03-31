@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Component } from "./ListGroupItem.style";
-import { Link } from "react-router-dom";
+import { Component, LinkComponent } from "./ListGroupItem.style";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
@@ -45,22 +44,22 @@ const ListGroupItem = (props: Props) => {
   );
 
   let listGroupItemComponent = href ? (
-    <Link
+    <LinkComponent
       data-test="list-group-item"
       {...attributes}
       className={classes}
       colors={color}
-      href={href}
+      to={href}
       style={{ textDecoration: "none" }}
     >
       {children}
-    </Link>
+    </LinkComponent>
   ) : (
     <Component
       data-test="list-group-item"
       {...attributes}
       className={classes}
-      // colors={color}
+      colors={color}
     >
       {children}
     </Component>

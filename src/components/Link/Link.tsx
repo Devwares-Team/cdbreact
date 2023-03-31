@@ -11,8 +11,8 @@ interface Props{
   className?: string,
   disabled?: boolean,
   to?: string,
-  onMouseUp?: Function,
-  onTouchStart?: Function,
+  onMouseUp?: React.MouseEventHandler<HTMLAnchorElement>,
+  onTouchStart?: React.TouchEventHandler<HTMLAnchorElement>,
 }
 
 const Link = (props: Props) => {
