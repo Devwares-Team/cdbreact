@@ -8,18 +8,21 @@ import { theme } from "../../../theme";
 interface Props{
     className?: string,
     href?: string
+    children?: React.ReactNode
 }
 
 const NavBrand = (props: Props) => {
 
-    let{ className, href, ...attributes }= props
+    let{ className, href, children, ...attributes }= props
 
     const classes = classNames('navbar-brand', className);
 
     const navBrand = () => {
 
         if (href) {
-            return <Component data-test='navbar-brand' to={href} {...attributes} className={classes} />;
+            return <Component data-test='navbar-brand' to={href} {...attributes} className={classes}>
+                {children}
+            </Component>;
         }
         return <div data-test='navbar-brand' {...attributes} className={classes} />;
     
