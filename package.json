@@ -67,9 +67,9 @@
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
-    "react-router-dom": "^6.10.0",
     "react": ">=16.13.0",
-    "react-dom": ">=16.13.0"
+    "react-dom": ">=16.13.0",
+    "react-router-dom": "^6.2.2"
   },
   "devDependencies": {
     "@types/jest": "^29.0.0",
