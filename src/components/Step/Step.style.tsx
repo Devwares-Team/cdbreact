@@ -4,7 +4,7 @@ interface Props {
   tooltipBackground: string
   direction: string
   status: string
-  size: string
+  size: number
   background: string
   active: any
   icon: any

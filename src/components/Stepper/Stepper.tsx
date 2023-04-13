@@ -5,6 +5,21 @@ import StepperContent from './StepperContent'
 import { ThemeProvider } from 'styled-components'
 import { theme } from '../../theme'
 
+export type StepperContextType =  {
+  direction?: string,
+  mainColor?: string,
+  width?: number,
+  height?: number,
+  stepSize?: number,
+  children?: React.ReactNode | any,
+  content?: any[],
+  active?: number,
+  setActive?: React.Dispatch<React.SetStateAction<number>>,
+  showTooltip?: boolean,
+  showTitle?: boolean,
+  showIndex?: boolean,
+}  
+
 interface Props {
   direction: string,
   currentStepNumber: number,
@@ -14,10 +29,11 @@ interface Props {
   goTo?: Function,
   showTooltip?: boolean,
   showTitle?: boolean
+  showIndex?: boolean
   children?: any
 }
 
-export const StepperContext = createContext<any>({})
+export const StepperContext = createContext<StepperContextType>({})
 
 const Stepper = (props: Props) => {
   const {
@@ -27,6 +43,7 @@ const Stepper = (props: Props) => {
     stepSize,
     showTooltip,
     showTitle,
+    showIndex,
     ...attributes
   } = props
   const containerRef = useRef<any>(null)
@@ -63,7 +80,8 @@ const Stepper = (props: Props) => {
           active,
           setActive,
           showTooltip,
-          showTitle
+          showTitle,
+          showIndex,
         }}
       >
         <StyledComponent

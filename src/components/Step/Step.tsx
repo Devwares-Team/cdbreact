@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StepperContext } from "../Stepper/Stepper";
+import { StepperContext, StepperContextType } from "../Stepper/Stepper";
 import PropTypes from "prop-types";
 import StepperDivider from "../Stepper/StepperDivider";
 import ReactTooltip from "react-tooltip";
@@ -44,8 +44,9 @@ export const Step = (props: Props) => {
     stepSize,
     setActive,
     showTooltip,
-    showTitle
-  } = useContext<any>(StepperContext)
+    showTitle,
+    showIndex,
+  } = useContext<StepperContextType>(StepperContext)
   const stepClasses = classNames('default-node', id === active && 'active')
 
   const status = id < active ? 'prev' : id === active ? 'active' : 'next'
@@ -73,10 +74,10 @@ export const Step = (props: Props) => {
         direction={direction}
         size={stepSize}
       >
-        {showTitle && (
+        {showTitle || showIndex && (
           <div className='step-title'>
             <span className='step-number'>0{id}</span>
-            <div className='step-text'>{name}</div>
+            {showTitle &&  <div className='step-text'>{name}</div>}
           </div>
         )}
         <div
