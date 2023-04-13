@@ -4,16 +4,18 @@ import styled, { css } from "styled-components";
 
 
 interface Props {
-  direction: string
-  size: string
-  background: string
-  mainColor: string
-  status: any
+  direction?: string
+  size?: number
+  background?: string
+  mainColor?: string
+  status?: any
+  showTitle?: boolean
+  showIndex?: boolean
 }
 
 const Component = styled.div<Props>`
   display: flex;
-  ${({ direction, size }) =>
+  ${({ direction, size, showIndex, showTitle }) =>
     direction === "vertical" &&
     css`
       width: ${size}px;
@@ -21,6 +23,7 @@ const Component = styled.div<Props>`
       justify-content: center;
       align-items: center;
       margin-top: 10px;
+      margin-bottom: ${(!showTitle && !showIndex )&& "10px"};
       span {
         margin: 2px 0;
         border-radius: 6px;
@@ -91,7 +94,7 @@ const Component = styled.div<Props>`
 const StepperDivider = ({ status }) => {
   const containerRef = useRef();
 
-  const { direction, mainColor, stepSize } =
+  const { direction, mainColor, stepSize, showIndex, showTitle } =
     useContext(StepperContext);
 
   return (
@@ -102,6 +105,8 @@ const StepperDivider = ({ status }) => {
       ref={containerRef}
       size={stepSize}
       status={status}
+      showTitle={showTitle}
+      showIndex={showIndex}
     >
       <span></span>
       <span></span>
