@@ -9,11 +9,11 @@ import { theme } from "../../../theme";
 
 
 interface Props {
-  activePage: number,
-  changeActivePage: Function,
-  label: string,
-  pages: any,
-  pagesAmount: number
+  activePage?: number,
+  changeActivePage?: Function,
+  label?: string[],
+  pages?: any,
+  pagesAmount?: number
   className?: string,
   children?: React.ReactNode,
 }
@@ -29,6 +29,7 @@ const DataTablePagination = (props: Props) => {
     pages: pages,
     pGroups: []
   })
+  const [pGroupByPNum, setPGroupByPNum] = useState([])
 
   // ComponentDidMount & ComponentDidUpdateLogic
   const mounted = useRef<boolean>()
@@ -39,11 +40,16 @@ const DataTablePagination = (props: Props) => {
       mounted.current = true
 
     } else { // Compoennt Did Update
-      const { pages } = props
-      Promise.resolve().then(() => setState((prev) => ({ ...prev, pages }))).then(() => groupPages()) 
+      setState((prev) => ({ ...prev, pages }))
     }
 
   }, [pages])
+
+  useEffect(() => {
+    if (!state.pages) return
+
+    groupPages()
+  }, [state.pages])
 
   // useEffect(() => {
 
@@ -81,8 +87,16 @@ const DataTablePagination = (props: Props) => {
     const { activePage, pagesAmount } = props;
     const { pGroups } = state;
     const pGroupNumber = Math.floor(activePage / pagesAmount);
-    return pGroups.length ? pGroups[pGroupNumber] : [];
+
+    setPGroupByPNum(pGroups.length ? pGroups[pGroupNumber] : [])
   };
+
+  useEffect(() => {
+    const { pGroups } = state;
+    if (pGroups && props.pagesAmount) {
+      choosePagesGroup()
+    }
+  }, [state.pGroups, props.activePage, props.pagesAmount])
 
   return (
     <ThemeProvider theme={theme}>
@@ -98,7 +112,8 @@ const DataTablePagination = (props: Props) => {
               <span>{label[0]}</span>
             </PageLink>
 
-            {choosePagesGroup().map(page => (
+            {pGroupByPNum.length > 0 && pGroupByPNum.map((page, index) => {
+              return (
               <PageItem
                 key={Object.keys(page[0])[0] + page.index}
                 active={page.index === activePage}
@@ -109,7 +124,7 @@ const DataTablePagination = (props: Props) => {
                   <span className='sr-only'>(current)</span>
                 )}
               </PageItem>
-            ))}
+            )})}
 
             <PageLink
               disabled={!pages.length || activePage === pages.length - 1}
