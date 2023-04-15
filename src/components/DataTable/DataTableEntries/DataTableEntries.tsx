@@ -5,12 +5,12 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../theme";
 
 interface Props {
-  displayEntries: boolean,
-  entries: number,
-  entriesArr: number[],
-  handleEntriesChange: any,
-  label: [number, object, string],
-  paging: boolean,
+  displayEntries?: boolean,
+  entries?: number,
+  entriesArr?: number[],
+  handleEntriesChange?: any,
+  label?: number | object | string,
+  paging?: boolean,
   barReverse?: boolean,
   onChange?: any,
   proSelect?: boolean,

@@ -28,7 +28,7 @@ interface Props {
   disableRetreatAfterSorting?: boolean
   displayEntries?: boolean
   entries?: number
-  entriesLabel?: [number, object, string]
+  entriesLabel?: number | object | string
   entriesOptions?: number[]
   exportToCSV?: boolean
   filter?: string
@@ -45,7 +45,7 @@ interface Props {
   onSort?: Function
   order?: string[]
   pagesAmount?: number
-  paginationLabel?: string
+  paginationLabel?: string[]
   paging?: boolean
   proSelect?: boolean
   responsive?: boolean
@@ -194,7 +194,6 @@ const DataTable = (props: Props) => {
   const componentDidUpdateCallback = function () {
     const { columns } = state
     const { data } = props
-
     typeof data === 'string'
       ? fetchData(data, true)
       : setData(data.rows, data.columns, paginateRows)
@@ -208,17 +207,16 @@ const DataTable = (props: Props) => {
     columns: any[] = [],
     callback?: () => void
   ) => {
-    setState((prevState) => ({
-      ...prevState,
+    setState({
+      ...state,
       columns,
       rows,
-      filteredRows: !props.disableRetreatAfterSorting ? rows : []
+      filteredRows: rows
       //   filteredRows: props.disableRetreatAfterSorting ? filterRows() : rows
-    }))
-
-    props.disableRetreatAfterSorting && filterRows()
-
-    callback && typeof callback === 'function' && (() => callback())
+  })
+  
+   props.disableRetreatAfterSorting && filterRows()
+    callback && typeof callback === 'function' && callback()
   }
 
   const setUnsearchable = function (columns) {
@@ -264,19 +262,26 @@ const DataTable = (props: Props) => {
     setState((prevState) => ({
       ...prevState,
       entries: Array.isArray(value) ? value[0] : value
-    }))
+    }))    
+  }
+
+  // Runs after entry changes
+  useEffect(() => {
+    if (!state.entries) return
 
     paginateRows()
-  }
+  }, [state.entries])
 
   const handleSearchChange = (e) => {
     setState((prevState) => ({ ...prevState, search: e.target.value }))
-
-    filterRows()
     props.onSearch &&
-      typeof props.onSearch === 'function' &&
-      props.onSearch(e.target.value)
+        typeof props.onSearch === 'function' &&
+        props.onSearch(e.target.value)
   }
+
+  useEffect(() => {
+    filterRows()
+  }, [state.search])
 
   const checkFieldValue = (array, field) => {
     return array[field] && typeof array[field] !== 'string'
@@ -384,17 +389,15 @@ const DataTable = (props: Props) => {
           }
         }
         return false
-      })
+    })
 
       if (filteredRows.length === 0) {
-        console.log(prevState)
         filteredRows.push({
           message: noRecordsFoundLabel,
-
           colspan: prevState?.columns?.length
         })
       }
-      let test = { ...state }
+      let test = { ...state}
       if (props.disableRetreatAfterSorting) {
         test = {
           ...state,
@@ -411,8 +414,11 @@ const DataTable = (props: Props) => {
 
       return test
     })
-    paginateRows()
   }
+
+  useEffect(() => {
+    paginateRows()
+  }, [state.filteredRows, state.activePage])
 
   const paginateRows = () => {
     const pagesAmount = getPagesAmount()
@@ -471,10 +477,8 @@ const DataTable = (props: Props) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div data-test='datatable' className={tableClasses }>
-        <div 
-        className="d-flex flex-wrap justify-content-between px-2"
-       >
+      <div data-test='datatable' className={tableClasses}>
+        <div className="d-flex flex-wrap justify-content-between px-2">
           {barReverse ? (
             <React.Fragment>
               <DataTableSearch
@@ -587,7 +591,7 @@ const DataTable = (props: Props) => {
           </div>
         )}
         {paging && (
-          <div className='d-flex flex-wrap justify-content-between px-2'>
+          <div className="d-flex flex-wrap justify-content-between px-2">
             <DataTableInfo
               activePage={activePage}
               entries={entries}
