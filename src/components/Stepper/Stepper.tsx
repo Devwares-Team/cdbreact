@@ -18,6 +18,7 @@ export type StepperContextType =  {
   showTooltip?: boolean,
   showTitle?: boolean,
   showIndex?: boolean,
+  lastChildId?: number
 }  
 
 interface Props {
@@ -51,6 +52,7 @@ const Stepper = (props: Props) => {
   const [height, setHeight] = useState(null)
   const [content, setContent] = useState<any>([])
   const [active, setActive] = useState(1)
+  const [lastChildId, setLastChildId] = useState(-1)
 
   useEffect(() => {
     window.addEventListener('resize', () => {
@@ -65,6 +67,16 @@ const Stepper = (props: Props) => {
     })
     setContent(contentArray)
   }, [])
+
+  useEffect(() => {
+    if (!children) return 
+
+    const _lastChild = children[children?.length - 1]
+
+    if (_lastChild) {
+      setLastChildId(_lastChild?.props?.id)
+    }
+  }, [children])
 
   return (
     <ThemeProvider theme={theme}>
@@ -82,6 +94,7 @@ const Stepper = (props: Props) => {
           showTooltip,
           showTitle,
           showIndex,
+          lastChildId,
         }}
       >
         <StyledComponent
