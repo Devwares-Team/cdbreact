@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { StepperContext } from './Stepper'
 
 interface Props {
-  direction: string
+  direction?: string
 }
 
 const Component = styled.div<Props>`
@@ -44,9 +44,9 @@ const StepperContent = () => {
   const { content, direction, active } = useContext(StepperContext)
   return (
     <Component direction={direction}>
-      {content.map((item) => {
+      {content.map((item, idx) => {
         if (active === item.id) {
-          return <div className='content-container fade-in'>{item.node}</div>
+          return <div key={idx} className='content-container fade-in'>{item.node}</div>
         }
       })}
     </Component>

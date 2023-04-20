@@ -46,6 +46,7 @@ export const Step = (props: Props) => {
     showTooltip,
     showTitle,
     showIndex,
+    lastChildId
   } = useContext<StepperContextType>(StepperContext)
   const stepClasses = classNames('default-node', id === active && 'active')
 
@@ -89,7 +90,7 @@ export const Step = (props: Props) => {
           <div className={stepClasses} onClick={() => handleClick()}>
             {icon ? stepIcon : `0${id}`}
           </div>
-          {id < mainChildren.length && <StepperDivider status={status} />}
+          {lastChildId !== id! && <StepperDivider status={status} />}
           {showTooltip && (
             <ReactTooltip id={`tip ${name}`} place='top' effect='solid'>
               {name}
