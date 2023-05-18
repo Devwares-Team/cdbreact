@@ -167,6 +167,24 @@ export default Alert;
 
 - [How to use Tailwind CSS Width](https://www.devwares.com/blog/Tailwind-width/)
 - [Tailwind CSS Colors 3.0](https://www.devwares.com/blog/How-to-add-color-to-Tailwind/) 
+- [How to build Tailwind css timepicker with Tailwind elements](https://www.devwares.com/blog/how-to-build-tailwindcss-timepicker-with-tailwind-element/)
+- [How to Create a Responsive React Sidebar Design Using Tailwind CSS.](https://www.devwares.com/blog/how-to-create-a-responsive-react-sidebar-design-using-tailwind-css/)
+- [How to implement dark mode in React using tailwind css.](https://www.devwares.com/blog/how-to-implement-dark-mode-in-tailwind-css/)
+- [How to create a beautiful Bootstrap Datatable with Icons](https://www.devwares.com/blog/create-datatable-with-contrast/)
+- [How to create a React datepicker using React Bootstrap.](https://www.devwares.com/blog/create-datepicker-with-contrast/)
+- [React bootstrap 5 form-How to create React forms](https://www.devwares.com/blog/create-forms-with-contrast/)
+- [How to create a beautiful React multiselect.](https://www.devwares.com/blog/create-multiselect-with-contrast/)
+- [How to create a beautiful React Bootstrap](https://www.devwares.com/blog/create-progress-with-contrast/)
+- [How to create a responsive React Bootstrap Sidebar](https://www.devwares.com/blog/create-responsive-sidebar-in-react/)
+- [How to create a beautiful React Bootstrap select with icons.](https://www.devwares.com/blog/create-select-with-contrast/)
+- [Bootstrap 5 stepper-How to create a beautiful Bootstrap 5 stepper](https://www.devwares.com/blog/create-stepper-with-contrast/)
+- [How to create a beautiful React Bootstrap table.](https://www.devwares.com/blog/create-tables-with-contrast/)
+- [How to create beautiful React Bootstrap tabs](https://www.devwares.com/blog/create-tabs-with-contrast/)
+- [How To Create A Datatable Using Angular Bootstrap](https://www.devwares.com/blog/create-datatable-in-angular-10/)
+- [How To Create Bootstrap Charts using Bootstrap 5](https://www.devwares.com/blog/create-bootstrap-charts-using-bootstrap5/)
+- [How To Create A Beautiful Navbar Using Bootstrap 5.](https://www.devwares.com/blog/bootstrap-5-navbar-using-contrast/)
+- [Major changes to bootstrap 5](https://www.devwares.com/blog/bootstrap-5-major-changes/)
+- [All you need to know about Bootstrap 5](https://www.devwares.com/blog/bootstrap-5-all-you-need-to-know/)
 
 # Demo
 
