@@ -6,15 +6,23 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 
 interface Props{
-  tooltip?: Boolean,
-  tooltipPlacement?: string,
-  tooltipLabel?: Function,
+  value?: number | string,
+  onAfterChange?: (ev: React.ChangeEvent<HTMLInputElement>, value: number) => void,
+  min?: number,
+  max?: number,
+  step?: number,
+  disabled?: boolean,
+  size?: "sm" | "lg"
+  variant?: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark" | "light",
+  inputProps?: object,
+  tooltip?: "auto" | "on" | "off"
+  tooltipPlacement?: "top" | "bottom",
+  tooltipLabel?: (value: number) => string | React.ReactElement<any, string | React.JSXElementConstructor<any>>,
   tooltipStyle?: object,
   tooltipProps?: object,
   className?: string,
   bsPrefix?: string
-  value? : any,
-  setValue?: any
+  setValue?: any 
 }
 
 const Slider = (props: Props) => {
