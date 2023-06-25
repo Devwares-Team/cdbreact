@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.18](https://github.com/Devwares-Team/cdbreact/compare/v1.5.17...v1.5.18) (2023-06-25)
+
 ### [1.5.17](https://github.com/Devwares-Team/cdbreact/compare/v1.5.16...v1.5.17) (2023-05-30)
 
 ### [1.5.16](https://github.com/Devwares-Team/cdbreact/compare/v1.5.15...v1.5.16) (2023-05-18)
