@@ -185,6 +185,23 @@ export default Alert;
 - [How To Create A Beautiful Navbar Using Bootstrap 5.](https://www.devwares.com/blog/bootstrap-5-navbar-using-contrast/)
 - [Major changes to bootstrap 5](https://www.devwares.com/blog/bootstrap-5-major-changes/)
 - [All you need to know about Bootstrap 5](https://www.devwares.com/blog/bootstrap-5-all-you-need-to-know/)
+- [Tailwind Slider: Elevate Your Website Design with Dynamic Content](https://www.devwares.com/blog/Tailwind-css-slider/)
+
+
+## Windframe Docs
+- [Getting Started](https://www.devwares.com/windframe/docs/index/)
+- [Creating New Project](https://www.devwares.com/windframe/docs/creating-new-project/)
+- [Editing Existing Project](https://www.devwares.com/windframe/docs/editing-existing-project/)
+- [Canvas Toolbar](https://www.devwares.com/windframe/docs/canvas-toolbar/)
+- [Built in Templates](https://www.devwares.com/windframe/docs/built-in-templates/)
+- [Editing Templates](https://www.devwares.com/windframe/docs/editing-templates/)
+- [Importing Templates](https://www.devwares.com/windframe/docs/importing-templates/)
+- [Adding Elements](https://www.devwares.com/windframe/docs/adding-elements/)
+- [Element Quick Action](https://www.devwares.com/windframe/docs/element-quick-actions/)
+- [Exporting Projects](https://www.devwares.com/windframe/docs/exporting-project/)
+- [History](https://www.devwares.com/windframe/docs/history/)
+- [Layers](https://www.devwares.com/windframe/docs/layers/)
+- [Publishing Projects](https://www.devwares.com/windframe/docs/publish-project/)
 
 # Demo
 
