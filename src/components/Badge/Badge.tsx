@@ -11,11 +11,18 @@ interface Props {
   flat ?: boolean,
   size ?: string,
   borderType ?: string,
-  color ?: string,
+  color ?:  "primary"
+  | "secondary"
+  | "success"
+  | "danger"
+  | "warning"
+  | "info"
+  | "dark"
+  | "light",
   tag ?: string,
   icon ?: any;
-  intensity ?: string | number,
-  style?:  React.CSSProperties | any
+  intensity ?:  50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900,
+  style?:  React.CSSProperties | any,
 }
 
 const Badge = (props: Props) => {
@@ -33,14 +40,14 @@ const Badge = (props: Props) => {
     ...attributes
   } = props;
   const badgeClasses = classNames(className);
-  const _color = `${color}${intensity.toString()}`;
+  // const _color = `${color}${intensity.toString()}`;
   const badgeComponent = (
     <ThemeProvider theme={theme}>
       <Component
         className={badgeClasses}
         role="badge"
         as={(tag as unknown) as undefined}
-        bg={_color}
+        colors={color}
         borderType={borderType}
         size={size}
         flat={flat}

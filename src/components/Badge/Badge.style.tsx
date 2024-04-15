@@ -1,12 +1,24 @@
 import styled from "styled-components";
-import { color, variant, space } from "styled-system";
+import { colorStyle, variant, space } from "styled-system";
 
 
-export const Component = styled.span<any>`
+export const Component = styled.span<{
+  flat: boolean,
+  colors: "primary"
+    | "secondary"
+    | "success"
+    | "danger"
+    | "warning"
+    | "info"
+    | "dark"
+    | "light",
+  borderType: string,
+  size: string,
+}>`
   display: flex;
   align-items: center;
   ${space}
-  ${color}
+  ${colorStyle}
   font-weight:200;
   box-shadow: ${(props) =>
     props.flat

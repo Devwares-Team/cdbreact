@@ -32,9 +32,9 @@ const SidebarContent = forwardRef<HTMLDivElement, Props>((props, ref) => {
       handleToggleSidebar(false)
     }
 
-    if (width > finalbreakpoint) {
-      handleToggleSidebar(true)
-    }
+    // if (width > finalbreakpoint) {
+    //   handleToggleSidebar(true)
+    // }
 
 
     return () => {
