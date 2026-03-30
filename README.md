@@ -6,7 +6,6 @@
 
 [![NPM](https://img.shields.io/npm/v/cdbreact.svg)](https://www.npmjs.com/package/cdbreact) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 ![npm total downloads](https://img.shields.io/npm/dt/cdbreact?label=npm%20total%20downloads)
-![github total downloads](https://img.shields.io/github/downloads/Devwares-Team/cdbreact/total?label=github%20total%20downloads)
 
 ## Install
 
