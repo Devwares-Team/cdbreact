@@ -154,7 +154,7 @@ const DataTable = (props: Props) => {
   })
 
   //Component did mount and component did update
-  const mounted = useRef<boolean>()
+  const mounted = useRef<boolean>(false)
   useEffect(() => {
     if (!mounted.current) {
       // component did mount

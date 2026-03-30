@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/Devwares-Team/cdbreact/compare/v1.5.19...v1.6.0) (2026-03-30)
+
+### Added
+
+- React 19 compatibility validation across library build and example app build.
+- `package.json` attribution metadata with GitHub author URL for npm package identity.
+- Modern package exports metadata (`types` + `exports`) for cleaner consumer resolution.
+
+### Changed
+
+- Migrated dropdown and popper behavior to `@popperjs/core` and removed legacy `react-popper` + `popper.js`.
+- Replaced `react-bootstrap-range-slider` with a native range input implementation.
+- Reworked animation visibility lifecycle with native hooks (removed deep-compare dependency).
+- Updated example app rendering to `createRoot` for modern React APIs.
+- Improved package scripts for non-flaky CI checks (`--passWithNoTests`) and smoother example builds.
+
+### Security
+
+- Upgraded vulnerable runtime dependency paths and added dependency overrides.
+- `npm audit --omit=dev` now reports `0` vulnerabilities.
+
+### Performance
+
+- Removed legacy runtime dependencies (`react-spring`, `react-popper`, `popper.js`, `use-deep-compare-effect`, `react-bootstrap-range-slider`).
+- Reduced built bundle output (gzip):
+  - `dist/index.js`: from ~59.8 kB to ~51.8 kB
+  - `dist/index.modern.js`: from ~59.6 kB to ~51.5 kB
+
 ### [1.5.19](https://github.com/Devwares-Team/cdbreact/compare/v1.5.18...v1.5.19) (2024-04-15)
 
 ### [1.5.18](https://github.com/Devwares-Team/cdbreact/compare/v1.5.17...v1.5.18) (2023-06-25)

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { Transition } from "react-transition-group";
@@ -93,48 +93,19 @@ const Modal = (props: Props) => {
 
   const modalContent = useRef<any>(null);
 
-  const mounted = useRef<boolean>();
-
   useEffect(() => {
-    // const setComponentOpen = (prevProps, prevState) => {
-    //   const { isOpen, overflowScroll } = props;
-    //   const overflowStatement = overflowScroll
-    //     ? "overflow-hidden"
-    //     : "overflow-hidden";
+    const open = Boolean(isOpen);
+    setModalOpen(open);
 
-    //   if (prevState.initialIsOpen !== isOpen) {
-    //     setState({ initialIsOpen: isOpen }, () => {
-    //       if (isOpen) {
-    //         document.body.classList.add(overflowStatement);
-    //       } else {
-    //         document.body.classList.remove(overflowStatement);
-    //       }
-    //     });
-    //   }
-    // }
-
-    const setComponentOpen = () => {
-      const { isOpen } = props;
-
-      if (isModalOpen !== isOpen) {
-        Promise.resolve()
-          .then(() => setModalOpen(isOpen))
-          .then(() => {
-            if (isModalOpen) {
-              document.body.classList.add(overflowStatement);
-            } else {
-              document.body.classList.remove(overflowStatement);
-            }
-          });
-      }
-    };
-
-    // ComponentDidUpdate Logic
-    if (!mounted.current) {
-      mounted.current = true;
+    if (open) {
+      document.body.classList.add(overflowStatement);
     } else {
-      setComponentOpen();
+      document.body.classList.remove(overflowStatement);
     }
+
+    return () => {
+      document.body.classList.remove(overflowStatement);
+    };
   }, [isOpen]);
 
   const handleOnEntered = (type: string, node: HTMLElement) => {
@@ -178,8 +149,8 @@ const Modal = (props: Props) => {
     if (
       !(e.clientX > e.target.clientWidth || e.clientY > e.target.clientHeight)
     ) {
-      if (!modalContent.current.contains(e.target)) {
-        if (!props.disableBackdrop) {
+      if (modalContent.current && !modalContent.current.contains(e.target)) {
+        if (!props.disableBackdrop && props.toggle) {
           props.toggle();
         }
       }
@@ -187,9 +158,11 @@ const Modal = (props: Props) => {
   };
 
   const handleEscape = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (props.keyboard && e.keyCode === 27) {
+    if (props.keyboard && e.key === "Escape") {
       e.preventDefault();
-      props.toggle();
+      if (props.toggle) {
+        props.toggle();
+      }
     }
   };
 
@@ -243,7 +216,7 @@ const Modal = (props: Props) => {
     "modal-dialog",
     className
   );
-  const splitPosition = position.split("-");
+  const splitPosition = (position || "center").split("-");
   const wrapperClasses = classNames(
     {
       modal: !inline,
@@ -287,7 +260,9 @@ const Modal = (props: Props) => {
     >
       <div style={styles} className={modalDialogClasses} role="document">
         <div
-          ref={(elem) => (modalContent.current = elem)}
+          ref={(elem) => {
+            modalContent.current = elem
+          }}
           className={contentClasses}
         >
           {children}

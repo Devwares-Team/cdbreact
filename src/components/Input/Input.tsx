@@ -69,7 +69,7 @@ const Input = (props: Props) => {
   {
     const [innerValue, setInnerValue] = useState(value || valueDefault)
     const [isFocused, setIsFocused] = useState(focused)
-    const inputRef = useRef<HTMLElement>()
+    const inputRef = useRef<HTMLElement | null>(null)
 
     useEffect(() => {
       isFocused && inputRef.current!.focus()

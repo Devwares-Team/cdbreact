@@ -20,7 +20,7 @@ const NavBrand = (props: Props) => {
     const navBrand = () => {
 
         if (href) {
-            return <Component data-test='navbar-brand' to={href} {...attributes} className={classes}>
+            return <Component data-test='navbar-brand' href={href} {...attributes} className={classes}>
                 {children}
             </Component>;
         }

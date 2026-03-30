@@ -49,7 +49,7 @@ const ListGroupItem = (props: Props) => {
       {...attributes}
       className={classes}
       colors={color}
-      to={href}
+      href={href}
       style={{ textDecoration: "none" }}
     >
       {children}

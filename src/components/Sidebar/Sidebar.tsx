@@ -28,25 +28,25 @@ export const SidebarContext = createContext<SidebarContextType>({
 
 interface Props {
   children?: React.ReactNode,
-  className: string,
-  textColor: string,
-  backgroundColor: string,
-  breakpoint: number,
-  toggled: boolean,
-  minWidth: string,
-  maxWidth: string,
+  className?: string,
+  textColor?: string,
+  backgroundColor?: string,
+  breakpoint?: number,
+  toggled?: boolean,
+  minWidth?: string,
+  maxWidth?: string,
 }
 
 const Sidebar = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {
     className,
-    minWidth,
-    maxWidth,
+    minWidth = '80px',
+    maxWidth = '270px',
     children,
-    toggled,
-    textColor,
-    backgroundColor,
-    breakpoint,
+    toggled = false,
+    textColor = '#ffffff',
+    backgroundColor = theme.colors.dark900,
+    breakpoint = 720,
     ...rest
   } = props
 
@@ -100,17 +100,6 @@ Sidebar.propTypes = {
     breakpoint: PropTypes.number,
     toggled: PropTypes.bool
   }
-
-Sidebar.defaultProps = {
-  textColor: '#ffffff',
-  backgroundColor: theme.colors.dark900,
-  breakpoint: 720,
-  toggled: false,
-  minWidth: '80px',
-  maxWidth: '270px',
-  children: null
-}
-
 
 Sidebar.displayName = 'Sidebar'
 

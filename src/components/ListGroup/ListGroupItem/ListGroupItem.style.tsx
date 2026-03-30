@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { colorStyle } from "styled-system";
 
@@ -8,7 +7,7 @@ export const Component = styled.li<{
   ${colorStyle}
 `;
 
-export const LinkComponent = styled(Link)<{
+export const LinkComponent = styled.a<{
   colors: string
 }>`
   ${colorStyle}

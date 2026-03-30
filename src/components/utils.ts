@@ -231,7 +231,7 @@ export const getColorClass = (color : string) => {
 };
 
 export function debounce(fn: any, time = 166) {
-  let timeout: NodeJS.Timer;
+  let timeout: ReturnType<typeof setTimeout>;
 
   function debounced(this: any, ...args: any) {
     const that = this;

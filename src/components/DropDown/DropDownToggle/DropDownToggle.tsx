@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import { Reference } from "react-popper";
 import { Component, Caret } from "./DropDownToggle.style";
 import { DropDownContext } from "../DropDownContext";
 import { ThemeProvider } from "styled-components";
@@ -27,8 +26,9 @@ interface Props {
 }
 
 const DropdownToggle = (props: Props) => {
-  const { isOpen } = useContext<any>(DropDownContext);
+  const { isOpen, referenceElement } = useContext<any>(DropDownContext);
   const [isOpenValue, setIsOpenValue] = isOpen;
+  const [, setReferenceElement] = referenceElement;
 
   const {
     className,
@@ -69,6 +69,13 @@ const DropdownToggle = (props: Props) => {
 
     setIsOpenValue(!isOpenValue);
   };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggleDropdown(e);
+    }
+  };
   const caretClasses = classNames(
     dropleft && "mr-3",
     dropright || dropdown || dropup ? "ml-3" : "",
@@ -89,28 +96,27 @@ const DropdownToggle = (props: Props) => {
     </Caret>
   ) : null;
 
-  let dropdownToggleComponent = (
+  const dropdownToggleComponent = (
     <ThemeProvider theme={theme}>
-      <Reference>
-        {({ ref }) => (
-          <Component
-            className={dropdownToggleClasses}
-            ref={ref}
-            as={(tag as unknown) as undefined}
-            colors={color}
-            size={size}
-            disabled={disabled}
-            circle={circle}
-            onClick={(e) => {
-              toggleDropdown(e);
-            }}
-          >
-            {dropleft && CaretIcon}
-            {children}
-            {dropright || dropdown || dropup ? CaretIcon : null}
-          </Component>
-        )}
-      </Reference>
+      <Component
+        className={dropdownToggleClasses}
+        ref={(node) => setReferenceElement(node)}
+        as={(tag as unknown) as undefined}
+        colors={color}
+        size={size}
+        disabled={disabled}
+        circle={circle}
+        onClick={(e) => {
+          toggleDropdown(e);
+        }}
+        onKeyDown={handleKeyDown}
+        aria-expanded={isOpenValue}
+        aria-haspopup
+      >
+        {dropleft && CaretIcon}
+        {children}
+        {dropright || dropdown || dropup ? CaretIcon : null}
+      </Component>
     </ThemeProvider>
   );
 

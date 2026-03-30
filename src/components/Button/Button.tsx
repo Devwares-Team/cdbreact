@@ -57,7 +57,7 @@ const Button = (props: Props) => {
     ...attributes
   } = props
 
-  const _ref = useRef<HTMLDivElement>()
+  const _ref = useRef<HTMLDivElement | null>(null)
 
   const buttonClasses = classNames(
     'Ripple-parent',

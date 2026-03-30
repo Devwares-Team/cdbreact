@@ -72,7 +72,7 @@ const Carousel = (props: Props) => {
     initialX: null,
     initialY: null
   })
-  const [cycleInterval, setCycleInterval] = useState<NodeJS.Timer>()
+  const [cycleInterval, setCycleInterval] = useState<ReturnType<typeof setInterval> | null>(null)
 
   const carouselRef = useRef<HTMLDivElement>(null)
 
@@ -131,7 +131,11 @@ const Carousel = (props: Props) => {
     }
   }
 
-  const clearCycleIntervalHandler = () => clearInterval(cycleInterval)
+  const clearCycleIntervalHandler = () => {
+    if (cycleInterval) {
+      clearInterval(cycleInterval)
+    }
+  }
 
   const swipeAvailableHandler = () =>
     setState({ ...state, swipeAvailable: true })

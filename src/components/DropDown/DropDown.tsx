@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import { Manager } from "react-popper";
 import { Component } from "./DropDown.style";
 import { DropDownProvider } from "./DropDownContext";
 import { ThemeProvider } from "styled-components";
@@ -23,22 +22,20 @@ const DropDown = (props: Props ) => {
   const { className, tag, children, dropleft, dropright, dropup, ...attributes } = props;
   const dropdownClasses = classNames("dropdown", className);
 
-  let dropdownComponent = (
+  const dropdownComponent = (
     <ThemeProvider theme={theme}>
       <DropDownProvider>
-        <Manager>
-          <Component
-            className={dropdownClasses}
-            role="dropdown"
-            as={(tag as unknown) as undefined}
-            dropleft={dropleft}
-            dropright={dropright}
-            dropup={dropup}
-            {...attributes}
-          >
-            {children}
-          </Component>
-        </Manager>
+        <Component
+          className={dropdownClasses}
+          role="dropdown"
+          as={(tag as unknown) as undefined}
+          dropleft={dropleft}
+          dropright={dropright}
+          dropup={dropup}
+          {...attributes}
+        >
+          {children}
+        </Component>
       </DropDownProvider>
     </ThemeProvider>
   );

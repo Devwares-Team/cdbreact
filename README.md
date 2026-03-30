@@ -2,7 +2,7 @@
 
 # Contrast Bootstrap React 
 
-> Elegant UI Kit and reusable components for building mobile-first, responsive webistes and web apps
+> Elegant UI Kit and reusable components for building mobile-first, responsive websites and web apps
 
 [![NPM](https://img.shields.io/npm/v/cdbreact.svg)](https://www.npmjs.com/package/cdbreact) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 ![npm](https://img.shields.io/npm/dm/cdbreact)
@@ -18,6 +18,11 @@ or
 ```bash
 yarn add cdbreact
 ```
+
+## React Compatibility
+
+- Supported React versions: `16.14` to `19.x`
+- Verified with React `19.2.4` in this release
 
 ## Usage
 

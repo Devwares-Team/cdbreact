@@ -42,18 +42,18 @@ export const Tag = styled.div`
     color: transparent;
   }
 
-  .popover[x-placement^='top'] {
+  .popover[data-popper-placement^='top'] {
     margin-bottom: 15px;
   }
 
-  .popover[x-placement^='top'] .popover_arrow {
+  .popover[data-popper-placement^='top'] .popover_arrow {
     border-width: 8px 8px 0 8px;
     border-color: #d6d6d6 transparent transparent transparent;
     bottom: -8px;
     margin-bottom: 0;
   }
 
-  .popover[x-placement^='top'] .popover_arrow::before {
+  .popover[data-popper-placement^='top'] .popover_arrow::before {
     content: '';
     display: inline-block;
     position: absolute;
@@ -64,18 +64,18 @@ export const Tag = styled.div`
     border-color: white transparent transparent transparent;
   }
 
-  .popover[x-placement^='bottom'] {
+  .popover[data-popper-placement^='bottom'] {
     margin-top: 15px;
   }
 
-  .popover[x-placement^='bottom'] .popover_arrow {
+  .popover[data-popper-placement^='bottom'] .popover_arrow {
     border-width: 0 8px 8px 8px;
     border-color: transparent transparent #d6d6d6 transparent;
     top: -8px;
     margin-top: 0;
   }
 
-  .popover[x-placement^='bottom'] .popover_arrow::before {
+  .popover[data-popper-placement^='bottom'] .popover_arrow::before {
     content: '';
     display: inline-block;
     position: absolute;
@@ -86,18 +86,18 @@ export const Tag = styled.div`
     border-color: transparent transparent white transparent;
   }
 
-  .popover[x-placement^='right'] {
+  .popover[data-popper-placement^='right'] {
     margin-left: 15px;
   }
 
-  .popover[x-placement^='right'] .popover_arrow {
+  .popover[data-popper-placement^='right'] .popover_arrow {
     border-width: 8px 8px 8px 0;
     border-color: transparent #d6d6d6 transparent transparent;
     left: -8px;
     margin-left: 0;
   }
 
-  .popover[x-placement^='right'] .popover_arrow::before {
+  .popover[data-popper-placement^='right'] .popover_arrow::before {
     content: '';
     display: inline-block;
     position: absolute;
@@ -108,18 +108,18 @@ export const Tag = styled.div`
     border-color: transparent white transparent transparent;
   }
 
-  .popover[x-placement^='left'] {
+  .popover[data-popper-placement^='left'] {
     margin-right: 15px;
   }
 
-  .popover[x-placement^='left'] .popover_arrow {
+  .popover[data-popper-placement^='left'] .popover_arrow {
     border-width: 8px 0 8px 8px;
     border-color: transparent transparent transparent #d6d6d6;
     right: -8px;
     margin-right: 0;
   }
 
-  .popover[x-placement^='left'] .popover_arrow::before {
+  .popover[data-popper-placement^='left'] .popover_arrow::before {
     content: '';
     display: inline-block;
     position: absolute;
@@ -173,19 +173,19 @@ export const Tag = styled.div`
     color: transparent;
   }
 
-  &.tooltip[x-placement^='top'],
-  &.show[x-placement^='top']:not(.tooltip) {
+  &.tooltip[data-popper-placement^='top'],
+  &.show[data-popper-placement^='top']:not(.tooltip) {
     margin-bottom: 5px;
   }
 
-  &.tooltip[x-placement^='top'] .popover_arrow {
+  &.tooltip[data-popper-placement^='top'] .popover_arrow {
     border-width: 6px 6px 0 6px;
     border-color: #131313 transparent transparent transparent;
     bottom: -6px;
     margin-bottom: 0;
   }
 
-  &.tooltip[x-placement^='top'] .popover_arrow::before {
+  &.tooltip[data-popper-placement^='top'] .popover_arrow::before {
     content: '';
     display: inline-block;
     position: absolute;
@@ -196,19 +196,19 @@ export const Tag = styled.div`
     border-color: black transparent transparent transparent;
   }
 
-  &.tooltip[x-placement^='bottom'],
-  &.show[x-placement^='bottom']:not(.tooltip) {
+  &.tooltip[data-popper-placement^='bottom'],
+  &.show[data-popper-placement^='bottom']:not(.tooltip) {
     margin-top: 5px;
   }
 
-  &.tooltip[x-placement^='bottom'] .popover_arrow {
+  &.tooltip[data-popper-placement^='bottom'] .popover_arrow {
     border-width: 0 6px 6px 6px;
     border-color: transparent transparent #131313 transparent;
     top: -6px;
     margin-top: 0;
   }
 
-  &.tooltip[x-placement^='bottom'] .popover_arrow::before {
+  &.tooltip[data-popper-placement^='bottom'] .popover_arrow::before {
     content: '';
     display: inline-block;
     position: absolute;
@@ -219,19 +219,19 @@ export const Tag = styled.div`
     border-color: transparent transparent black transparent;
   }
 
-  &.tooltip[x-placement^='right'],
-  &.show[x-placement^='right']:not(.tooltip) {
+  &.tooltip[data-popper-placement^='right'],
+  &.show[data-popper-placement^='right']:not(.tooltip) {
     margin-left: 5px;
   }
 
-  &.tooltip[x-placement^='right'] .popover_arrow {
+  &.tooltip[data-popper-placement^='right'] .popover_arrow {
     border-width: 6px 6px 6px 0;
     border-color: transparent #131313 transparent transparent;
     left: -6px;
     margin-left: 0;
   }
 
-  &.tooltip[x-placement^='right'] .popover_arrow::before {
+  &.tooltip[data-popper-placement^='right'] .popover_arrow::before {
     content: '';
     display: inline-block;
     position: absolute;
@@ -242,19 +242,19 @@ export const Tag = styled.div`
     border-color: transparent black transparent transparent;
   }
 
-  &.tooltip[x-placement^='left'],
-  &.show[x-placement^='left']:not(.tooltip) {
+  &.tooltip[data-popper-placement^='left'],
+  &.show[data-popper-placement^='left']:not(.tooltip) {
     margin-right: 5px;
   }
 
-  &.tooltip[x-placement^='left'] .popover_arrow {
+  &.tooltip[data-popper-placement^='left'] .popover_arrow {
     border-width: 6px 0 6px 6px;
     border-color: transparent transparent transparent #131313;
     right: -6px;
     margin-right: 0;
   }
 
-  &.tooltip[x-placement^='left'] .popover_arrow::before {
+  &.tooltip[data-popper-placement^='left'] .popover_arrow::before {
     content: '';
     display: inline-block;
     position: absolute;

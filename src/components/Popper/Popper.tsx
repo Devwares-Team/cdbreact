@@ -1,153 +1,149 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react'
-import classNames from 'classnames'
- import Popper from 'popper.js'
-import PropTypes from 'prop-types'
-import { Tag } from './Popper.style'
-import { ThemeProvider } from 'styled-components'
-import { theme } from '../../theme'
+import React, { Fragment, useEffect, useRef, useState } from "react";
+import classNames from "classnames";
+import { createPopper } from "@popperjs/core";
+import PropTypes from "prop-types";
+import { Tag } from "./Popper.style";
+import { ThemeProvider } from "styled-components";
+import { theme } from "../../theme";
 
 interface Props {
-  children: React.ReactNode,
-  clickable: boolean,
-  domElement: boolean,
-  email: boolean,
-  id: string,
-  isVisible: boolean,
-  material: boolean,
-  modifiers: object,
-  placement: string,
-  popover: boolean,
-  sm: boolean,
-  style: any,
-  tag: string,
+  children: React.ReactNode;
+  className?: string;
+  clickable?: boolean;
+  domElement?: boolean;
+  email?: boolean;
+  id?: string;
+  isVisible?: boolean;
+  material?: boolean;
+  modifiers?: object[] | object;
+  placement?: string;
+  popover?: boolean;
+  sm?: boolean;
+  style?: React.CSSProperties;
+  tag?: string;
+  onChange?: (isOpen: boolean) => void;
 }
-const Popover = (props) => {
+
+const callHandler = (handler, event) => {
+  if (typeof handler === "function") {
+    handler(event);
+  }
+};
+
+const Popover = (props: Props) => {
   const {
     children,
     className,
-    clickable,
-    domElement,
+    clickable = false,
+    domElement = false,
     email,
-    id,
-    isVisible,
+    id = "popper",
+    isVisible = false,
     material,
     modifiers,
-    placement,
-    popover,
+    placement = "top",
+    popover = false,
     sm,
     style,
     onChange,
-    tag,
+    tag = "div",
     ...attributes
   } = props;
 
-  const [state, setState] = useState<any>({
-    popperJS: null,
-    visible: props.isVisible,
-    showPopper: props.isVisible,
-  });
-  const [timer, setTimer] = useState<NodeJS.Timer>();
-
-  const popoverWrapperRef = useRef<any>();
-  const referenceElm = useRef<any>();
+  const [showPopper, setShowPopper] = useState<boolean>(isVisible);
+  const popoverWrapperRef = useRef<any>(null);
+  const referenceElm = useRef<any>(null);
+  const arrowElm = useRef<any>(null);
+  const popperRef = useRef<any>(null);
 
   useEffect(() => {
-    const { showPopper } = state;
-    const { isVisible, onChange } = props;
-    setPopperJS();
-    if (
-      props.isVisible !== isVisible &&
-      isVisible !== showPopper &&
-      showPopper !== props.showPopper
-    ) {
-      setState({ ...state, showPopper: isVisible });
-    }
-    if (onChange && showPopper !== state.showPopper) {
+    setShowPopper(Boolean(isVisible));
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (onChange) {
       onChange(showPopper);
     }
-    if (showPopper && state.showPopper !== showPopper) {
-      createPopper();
-    }
-  }, [state]);
+  }, [onChange, showPopper]);
 
   useEffect(() => {
-    const time = setInterval(() => setPopperJS(), 3);
-    setTimer(time);
-    document.addEventListener("click", handleClick);
-  }, []);
-
-  const setPopperJS = () => {
-    const { showPopper, popperJS } = state;
-    if (showPopper) {
-      popperJS ? popperJS.scheduleUpdate() : createPopper();
-      setTimeout(() => clearInterval(timer), 1000);
+    if (!showPopper || !referenceElm.current || !popoverWrapperRef.current) {
+      if (popperRef.current) {
+        popperRef.current.destroy();
+        popperRef.current = null;
+      }
+      return;
     }
-  };
 
-  const createPopper = () => {
-    const { placement, modifiers } = props;
+    const incomingModifiers = Array.isArray(modifiers) ? modifiers : [];
+    popperRef.current = createPopper(referenceElm.current, popoverWrapperRef.current, {
+      placement: placement as any,
+      modifiers: [
+        {
+          name: "arrow",
+          options: {
+            element: arrowElm.current,
+          },
+        },
+        {
+          name: "offset",
+          options: {
+            offset: [0, 8],
+          },
+        },
+        ...incomingModifiers,
+      ],
+    });
 
-    if (referenceElm.current && popoverWrapperRef.current) {
-      setState(prevState => ({
-        ...prevState,
-        popperJS: new Popper(
-          referenceElm.current,
-          popoverWrapperRef.current,
-          {
-            placement,
-            ...modifiers,
-          }
-        ),
-      }));
-    }
-  };
+    popperRef.current.update();
 
-  useEffect(()=> {
-    const {popperJS} = state;
+    return () => {
+      if (popperRef.current) {
+        popperRef.current.destroy();
+        popperRef.current = null;
+      }
+    };
+  }, [modifiers, placement, showPopper]);
 
-    if (popperJS !== null) {
-      setTimeout(() => {
-        popperJS.scheduleUpdate();
-      }, 10)
-    }
-  }, [])
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      if (!clickable || !showPopper || !popoverWrapperRef.current || !referenceElm.current) {
+        return;
+      }
 
-  const doToggle = (toggler) => {
-    setState({ ...state, showPopper: toggler && true });
-    const { showPopper, visible } = state;
-    if (showPopper) {
-      setState({
-        ...state,
-        visible: typeof toggler !== "undefined" ? toggler : !visible,
-      });
-      createPopper();
-      state.popperJS.scheduleUpdate();
-    }
-  };
-
-  const handleClick = (e) => {
-    const { target } = e;
-    const { showPopper } = state;
-
-    if (popoverWrapperRef.current && showPopper) {
+      const target = event.target as Node;
       if (
         popoverWrapperRef.current.contains(target) ||
-        referenceElm.current.contains(target) ||
-        target === referenceElm.current
+        referenceElm.current.contains(target)
       ) {
         return;
       }
-      doToggle(false);
-    }
+      setShowPopper(false);
+    };
+
+    document.addEventListener("click", handleClick, true);
+    return () => {
+      document.removeEventListener("click", handleClick, true);
+    };
+  }, [clickable, showPopper]);
+
+  const doToggle = (nextValue?: boolean) => {
+    setShowPopper((previous) => {
+      const value = typeof nextValue === "boolean" ? nextValue : !previous;
+      return value;
+    });
   };
 
+  const childArray = React.Children.toArray(children) as React.ReactElement[];
+  const Wrapper = childArray[0];
+  const PopperContent = childArray[1];
 
+  if (!Wrapper || !PopperContent) {
+    return null;
+  }
 
-  const { visible, showPopper } = state;
- const _Popper = children[1]
-  const Wrapper = children[0];
   const classes = classNames(
-    visible && "show",
+    showPopper && "show",
     popover ? "popover" : !material && !email && "tooltip px-2",
     className
   );
@@ -158,67 +154,87 @@ const Popover = (props) => {
     email && (sm ? "md-inner" : "md-inner-email")
   );
 
+  const triggerProps = {
+    onMouseEnter: (event) => {
+      callHandler(Wrapper.props.onMouseEnter, event);
+      if (!clickable) {
+        doToggle(true);
+      }
+    },
+    onMouseLeave: (event) => {
+      callHandler(Wrapper.props.onMouseLeave, event);
+      if (!clickable && !popover) {
+        doToggle(false);
+      }
+    },
+    onTouchStart: (event) => {
+      callHandler(Wrapper.props.onTouchStart, event);
+      if (!clickable) {
+        doToggle(true);
+      }
+    },
+    onTouchEnd: (event) => {
+      callHandler(Wrapper.props.onTouchEnd, event);
+      if (!clickable && !popover) {
+        doToggle(false);
+      }
+    },
+    onMouseDown: (event) => {
+      callHandler(Wrapper.props.onMouseDown, event);
+      if (clickable) {
+        doToggle();
+      }
+    },
+    onMouseUp: (event) => {
+      callHandler(Wrapper.props.onMouseUp, event);
+      if (popperRef.current) {
+        popperRef.current.update();
+      }
+    },
+    "data-popper": id,
+  };
+
+  const setReferenceRef = (node) => {
+    referenceElm.current = node;
+    const wrapperRef = (Wrapper as any).ref;
+    if (domElement && typeof wrapperRef === "function") {
+      wrapperRef(node);
+    }
+  };
+
+  const wrappedTrigger = React.cloneElement(Wrapper, {
+    ...triggerProps,
+    ...(domElement
+      ? { ref: setReferenceRef }
+      : { innerRef: setReferenceRef }),
+  });
+
   return (
     <ThemeProvider theme={theme}>
       <Fragment>
-        {!domElement ? (
-          <Wrapper.type
-            {...Wrapper.props}
-            onMouseEnter={() => !clickable && doToggle(true)}
-            onMouseLeave={() =>
-              !clickable &&
-              !popover &&
-              setTimeout(() => doToggle(false), 0)
-            }
-            onTouchStart={() => !clickable && doToggle(true)}
-            onTouchEnd={() =>
-              !clickable && !popover && doToggle(false)
-            }
-            onMouseDown={() => {
-              clickable && doToggle(!showPopper);
-              setTimeout(() => setPopperJS(), 100);
-            }}
-            onMouseUp={() => setTimeout(() => setPopperJS(), 0)}
-            innerRef={(ref) => (referenceElm.current = ref)}
-            data-popper={id}
-          />
-        ) : (
-          <Wrapper.type
-            {...Wrapper.props}
-            onMouseEnter={() => !clickable && doToggle(true)}
-            onMouseLeave={() =>
-              !clickable &&
-              !popover &&
-              setTimeout(() => doToggle(false), 0)
-            }
-            onTouchStart={() => !clickable && doToggle(true)}
-            onTouchEnd={() =>
-              !clickable && !popover && doToggle(false)
-            }
-            onMouseDown={() => clickable && doToggle(!showPopper)}
-            onMouseUp={() => setTimeout(() => setPopperJS(), 0)}
-            ref={(ref) => (referenceElm.current = ref)}
-            data-popper={id}
-          />
-        )}
+        {wrappedTrigger}
         {showPopper && (
           <Tag
-            ref={(ref) => (popoverWrapperRef.current = ref)}
+            ref={(ref) => {
+              popoverWrapperRef.current = ref;
+            }}
             className={classes}
             data-popper={id}
+            style={style}
             {...attributes}
             as={(tag as unknown) as undefined}
           >
-            <_Popper.type
-              className={classNames(
-                popperClasses,
-                _Popper.props.className
-              )}
+            <PopperContent.type
+              {...PopperContent.props}
+              className={classNames(popperClasses, PopperContent.props.className)}
             >
-              {_Popper.props.children}
-            </_Popper.type>
+              {PopperContent.props.children}
+            </PopperContent.type>
             <span
-              x-arrow=""
+              data-popper-arrow
+              ref={(node) => {
+                arrowElm.current = node;
+              }}
               className={classNames("popover_arrow")}
             ></span>
           </Tag>
@@ -236,11 +252,11 @@ Popover.propTypes = {
   id: PropTypes.string,
   isVisible: PropTypes.bool,
   material: PropTypes.bool,
-  modifiers: PropTypes.object,
+  modifiers: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   placement: PropTypes.string,
   popover: PropTypes.bool,
   sm: PropTypes.bool,
-  style: PropTypes.objectOf(PropTypes.string),
+  style: PropTypes.object,
   tag: PropTypes.string,
 };
 Popover.defaultProps = {

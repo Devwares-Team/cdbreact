@@ -32,7 +32,7 @@ const DataTablePagination = (props: Props) => {
   const [pGroupByPNum, setPGroupByPNum] = useState([])
 
   // ComponentDidMount & ComponentDidUpdateLogic
-  const mounted = useRef<boolean>()
+  const mounted = useRef<boolean>(false)
   useEffect(() => {
 
     if (!mounted.current) { // Component Did Mount
