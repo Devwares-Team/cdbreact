@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.1](https://github.com/Devwares-Team/cdbreact/compare/v1.6.0...v1.6.1) (2026-03-31)
+
+### Changed
+
+- Removed GitHub total downloads badge from README.
+- Removed committed `.tgz` package artifact from the repository.
+- Added `*.tgz` to `.gitignore` to prevent future package archive commits.
+
 ## [1.6.0](https://github.com/Devwares-Team/cdbreact/compare/v1.5.19...v1.6.0) (2026-03-30)
 
 ### Added
